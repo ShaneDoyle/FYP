@@ -36,7 +36,7 @@ inverted = 1; //Y
 xinverted = 0; //X
 
 //Movement
-grav = 0.6
+grav = 0.6;
 hspd = 0;
 vspd = 0;
 acc = 0.3;
@@ -618,6 +618,15 @@ if(dir = "down")
         vspd = key_jump * jumpspeed;
     }
     
+    if(!place_meeting(x, y-1, obj_block))
+    {
+        grounded = false;
+    }
+    else
+    {
+        grounded = true;
+    }
+    
     //Horizontal Collision
     if(place_meeting(x + hspd, y, obj_block))
     {
@@ -693,6 +702,15 @@ else if(dir == "right")
         hspd = key_jump * jumpspeed;
     }
     
+    if(!place_meeting(x-1, y, obj_block))
+    {
+        grounded = false;
+    }
+    else
+    {
+        grounded = true;
+    }
+    
     //Horizontal Collision
     if(place_meeting(x + hspd, y, obj_block))
     {
@@ -735,7 +753,7 @@ else if(dir == "left")
     {
         if(vspd != 0)
         {
-            vspd -= dacc *image_xscale
+            vspd += dacc *image_xscale
         }
     }
     
@@ -767,6 +785,15 @@ else if(dir == "left")
     if(place_meeting(x+1,y,obj_block))
     {
         hspd = key_jump * -jumpspeed;
+    }
+    
+    if(!place_meeting(x+1, y, obj_block))
+    {
+        grounded = false;
+    }
+    else
+    {
+        grounded = true;
     }
     
     //Horizontal Collision
@@ -833,6 +860,7 @@ if(powerup == 1)
         image_index = 0;
         image_speed = 0.65;
         alarm[0] = 20;
+        bullet.life = 3;
         attacking = true;
         
     }
@@ -852,16 +880,29 @@ if(powerup == 2)
     {
         slowmovement = true;
         alarm[0] = 16;
-        var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
+        if(dir == "up")
+        {
+            var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
+            
+            bullet.followx = 81;
+            bullet.followy = 14;
+            bullet.followplayer = true;
+        }
+        else if(dir == "right" || dir == "left")
+        {
+            var bullet = instance_create(x-14 , y + (81 * image_xscale), obj_projectile);
+            bullet.followx = -14;
+            bullet.followy = 81;
+            bullet.image_angle = -90;
+            bullet.followplayer = true;
+        }
+        
         bullet.sprite_index = spr_Laser;
         bullet.powerup = 2;
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
         bullet.image_index = irandom_range(0,0);
-        bullet.followplayer = true;
-        bullet.followx = 81;
-        bullet.followy = 14;
         
         sound = choose(1,2,3)
         audio_stop_sound(LightningZap1);
@@ -900,11 +941,39 @@ if(powerup == 2)
     
     if(keyboard_check(vk_space) &amp;&amp; jetpack == true)
     {
-        vspd -= 1.1;
-        if(vspd &lt; -2)
+        if(dir == "up")
         {
-            vspd = -2;
+            vspd -= 1.1;
+            if(vspd &lt; -2)
+            {
+                vspd = -2;
+            }
         }
+        else if(dir == "right")
+        {
+            hspd += 1.1;
+            if(hspd &gt; 2)
+            {
+                hspd = 2;
+            }
+        }
+        else if(dir == "left")
+        {
+            hspd -= 1.1;
+            if(hspd &lt; -2)
+            {
+                hspd = -2;
+            }
+        }
+        else if(dir == "down")
+        {
+            vspd += 1.1;
+            if(vspd &gt; 2)
+            {
+                vspd = 2;
+            }
+        }
+        
         jetpackanimation = true;
         if (miscsound == true)
         {
@@ -929,13 +998,27 @@ if(powerup == 2)
     
     else if(slowmovement == true)
     {
-        if(hspd &gt; maxspeed * 0.5)
+        if(dir == "up" || dir == "down")
         {
-            hspd = maxspeed * 0.5;
+            if(hspd &gt; maxspeed * 0.5)
+            {
+                hspd = maxspeed * 0.5;
+            }
+            else if(hspd &lt; maxspeed * -0.5)
+            {
+                hspd = maxspeed * -0.5;
+            }
         }
-        else if(hspd &lt; maxspeed * -0.5)
+        else
         {
-            hspd = maxspeed * -0.5;
+            if(vspd &gt; maxspeed * 0.5)
+            {
+                vspd = maxspeed * 0.5;
+            }
+            else if(vspd &lt; maxspeed * -0.5)
+            {
+                vspd = maxspeed * -0.5;
+            }
         }
     }
 }
@@ -976,7 +1059,7 @@ if(powerup == 3)
             <kind>1</kind>
             <string>///Animations (Blue)
 
-if(dir == "up")
+if(dir == "up" || dir == "down")
 {
     //(0) Idle
     if(powerup == 0)
@@ -995,7 +1078,7 @@ if(dir == "up")
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueRun;
-            image_speed = 0.30 * hspd * image_xscale * inverted;
+            image_speed = 0.30 * hspd * image_xscale;
         }
     }
     
@@ -1044,7 +1127,7 @@ if(dir == "up")
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_SwordShield;
-            image_speed = 0.25 * hspd * image_xscale * inverted;
+            image_speed = 0.25 * hspd * image_xscale;
         }
     }
     
@@ -1071,7 +1154,7 @@ if(dir == "up")
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_ShockBlaster;
-            image_speed = 0.25 * hspd * image_xscale * inverted;
+            image_speed = 0.25 * hspd * image_xscale;
         }
     }
     
@@ -1092,7 +1175,7 @@ if(dir == "up")
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_Summoning;
-            image_speed = 0.25 * hspd * image_xscale * inverted;
+            image_speed = 0.25 * hspd * image_xscale;
         }
     }
 }
@@ -1154,13 +1237,75 @@ else if(dir == "right" || dir == "left")
         else if (vspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_SwordShield
-            if(xinverted == 1)
+            if(dir == "right")
             {
                 image_speed = 0.30 * vspd * image_xscale;
             }
             else
             {
                 image_speed = 0.30 * vspd * image_xscale * -1;
+            }
+        }
+    }
+    
+    //(2) Shock Blaster
+    else if(powerup == 2)
+    {
+        if(jetpackanimation == true)
+        {
+            sprite_index = spr_PlayerBlueJetpack_ShockBlaster;
+            image_speed = 0.35;
+        }
+        
+        else if(hspd != 0)
+        {
+            sprite_index = spr_PlayerBlueJump_ShockBlaster;
+        }
+        
+        else if(vspd == 0)
+        {
+            sprite_index = spr_PlayerBlueIdle_ShockBlaster;
+            image_speed = 0.25;
+        }
+        
+        else if (vspd != 0)
+        {
+            sprite_index = spr_PlayerBlueMove_ShockBlaster;
+            if(dir == "right")
+            {
+                image_speed = 0.25 * vspd * image_xscale;
+            }
+            else
+            {
+                image_speed = 0.25 * vspd * image_xscale * -1;
+            }
+        }
+    }
+    
+    //(3) Summoning (Necromancer)
+    else if(powerup == 3)
+    {
+        if(hspd != 0)
+        {
+            sprite_index = spr_PlayerBlueJump_Summoning;
+        }
+        
+        else if(vspd == 0)
+        {
+            sprite_index = spr_PlayerBlueIdle_Summoning;
+            image_speed = 0.25;
+        }
+        
+        else if (vspd != 0)
+        {
+            sprite_index = spr_PlayerBlueMove_Summoning;
+            if(dir == "right")
+            {
+                image_speed = 0.25 * vspd * image_xscale;
+            }
+            else
+            {
+                image_speed = 0.25 * vspd * image_xscale * -1;
             }
         }
     }
@@ -1187,7 +1332,7 @@ else if(dir == "right" || dir == "left")
           <argument>
             <kind>1</kind>
             <string>///View Angle
-//view_angle = lerp( view_angle, image_angle * -1, 0.15);
+view_angle = lerp( view_angle, image_angle * -1, 0.125);
 </string>
           </argument>
         </arguments>

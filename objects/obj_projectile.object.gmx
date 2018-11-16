@@ -159,6 +159,7 @@ buffer_write(global.buffer, buffer_u32, projectileId);
 buffer_write(global.buffer, buffer_f32, x);
 buffer_write(global.buffer, buffer_f32, y);
 buffer_write(global.buffer, buffer_u16, sprite_index);
+buffer_write(global.buffer, buffer_s16, image_angle);
 buffer_write(global.buffer, buffer_s8, image_xscale);
 buffer_write(global.buffer, buffer_s8, image_yscale);
 buffer_write(global.buffer, buffer_u8, powerup);
@@ -213,12 +214,19 @@ if(image_index &gt;= 1)
           <argument>
             <kind>1</kind>
             <string>///Follow player
-if(followplayer == true)
+if(followplayer == true &amp;&amp; obj_localplayer.dir == "up")
 {
     image_xscale = obj_localplayer.image_xscale;
     x = obj_localplayer.x + followx * image_xscale;
     y = obj_localplayer.y + followy;
 }
+else
+{
+    image_xscale = obj_localplayer.image_xscale;
+    x = obj_localplayer.x + followx;
+    y = obj_localplayer.y + followy * image_xscale;
+}
+
 </string>
           </argument>
         </arguments>

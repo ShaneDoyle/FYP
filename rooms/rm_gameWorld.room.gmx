@@ -8,8 +8,8 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>1776665</colour>
-  <showcolour>0</showcolour>
+  <colour>15905882</colour>
+  <showcolour>-1</showcolour>
   <code>//Randomise();
 randomize();
 
@@ -57,7 +57,7 @@ audio_play_sound(SuperBomberman2BGM1,0,true);
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="Test" x="0" y="0" htiled="-1" vtiled="-1" hspeed="-1" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="Test" x="0" y="0" htiled="-1" vtiled="0" hspeed="-1" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="NightSkyClouds" x="0" y="0" htiled="-1" vtiled="0" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>

@@ -215,6 +215,7 @@ switch(msgId)
         var xx = buffer_read(buffer, buffer_f32);
         var yy = buffer_read(buffer, buffer_f32);
         var sprite_number = buffer_read(buffer, buffer_u16);
+        var angle_image = buffer_read(buffer, buffer_s16);
         var xdir = buffer_read(buffer, buffer_s8);
         var ydir = buffer_read(buffer, buffer_s8);
         var powerup = buffer_read(buffer, buffer_u8);
@@ -236,6 +237,8 @@ switch(msgId)
             projectile.y = yy;
             projectile.image_xscale = xdir;
             //projectile.image_yscale = ydir;
+            projectile.image_angle = angle_image;
+            
             //projectile.sprite_index = sprite_number;
         }
         else
@@ -244,6 +247,7 @@ switch(msgId)
             p.owner = pId;
             p.projectileId = projectileId;
             p.sprite = sprite_number;
+            p.image_angle = angle_image;
             p.life = life;
             p.powerup = powerup;
         }

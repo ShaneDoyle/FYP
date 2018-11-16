@@ -58,8 +58,8 @@ view_object[0] = obj_Camera;
 if(obj_localplayer.death == false)
 {
 
-        x = lerp(x, obj_localplayer.x ,0.3);
-        y = lerp(y, obj_localplayer.y - (32*1) ,0.1)
+        x = lerp(x, obj_localplayer.x ,0.08);
+        y = lerp(y, obj_localplayer.y ,0.08);//- (32*1) ,0.1)
 
 
 }

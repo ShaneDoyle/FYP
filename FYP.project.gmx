@@ -146,7 +146,9 @@
     </sprites>
     <sprites name="Objects">
       <sprite>sprites\spr_LeftPortal</sprite>
+      <sprite>sprites\spr_RightPortal</sprite>
       <sprite>sprites\spr_UpPortal</sprite>
+      <sprite>sprites\spr_DownPortal</sprite>
       <sprite>sprites\spr_Crate</sprite>
     </sprites>
   </sprites>
