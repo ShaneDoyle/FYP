@@ -27,10 +27,11 @@
             <kind>1</kind>
             <string>///Variables
 depth = 2;
-circlelight = 280;
+circlelight = 480;
 hit = false;
 
 //Gravity
+dir = "up";
 inverted = 1; //Y
 xinverted = 0; //X
 
@@ -62,7 +63,7 @@ attacking = false;
 attacksound = true;
 createhitbox = true;
 attackcool = 0;
-powerup = 2;
+powerup = 0;
 
 //Misc
 sendbuffer = 0;
@@ -478,7 +479,7 @@ key_down = keyboard_check(vk_down);
 key_jump = keyboard_check_pressed(vk_space);
 
 //Up
-if(inverted == 1)
+if(dir = "up")
 {
     //Inputs
     if(key_left)
@@ -541,7 +542,7 @@ if(inverted == 1)
     {
     while (!place_meeting(x+sign(hspd), y, obj_block))
     {
-    x += sign(hspd);
+        x += sign(hspd);
     }
     
     hspd = 0;
@@ -557,7 +558,7 @@ if(inverted == 1)
     {
     while (!place_meeting(x, y+sign(vspd), obj_block))
     {
-    y += sign(vspd);
+        y += sign(vspd);
     }
     
     vspd = 0;
@@ -569,7 +570,7 @@ if(inverted == 1)
 }
 
 //Down
-if(inverted == -1)
+if(dir = "down")
 {
     //Inputs
     if(key_left)
@@ -589,11 +590,11 @@ if(inverted == -1)
     }
     
     //Max speed
-    if(hspd &lt; maxspeed * -1)
+    if(hspd &gt; maxspeed * -1)
     {
         hspd = maxspeed * -1;
     }
-    else if(hspd &gt; maxspeed)
+    else if(hspd &lt; maxspeed)
     {
         hspd = maxspeed;
     }
@@ -643,7 +644,7 @@ if(inverted == -1)
 
 
 //Right
-else if(xinverted == 1)
+else if(dir == "right")
 {
     //Inputs
     if(key_left)
@@ -682,12 +683,12 @@ else if(xinverted == 1)
         image_xscale = 1;
     }
     
-    if(vspd &lt; 10)
+    if(hspd &lt; 10)
     {
         hspd -= grav;
     }
     
-    if(place_meeting(x-1,y,obj_block))
+    if(place_meeting(x - 1,y,obj_block))
     {
         hspd = key_jump * jumpspeed;
     }
@@ -714,10 +715,12 @@ else if(xinverted == 1)
 
     x += hspd;
     y += vspd;
+    
+
 }
 
 //Left
-else if(xinverted == -1)
+else if(dir == "left")
 {
     //Inputs
     if(key_left)
@@ -732,7 +735,7 @@ else if(xinverted == -1)
     {
         if(vspd != 0)
         {
-            vspd += dacc *image_xscale
+            vspd -= dacc *image_xscale
         }
     }
     
@@ -756,7 +759,7 @@ else if(xinverted == -1)
         image_xscale = -1;
     }
     
-    if(vspd &lt; 10)
+    if(hspd &lt; 10)
     {
         hspd += grav;
     }
@@ -973,7 +976,7 @@ if(powerup == 3)
             <kind>1</kind>
             <string>///Animations (Blue)
 
-if(inverted != 0)
+if(dir == "up")
 {
     //(0) Idle
     if(powerup == 0)
@@ -1094,7 +1097,7 @@ if(inverted != 0)
     }
 }
 
-else if(xinverted != 0)
+else if(dir == "right" || dir == "left")
 {
     //(0) Idle
     if(powerup == 0)
@@ -1113,7 +1116,7 @@ else if(xinverted != 0)
         else if (vspd != 0)
         {
             sprite_index = spr_PlayerBlueRun;
-            if(xinverted == 1)
+            if(dir == "right")
             {
                 image_speed = 0.25 * vspd * image_xscale;
             }
@@ -1184,7 +1187,7 @@ else if(xinverted != 0)
           <argument>
             <kind>1</kind>
             <string>///View Angle
-view_angle = lerp( view_angle, image_angle * -1, 0.15);
+//view_angle = lerp( view_angle, image_angle * -1, 0.15);
 </string>
           </argument>
         </arguments>
@@ -1239,8 +1242,7 @@ if(alarm[9] == -1)
 }
 
 
-inverted = -1;
-xinverted = 0;
+dir = "down";
 scr_angle_player("down");
 </string>
           </argument>
@@ -1272,6 +1274,7 @@ if(alarm[9] == -1)
 inverted = 1;
 xinverted = 0;
 
+dir = "up";
 scr_angle_player("up");
 </string>
           </argument>
@@ -1301,9 +1304,8 @@ if(alarm[9] == -1)
     alarm[9] = 20;
 }
 
-inverted = 0;
-xinverted = 1;
-    
+dir = "right";
+
 scr_angle_player("right");
 </string>
           </argument>
@@ -1332,8 +1334,8 @@ if(alarm[9] == -1)
 {
     alarm[9] = 20;
 }
-    inverted = 0;
-    xinverted = -1;
+
+dir = "left";
 
     
 scr_angle_player("left");

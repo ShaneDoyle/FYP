@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Connection Variables
 socket = network_create_socket(network_socket_tcp);
-ip = get_string("IP Address: ", "109.255.126.138");
+ip = get_string("IP Address: ", "127.0.0.1");
 isConnected = network_connect(socket, ip, 50000);
 global.buffer = buffer_create(1024, buffer_fixed, 1);
 global.latency = 0;

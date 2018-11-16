@@ -11,7 +11,6 @@ if(grav_dir == "up")
 if(grav_dir == "right")
 {
     image_angle = lerp (initial_angle, -90, 1);
-    image_yscale = 1;
     
 }
 if(grav_dir == "left")
