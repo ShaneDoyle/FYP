@@ -223,7 +223,7 @@ if(followplayer == true &amp;&amp; obj_localplayer.dir == "up")
 
 else if(followplayer == true &amp;&amp; obj_localplayer.dir == "down")
 {
-    image_xscale = obj_localplayer.image_xscale *-1;
+    image_xscale = obj_localplayer.image_xscale;
     x = obj_localplayer.x + followx * image_xscale;
     y = obj_localplayer.y + followy;
 }

@@ -23,7 +23,7 @@ grasschance = 65; //Percentage of a block having grass
 spawngrass = true; //If true, will ALWAYS spawn grass, regardless of percentage
 
 //Size of world.
-blocksize = 16 // choose(26,28,30,32,34,36);
+blocksize = choose(12,14,16) // choose(26,28,30,32,34,36);
 
 //Pitfalls
 pitfall = 0;
@@ -197,6 +197,7 @@ for(i=0; i<blocksize; i++)
         }
     }
     
+    
     //Height changer.
     if(i < blocksize - 2)
     {
@@ -254,12 +255,33 @@ for(i=0; i<left_loop; i++)
     var block = instance_create(currentx, currenty, obj_block);
     block.image_index = 6;
     
-    /*
-    for(j=0; j<1; j++)
+     //Spawn bush
+    if(bush == bushchance)
     {
-        instance_create(currentx, currenty+(32*j), obj_block);
+        bush = 0;
+        bushchance = choose(8,10,12,14,8);
+        var obj_bush = instance_create(currentx-32,currenty,obj_bush1);
+        obj_bush.image_angle = 90;
     }
-    */
+    
+    //Spawn grass
+    grasstemp = irandom_range(1,100);
+    if(grasschance >= grasstemp || spawngrass == true)
+    {
+        var obj_grass = instance_create(currentx ,currenty + 32,obj_grass1);
+        obj_grass.image_angle = 90;
+        
+        //Ensure 2 patches spawn
+        if(spawngrass == true)
+        {
+            spawngrass = false;
+        }
+        else
+        {
+            spawngrass = true;
+        }
+    }
+    
     
     //Height changer.
     if(i < blocksize - 4)
@@ -327,6 +349,37 @@ for(i=0; i< down_loop * 2; i++)
     if(i == 0)
     {
         block.image_index = 4;   
+    }
+    
+    //Only do half of land.
+    if(i < down_loop)
+    {
+        //Spawn bush
+        if(bush == bushchance)
+        {
+            bush = 0;
+            bushchance = choose(8,10,12,14,8);
+            var obj_bush = instance_create(currentx + 32,currenty+64,obj_bush1);
+            obj_bush.image_angle = 180;
+        }
+        
+        //Spawn grass
+        grasstemp = irandom_range(1,100);
+        if(grasschance >= grasstemp || spawngrass == true)
+        {
+            var obj_grass = instance_create(currentx+32 ,currenty + 32,obj_grass1);
+            obj_grass.image_angle = 180;
+            
+            //Ensure 2 patches spawn
+            if(spawngrass == true)
+            {
+                spawngrass = false;
+            }
+            else
+            {
+                spawngrass = true;
+            }
+        }
     }
 
     

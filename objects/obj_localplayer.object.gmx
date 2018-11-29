@@ -917,8 +917,8 @@ if(powerup == 2)
             
             bullet.followx = -81;
             bullet.followy = -14;
+            bullet.image_angle = -180;
             bullet.followplayer = true;
-            bullet.image_xscale = image_xscale;
         }
         
         else if(dir == "right")
