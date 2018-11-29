@@ -220,12 +220,26 @@ if(followplayer == true &amp;&amp; obj_localplayer.dir == "up")
     x = obj_localplayer.x + followx * image_xscale;
     y = obj_localplayer.y + followy;
 }
-else
+
+else if(followplayer == true &amp;&amp; obj_localplayer.dir == "down")
+{
+    image_xscale = obj_localplayer.image_xscale *-1;
+    x = obj_localplayer.x + followx * image_xscale;
+    y = obj_localplayer.y + followy;
+}
+else if(followplayer == true &amp;&amp; obj_localplayer.dir == "right")
 {
     image_xscale = obj_localplayer.image_xscale;
     x = obj_localplayer.x + followx;
     y = obj_localplayer.y + followy * image_xscale;
 }
+else if(followplayer == true &amp;&amp; obj_localplayer.dir == "left")
+{
+    image_xscale = obj_localplayer.image_xscale;
+    x = obj_localplayer.x + followx;
+    y = obj_localplayer.y + followy * image_xscale;
+}
+
 
 </string>
           </argument>

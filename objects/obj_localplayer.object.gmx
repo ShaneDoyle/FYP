@@ -45,6 +45,7 @@ jumpspeed = 8;
 maxspeed = 2.7;
 grounded = false;
 slowmovement = false;
+reverse_image_speed = 1;
 
 
 //---Combat Stats
@@ -607,7 +608,7 @@ if(dir = "down")
     {
         if(hspd != 0)
         {
-            hspd -= dacc *image_xscale
+            hspd += dacc *image_xscale
         }
     }
     
@@ -902,7 +903,7 @@ if(powerup == 2)
     {
         slowmovement = true;
         alarm[0] = 16;
-        if(dir == "up" || dir == "down")
+        if(dir == "up")
         {
             var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
             
@@ -910,12 +911,31 @@ if(powerup == 2)
             bullet.followy = 14;
             bullet.followplayer = true;
         }
-        else if(dir == "right" || dir == "left")
+        else if(dir == "down")
+        {
+            var bullet = instance_create(x - (81 * image_xscale), y - 14, obj_projectile);
+            
+            bullet.followx = -81;
+            bullet.followy = -14;
+            bullet.followplayer = true;
+            bullet.image_xscale = image_xscale;
+        }
+        
+        else if(dir == "right")
         {
             var bullet = instance_create(x-14 , y + (81 * image_xscale), obj_projectile);
             bullet.followx = -14;
             bullet.followy = 81;
             bullet.image_angle = -90;
+            bullet.followplayer = true;
+        }
+        else if(dir == "left")
+        {
+            var bullet = instance_create(x+14 , y - (81 * image_xscale), obj_projectile);
+            bullet.followx = 14;
+            bullet.followy = -81;
+            bullet.image_angle = 90;
+            bullet.image_xscale = image_xscale;
             bullet.followplayer = true;
         }
         
@@ -1080,6 +1100,14 @@ if(powerup == 3)
           <argument>
             <kind>1</kind>
             <string>///Animations (Blue)
+if(dir == "up")
+{
+    reverse_image_speed = 1;
+}
+else if(dir == "down")
+{
+    reverse_image_speed = -1;
+}
 
 if(dir == "up" || dir == "down")
 {
@@ -1100,14 +1128,7 @@ if(dir == "up" || dir == "down")
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueRun;
-            if(dir == "up")
-            {
-                image_speed = 0.30 * hspd * image_xscale;
-            }
-            else
-            {
-                image_speed = 0.30 * hspd * image_xscale * -1;
-            }
+            image_speed = 0.30 * hspd * image_xscale * reverse_image_speed;
         }
     }
     
@@ -1149,28 +1170,15 @@ if(dir == "up" || dir == "down")
         
         else if(hspd == 0)
         {
-            sprite_index = spr_PlayerBlueIdle_SwordShield
-            if(dir == "up")
-            {
-                image_speed = 0.25 * hspd * image_xscale;
-            }
-            else
-            {
-                image_speed = 0.25 * hspd * image_xscale * -1;
-            }
+            sprite_index = spr_PlayerBlueIdle_SwordShield;
+            image_speed = 0.25;
+
         }
         
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_SwordShield;
-            if(dir == "up")
-            {
-                image_speed = 0.25 * hspd * image_xscale;
-            }
-            else
-            {
-                image_speed = 0.25 * hspd * image_xscale * -1;
-            }
+            image_speed = 0.25 * hspd * image_xscale * reverse_image_speed
         }
     }
     
@@ -1180,14 +1188,7 @@ if(dir == "up" || dir == "down")
         if(jetpackanimation == true)
         {
             sprite_index = spr_PlayerBlueJetpack_ShockBlaster;
-            if(dir == "up")
-            {
-                image_speed = 0.35 * hspd * image_xscale;
-            }
-            else
-            {
-                image_speed = 0.35 * hspd * image_xscale * -1;
-            }
+            image_speed = 0.35;
         }
         
         else if(vspd != 0)
@@ -1198,20 +1199,13 @@ if(dir == "up" || dir == "down")
         else if(hspd == 0)
         {
             sprite_index = spr_PlayerBlueIdle_ShockBlaster;
-            if(dir == "up")
-            {
-                image_speed = 0.25 * hspd * image_xscale;
-            }
-            else
-            {
-                image_speed = 0.25 * hspd * image_xscale * -1;
-            }
+            image_speed = 0.25;
         }
         
         else if (hspd != 0)
         {
             sprite_index = spr_PlayerBlueMove_ShockBlaster;
-            image_speed = 0.25 * hspd * image_xscale;
+            image_speed = 0.25 * hspd * image_xscale * reverse_image_speed;
         }
     }
     
