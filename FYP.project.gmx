@@ -243,13 +243,16 @@
         <object>objects\obj_PlayerColourLeftArrow</object>
         <object>objects\obj_ColourIcon</object>
         <object>objects\obj_SettingsMenu</object>
-        <object>objects\obj_SettingsPlatform</object>
       </objects>
       <objects name="Title Screen">
         <object>objects\obj_Join</object>
         <object>objects\obj_RockButton</object>
         <object>objects\obj_RockButton2</object>
         <object>objects\obj_Settings</object>
+        <object>objects\obj_SettingsPlatform</object>
+      </objects>
+      <objects name="Transitions">
+        <object>objects\obj_transition1</object>
       </objects>
       <object>objects\obj_controller</object>
       <object>objects\obj_message</object>
