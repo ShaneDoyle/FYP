@@ -19,11 +19,11 @@ altitudechance = 80 //% chance of the height changing. Lower would be more flat 
 bush = 0;
 bushchance = choose(10,12,12,14,8);
 
-grasschance = 65; //Percentage of a block having grass
+grasschance = 75; //Percentage of a block having grass
 spawngrass = true; //If true, will ALWAYS spawn grass, regardless of percentage
 
 //Size of world.
-blocksize = choose(12,14,16) // choose(26,28,30,32,34,36);
+blocksize = choose(16,18); // choose(26,28,30,32,34,36);
 
 //Pitfalls
 pitfall = 0;

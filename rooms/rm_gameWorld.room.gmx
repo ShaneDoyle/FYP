@@ -30,7 +30,7 @@ network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 
 //Music
 global.musicset = 1;
-audio_play_sound(SuperBomberman2BGM1,0,true);
+audio_play_sound(SMB2Theme,0,true);
 
 //Delete menu settings for backgrounds
 

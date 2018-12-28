@@ -90,7 +90,7 @@
     <option_android_push_id></option_android_push_id>
     <option_android_scale>0</option_android_scale>
     <option_android_set_device_id></option_android_set_device_id>
-    <option_android_sleep_margin>12</option_android_sleep_margin>
+    <option_android_sleep_margin>20</option_android_sleep_margin>
     <option_android_splash_png>Configs\Default\android\splash.png</option_android_splash_png>
     <option_android_splash_time>0</option_android_splash_time>
     <option_android_support_lib_version>23.1.1</option_android_support_lib_version>
@@ -592,7 +592,7 @@
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>
-    <option_windows_sleep_margin>7</option_windows_sleep_margin>
+    <option_windows_sleep_margin>20</option_windows_sleep_margin>
     <option_windows_splash_background_colour>#000000</option_windows_splash_background_colour>
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>0</option_windows_steam_app_id>

@@ -5,7 +5,6 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\SML2GraveyardWind</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
     <sound>sound\Click2</sound>
@@ -22,7 +21,7 @@
     <sound>sound\SwordShield2</sound>
     <sound>sound\SwordShield1</sound>
     <sound>sound\Jetpack</sound>
-    <sound>sound\SuperBomberman2BGM1</sound>
+    <sound>sound\SMB2Theme</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Player">
@@ -39,8 +38,9 @@
             <sprite>sprites\spr_PlayerBlueJetpack_ShockBlaster</sprite>
             <sprite>sprites\spr_PlayerBlueMove_ShockBlaster</sprite>
           </sprites>
-          <sprites name="1. Sword &amp; Shield">
+          <sprites name="2. Sword &amp; Shield">
             <sprite>sprites\spr_PlayerBlueIdle_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerRedIdle_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueMove_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueAttack_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueJump_SwordShield</sprite>
@@ -58,6 +58,11 @@
         <sprite>sprites\spr_PlayerRedRun</sprite>
         <sprite>sprites\spr_PlayerRedSlash</sprite>
         <sprite>sprites\spr_PlayerRedDeath</sprite>
+        <sprites name="Weapons">
+          <sprites name="1. Zap Pack">
+            <sprite>sprites\spr_PlayerRedIdle_ShockBlaster</sprite>
+          </sprites>
+        </sprites>
       </sprites>
       <sprites name="PlayerGreen">
         <sprite>sprites\spr_PlayerGreenIdle</sprite>
@@ -65,6 +70,11 @@
         <sprite>sprites\spr_PlayerGreenRun</sprite>
         <sprite>sprites\spr_PlayerGreenSlash</sprite>
         <sprite>sprites\spr_PlayerGreenDeath</sprite>
+        <sprites name="Weapons">
+          <sprites name="3. Summoning">
+            <sprite>sprites\spr_PlayerGreenIdle_Summoning</sprite>
+          </sprites>
+        </sprites>
       </sprites>
       <sprites name="PlayerYellow">
         <sprite>sprites\spr_PlayerYellowIdle</sprite>

@@ -54,6 +54,7 @@ projectileId = 0;
 image_speed = 0.25;
 xdir = 1;
 powerup = 0;
+damage = 0;
 
 //Others
 followplayer = false; //If true, will stick to player.

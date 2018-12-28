@@ -879,11 +879,12 @@ if(powerup == 1)
     //Slash
     if(keyboard_check_pressed(ord('F')) &amp;&amp; alarm[0] == -1)
     {
-        var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
+        var bullet = instance_create(x + (50 * image_xscale), y + 10, obj_projectile);
         image_index = 0;
         image_speed = 0.65;
         alarm[0] = 20;
         bullet.life = 3;
+        bullet.damage = 20;
         attacking = true;
         
     }
@@ -1267,10 +1268,28 @@ else if(dir == "right" || dir == "left")
         if(attacking == true)
         {            
             sprite_index = spr_PlayerBlueAttack_SwordShield
-            image_speed -= 0.01;
+            image_speed -= 0.025;
+            if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+            {
+                var slash;
+                attacksound = false;
+                pick = choose(1,2)
+                if(pick == 1)
+                {
+                    slash = audio_play_sound(SwordShield1, 10, false);
+                    audio_sound_pitch(slash, 0.9)
+                }
+                else
+                {
+                    slash = audio_play_sound(SwordShield2, 10, false);
+                    audio_sound_pitch(slash, 0.9)
+                }
+
+            }
             if(image_index &gt;= 7)
             {
                 attacking = false;
+                attacksound = true;
             }
         }
         
