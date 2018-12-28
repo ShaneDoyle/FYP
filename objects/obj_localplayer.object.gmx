@@ -879,14 +879,49 @@ if(powerup == 1)
     //Slash
     if(keyboard_check_pressed(ord('F')) &amp;&amp; alarm[0] == -1)
     {
-        var bullet = instance_create(x + (50 * image_xscale), y + 10, obj_projectile);
-        image_index = 0;
-        image_speed = 0.65;
-        alarm[0] = 20;
-        bullet.life = 3;
-        bullet.damage = 20;
-        attacking = true;
-        
+        if(dir == "up")
+        {
+            var bullet = instance_create(x + (50 * image_xscale), y + 10, obj_projectile);
+            image_index = 0;
+            image_speed = 0.65;
+            alarm[0] = 20;
+            bullet.life = 5;
+            bullet.damage = 20;
+            attacking = true;
+        }
+        else if(dir == "down")
+        {
+            var bullet = instance_create(x - (50 * image_xscale), y - 10, obj_projectile);
+            image_index = 0;
+            image_speed = 0.65;
+            alarm[0] = 20;
+            bullet.life = 5;
+            bullet.damage = 20;
+            bullet.image_angle = -180;
+            attacking = true;
+        }
+        else if(dir == "right")
+        {
+            var bullet = instance_create(x - 10 , y + (50 * image_xscale), obj_projectile);
+            image_index = 0;
+            image_speed = 0.65;
+            alarm[0] = 20;
+            bullet.life = 5;
+            bullet.damage = 20;
+            bullet.image_angle = -90;
+            attacking = true;
+        }
+        else if(dir == "left")
+        {
+            var bullet = instance_create(x + 10 , y - (50 * image_xscale), obj_projectile);
+            image_index = 0;
+            image_speed = 0.65;
+            alarm[0] = 20;
+            bullet.life = 5;
+            bullet.damage = 20;
+            bullet.image_angle = -270;
+            attacking = true;
+        }
     }
     
     //Shield Ability
@@ -1577,9 +1612,12 @@ scr_angle_player("left");
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-playerhp -= 0.5;
-hit = true
-alarm[10] = 4;
+if(hit == false)
+{
+    playerhp -= obj_remoteProjectile.damage;
+    hit = true
+    alarm[10] = 30;
+}
 </string>
           </argument>
         </arguments>

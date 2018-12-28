@@ -31,7 +31,7 @@ projectileId = 0;
 sprite = noone;
 life = 60;
 powerup = 0;
-damage = 1;
+damage = 10;
 
 
 //Misc

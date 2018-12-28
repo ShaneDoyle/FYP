@@ -474,8 +474,11 @@ if (remote_hspd == 0)
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-hit = true
-alarm[10] = 4;
+if(hit == false)
+{
+    hit = true
+    alarm[10] = 45;
+}
 </string>
           </argument>
         </arguments>
