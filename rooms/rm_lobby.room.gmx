@@ -16,7 +16,7 @@
 randomize();
 
 //Create our player!
-instance_create(random_range(20,120), 0, obj_localplayer);
+instance_create(random_range(32,32), -32, obj_localplayer);
 
 global.playerRoom = 1;
 
@@ -49,7 +49,7 @@ network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());<
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="NightSkyClouds" x="0" y="0" htiled="-1" vtiled="-1" hspeed="-1" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="LobbySky" x="0" y="0" htiled="-1" vtiled="0" hspeed="-1" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
