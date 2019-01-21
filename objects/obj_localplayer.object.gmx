@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Variables
 depth = 2;
-circlelight = 480;
+circlelight = 480 + 2000;
 hit = false;
 
 //Gravity
@@ -181,6 +181,7 @@ if(room == rm_lobby)
     if(room == rm_lobby)
     {
         //Different colours
+        /*
         switch(colour)
         {
             case 0:
@@ -199,6 +200,7 @@ if(room == rm_lobby)
                 instance_create(x,y,obj_PlayerBubble);
             break;
         }
+        */
     }
 }
 </string>
@@ -494,7 +496,8 @@ if (!global.typing)
           <argument>
             <kind>1</kind>
             <string>///Moving Script
-
+if(room != rm_lobby)
+{
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
 key_up = keyboard_check(vk_up);
@@ -842,8 +845,7 @@ else if(dir == "left")
     x += hspd;
     y += vspd;
 }
-
-
+}
 </string>
           </argument>
         </arguments>
@@ -865,6 +867,8 @@ else if(dir == "left")
           <argument>
             <kind>1</kind>
             <string>///Attacking!
+if(room != rm_lobby)
+{
 key_attack = keyboard_check_pressed(ord('F'));
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
@@ -1114,6 +1118,8 @@ if(powerup == 3)
         bullet.rotate = 15;
         bullet.fadein = true;
     }
+}
+
 }
 </string>
           </argument>
@@ -1851,6 +1857,8 @@ percentage = playerhp / playermaxhp
 xpos = display_get_gui_width() / 2
 ypos = 26;
 
+if(room != rm_lobby)
+{
 if (playerhp &gt;= 90)
 {
     draw_sprite(spr_PlayerGreenHP,0,xpos,ypos);
@@ -1897,7 +1905,7 @@ else if (playerhp &gt;= 80 &amp;&amp; playerhp &lt; 90)
 }
 
 draw_sprite(spr_Heart,0,xpos,ypos - 14);
-
+}
 </string>
           </argument>
         </arguments>

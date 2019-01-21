@@ -173,6 +173,7 @@
       <background>background\NightSkyClouds</background>
       <background>background\EveningSky</background>
       <background>background\Test</background>
+      <background>background\LobbySky</background>
     </backgrounds>
     <backgrounds name="Tilesets">
       <background>background\Grasslands</background>
