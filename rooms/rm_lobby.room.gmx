@@ -28,7 +28,11 @@ buffer_write(global.buffer, buffer_u8, global.playerType);
 buffer_write(global.buffer, buffer_u32, global.playerX);
 buffer_write(global.buffer, buffer_u32, global.playerY);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
-network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());</code>
+network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
+
+
+//Play lobby music
+audio_play_sound(Lobby_Music,0,true);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

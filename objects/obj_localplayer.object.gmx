@@ -72,6 +72,7 @@ colour = 0;
 jetpack = false; //Powerup 1
 jetpackanimation = false;
 miscsound = true;
+readytoproceed = false;
 
 switch(global.playerType)
 {
@@ -452,6 +453,7 @@ buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_bool, attacking);
+buffer_write(global.buffer, buffer_bool, readytoproceed);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 

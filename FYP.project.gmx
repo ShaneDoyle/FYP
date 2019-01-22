@@ -22,6 +22,7 @@
     <sound>sound\SwordShield1</sound>
     <sound>sound\Jetpack</sound>
     <sound>sound\SMB2Theme</sound>
+    <sound>sound\Lobby_Music</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Player">
@@ -124,6 +125,8 @@
         <sprite>sprites\spr_Settings</sprite>
         <sprite>sprites\spr_RockButton</sprite>
         <sprite>sprites\spr_Back</sprite>
+        <sprite>sprites\spr_Orbit</sprite>
+        <sprite>sprites\spr_Orbit_Planet</sprite>
       </sprites>
       <sprites name="Lobby">
         <sprite>sprites\spr_PlayerBubble</sprite>
@@ -265,6 +268,8 @@
         <object>objects\obj_RockButton2</object>
         <object>objects\obj_Settings</object>
         <object>objects\obj_SettingsPlatform</object>
+        <object>objects\obj_Orbit</object>
+        <object>objects\obj_Orbit_Planet</object>
       </objects>
       <objects name="Transitions">
         <object>objects\obj_transition1</object>

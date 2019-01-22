@@ -38,7 +38,7 @@ display_set_gui_size(640, 360);</code>
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="DarkSky" x="0" y="-300" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="LobbySky" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -70,6 +70,8 @@ display_set_gui_size(640, 360);</code>
     <instance objName="obj_SettingsPlatform" x="480" y="208" name="inst_58B116B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_menubackgroundsettings" x="0" y="0" name="inst_13083EE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_GlobalVariables" x="608" y="0" name="inst_693F1C8D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Orbit" x="320" y="96" name="inst_3A595484" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Orbit_Planet" x="320" y="96" name="inst_0C076798" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
