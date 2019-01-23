@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///Create variables
-horizontalspeed = 2.5;
+horizontalspeed = 1.5;
 verticalspeed = 0;
 background_xposition = 0;
-background_yposition = -300;
+background_yposition = 0;
 </string>
           </argument>
         </arguments>
@@ -78,7 +78,7 @@ background_y[0] = background_yposition
           <argument>
             <kind>1</kind>
             <string>///Delete if not in menu
-if(room = rm_gameWorld)
+if(room == rm_gameWorld)
 {
     instance_destroy();
 }

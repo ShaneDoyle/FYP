@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Set Position
-x = - 225;
+x =  640 + 250;
 
 //Acceleration
 acc = 30;
@@ -86,10 +86,10 @@ go = true;
             <string>///Speed
 if(go = true)
 {
-    if(x &lt; 125)
+    if(x &gt; 432)
     {
-        acc -= (acc * 0.065);
-        x += acc;
+        acc -= (acc * 0.035);
+        x -= acc;
     }
     else
     {
@@ -98,7 +98,7 @@ if(go = true)
             playsound = true
             audio_play_sound(Pop_1,0,false);
         }
-        x = 125;
+        x = 432;
     }
 }
 </string>
