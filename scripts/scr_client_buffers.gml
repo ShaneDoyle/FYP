@@ -133,6 +133,7 @@ switch(msgId)
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
         var attacking = buffer_read(buffer, buffer_bool);
+        var readytoproceed = buffer_read(buffer, buffer_bool);
         
         with (obj_remoteplayer)
         {
@@ -156,6 +157,7 @@ switch(msgId)
                 remotePlayeryy = yy;
                 remotePlayersprite = sprite_number;
                 remotePlayerimageindex = image_frame;
+                remotePlayerReadyToProceed = readytoproceed;
              
             }
         }

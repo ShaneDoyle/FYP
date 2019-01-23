@@ -26,6 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///Global Variables
+//Player variables
+global.playerName = "Shane";
+
+//Debug
 global.musicset = 0;
 global.hideportals = 0;
 </string>

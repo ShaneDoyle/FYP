@@ -453,7 +453,7 @@ buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_bool, attacking);
-//buffer_write(global.buffer, buffer_bool, readytoproceed);
+buffer_write(global.buffer, buffer_bool, readytoproceed);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 
@@ -1480,6 +1480,43 @@ if (alarm[9] == -1)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Lobby configuration shit
+if(room == rm_lobby &amp;&amp; obj_localplayer.readytoproceed == true)
+{
+    global.proceedtogame = 0;
+    with (obj_remoteplayer)
+    {
+        if (remotePlayerReadyToProceed == true)
+        {
+            global.proceedtogame++;
+        }
+    }
+    if(global.proceedtogame == instance_number(obj_remoteplayer) &amp;&amp; global.proceedtogame &gt; 0)
+    {
+        audio_stop_sound(Lobby_Music);
+        room_goto(rm_gameWorld);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="4" ename="obj_DownPortal">
       <action>
@@ -2049,12 +2086,24 @@ for (i = 0; i &lt; 27; i += 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw name of player (lobby).
+            <string>///Draw name, ready status of player (lobby)
 if(room == rm_lobby)
 {
     draw_set_colour(c_yellow);
-    draw_text(x + 30, y, "Player" + " " + string(global.playerId));
+    draw_text(x + 30, y, global.playerName); //"Player" + " " + string(global.playerId));
+    //draw_sprite(spr_Tick,0,x - 10, y);
+    
+    //Show ready status.
+    if(readytoproceed == true)
+    {
+        draw_sprite_ext(spr_Tick, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
+    }
+    else
+    {
+        draw_sprite_ext(spr_X, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
+    }
 }
+
 </string>
           </argument>
         </arguments>
@@ -2080,6 +2129,37 @@ if(room == rm_lobby)
             <string>///Invert character
 //view_wview *= -1;
 view_angle = -90
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="82">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ready up!
+if(obj_localplayer.readytoproceed == false)
+{
+    obj_localplayer.readytoproceed = true;
+}
+else
+{
+    obj_localplayer.readytoproceed = false;
+}
 </string>
           </argument>
         </arguments>

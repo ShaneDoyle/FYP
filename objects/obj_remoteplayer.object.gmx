@@ -36,6 +36,7 @@ remotePlayerAttacking = false;
 remotePlayerId = 0;
 remotePlayersprite = 0;
 remotePlayerimageindex = 0;
+remotePlayerReadyToProceed = false;
 
 //Movement
 remote_direction = 1;
@@ -505,7 +506,17 @@ if(hit == false)
 if(room == rm_lobby)
 {
     draw_set_colour(c_white);
-    draw_text(x + 30, y, string(remotePlayerName) + " " + string(remotePlayerId));
+    draw_text(x + 30, y, string(self.remotePlayerName)); // + " " + string(remotePlayerId));
+    
+    //Show remote player's ready status.
+    if(remotePlayerReadyToProceed == true)
+    {
+        draw_sprite_ext(spr_Tick, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
+    }
+    else
+    {
+        draw_sprite_ext(spr_X, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
+    }
 }
 </string>
           </argument>

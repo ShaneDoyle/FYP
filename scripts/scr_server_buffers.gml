@@ -67,7 +67,10 @@ switch (msgId)
         
         with (obj_server_player)
         {
+            if (playerIdentifier == pId)
+            {
                 playerName = playerUsername;
+            }
         }
         
         
@@ -325,6 +328,7 @@ switch (msgId)
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
         var attacking = buffer_read(buffer, buffer_bool);
+        var readytoproceed = buffer_read(buffer, buffer_bool);
         var roomId = buffer_read(buffer, buffer_u8);
     
         
@@ -364,6 +368,7 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_s16, image_frame);
                         buffer_write(global.buffer, buffer_u8, hp);
                         buffer_write(global.buffer, buffer_bool, attacking);
+                        buffer_write(global.buffer, buffer_bool, readytoproceed);
                         network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
                     }
                 }

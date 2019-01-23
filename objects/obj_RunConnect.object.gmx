@@ -50,7 +50,7 @@ alarm[0] = 10;
           <argument>
             <kind>1</kind>
             <string>///Login attempt
-var playerUsername = "Player"
+var playerUsername = global.playerName;
 var playerPassword = "NOTHING"
 var playerPasswordHash = sha1_string_unicode(playerPassword);
 
