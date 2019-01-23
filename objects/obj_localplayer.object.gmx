@@ -2052,8 +2052,8 @@ for (i = 0; i &lt; 27; i += 1)
             <string>///Draw name of player (lobby).
 if(room == rm_lobby)
 {
-    draw_set_colour(c_green);
-    draw_text(x + 30, y, "Player");
+    draw_set_colour(c_yellow);
+    draw_text(x + 30, y, "Player" + " " + string(global.playerId));
 }
 </string>
           </argument>
@@ -2147,21 +2147,6 @@ if(alarm[0] == -1)
             <kind>1</kind>
             <string>///Restart Game
 game_restart();
-/*
-buffer_seek(global.buffer, buffer_seek_start, 0);       //Seek to beginning
-buffer_write(global.buffer, buffer_u8, 6);              //Write tag
-buffer_write(global.buffer, buffer_u32, global.playerId);
-buffer_write(global.buffer, buffer_u8, global.playerType);
-buffer_write(global.buffer, buffer_u32, x);
-buffer_write(global.buffer, buffer_u32, y);
-buffer_write(global.buffer, buffer_u8, 0);
-network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
-
-global.playerX = x;
-global.playerY = y;
-
-room_goto(rm_TitleScreen);
-*/
 </string>
           </argument>
         </arguments>

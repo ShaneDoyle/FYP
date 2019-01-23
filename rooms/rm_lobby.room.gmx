@@ -16,7 +16,7 @@
 randomize();
 
 //Create our player!
-instance_create(random_range(32,32), -32, obj_localplayer);
+instance_create(random_range(-48,-48), -32, obj_localplayer);
 
 global.playerRoom = 1;
 

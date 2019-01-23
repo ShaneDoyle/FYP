@@ -505,7 +505,7 @@ if(hit == false)
 if(room == rm_lobby)
 {
     draw_set_colour(c_white);
-    draw_text(x + 30, y, remotePlayerName);
+    draw_text(x + 30, y, string(remotePlayerName) + " " + string(remotePlayerId));
 }
 </string>
           </argument>

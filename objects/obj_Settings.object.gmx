@@ -33,7 +33,7 @@ acc = 30;
 
 //Timer
 go = false;
-alarm[0] = 45;
+alarm[0] = 40;
 
 //Sound
 playsound = false;
