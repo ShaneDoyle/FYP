@@ -28,13 +28,12 @@
             <string>///Variables
 image_speed = 0;
 image_index = 0;
-depth = -1;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="4">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -51,8 +50,17 @@ depth = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Go to client room
-room_goto(rm_TitleScreen);
+            <string>///Disable and Enable!
+if(global.LobbyIsReady == false )
+{
+    //Grey version.
+    image_index = 1;
+}
+else
+{
+    //Coloured version.
+    image_index = 0;
+}
 </string>
           </argument>
         </arguments>

@@ -288,6 +288,9 @@
       <object>objects\obj_npc</object>
       <object>objects\obj_playerList</object>
       <object>objects\obj_projectile</object>
+      <objects name="Lobby">
+        <object>objects\obj_LobbyPlay</object>
+      </objects>
       <objects name="GUI">
         <object>objects\obj_createcontrols</object>
       </objects>

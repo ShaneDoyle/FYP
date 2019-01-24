@@ -29,6 +29,9 @@
 //Player variables
 global.playerName = "Shane";
 
+//Lobby variables
+global.LobbyIsReady = false;
+
 //Debug
 global.musicset = 0;
 global.hideportals = 0;

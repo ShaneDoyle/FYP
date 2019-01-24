@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -1497,7 +1497,7 @@ if (alarm[9] == -1)
           <argument>
             <kind>1</kind>
             <string>///Lobby configuration shit
-if(room == rm_lobby &amp;&amp; obj_localplayer.readytoproceed == true)
+if(room == rm_lobby)
 {
     global.proceedtogame = 0;
     with (obj_remoteplayer)
@@ -1507,10 +1507,21 @@ if(room == rm_lobby &amp;&amp; obj_localplayer.readytoproceed == true)
             global.proceedtogame++;
         }
     }
-    if(global.proceedtogame == instance_number(obj_remoteplayer) &amp;&amp; global.proceedtogame &gt; 0)
+    if(obj_localplayer.readytoproceed == true)
     {
-        audio_stop_sound(Lobby_Music);
-        room_goto(rm_gameWorld);
+        if(global.proceedtogame == instance_number(obj_remoteplayer) &amp;&amp; global.proceedtogame &gt; 0)
+        {
+            audio_stop_sound(Lobby_Music);
+            global.LobbyIsReady = true;
+        }
+        else
+        {
+            global.LobbyIsReady = false;
+        }
+    }
+    else
+    {
+        global.LobbyIsReady = false;
     }
 }
 </string>
