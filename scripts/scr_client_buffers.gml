@@ -331,8 +331,15 @@ switch(msgId)
         var downportal = instance_create(xx, yy, obj_DownPortal);
     break;
     
-    
-    
+    //Get Server Lobby Settings
+    case 20:
+        var ready = buffer_read(buffer, buffer_bool);
+        var serverroom = buffer_read(buffer, buffer_string);
+        
+        var serverlobby = instance_create(0,0,obj_server_lobby);
+        serverlobby.ArePlayersReady = ready;
+        serverlobby.ServerLobby = serverroom;
+    break;
     
     
 }

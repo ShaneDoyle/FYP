@@ -234,6 +234,7 @@
     </objects>
     <objects name="Server">
       <object>objects\obj_server_globals</object>
+      <object>objects\obj_server_lobby</object>
       <object>objects\obj_server_controller</object>
       <object>objects\obj_server_message</object>
       <object>objects\obj_server_player</object>

@@ -294,6 +294,18 @@ switch (msgId)
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
+            //Tell the player about the server lobby settings.
+            for (var i = 0; i < instance_number(obj_server_lobby); i++)
+            {
+                var serverlobby = instance_find(obj_server_lobby, i);
+                
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 20);
+                buffer_write(global.buffer, buffer_bool, serverlobby.ArePlayersReady);
+                buffer_write(global.buffer, buffer_string, serverlobby.ServerRoom);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            }
+            
             
             //Save this room change
             ini_open(pName + ".ini");
