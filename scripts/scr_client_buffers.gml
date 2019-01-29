@@ -336,9 +336,20 @@ switch(msgId)
         var ready = buffer_read(buffer, buffer_bool);
         var serverroom = buffer_read(buffer, buffer_string);
         
-        var serverlobby = instance_create(0,0,obj_server_lobby);
+        global.ClientRoom = serverroom;
+        /*
+        var serverlobby = instance_create(0,0,obj_remote_server_lobby);
         serverlobby.ArePlayersReady = ready;
-        serverlobby.ServerLobby = serverroom;
+        serverlobby.ServerLobby = serverroom;*/
+        
+    break;
+    
+    //Get Server Lobby Settings
+    case 21:
+        var RequestInfo = buffer_read(buffer, buffer_string);
+        
+        var clientrequest = instance_create(0,0,obj_client_request);
+        clientrequest.RequestInfo = RequestInfo;
     break;
     
     

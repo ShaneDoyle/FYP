@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -127,6 +127,8 @@ alarm[0] = 4;
           <argument>
             <kind>1</kind>
             <string>///Intialisation
+x = -100;
+y = 0;
 image_xscale = 0;
 </string>
           </argument>
@@ -201,7 +203,7 @@ hit = false;
           <argument>
             <kind>1</kind>
             <string>///Refresh X and Y
-x = lerp(x, remotePlayerxx, 0.15);
+x = lerp(x, remotePlayerxx, 0.15); //0.15 is original for both!
 y = lerp(y, remotePlayeryy, 0.15);
 </string>
           </argument>

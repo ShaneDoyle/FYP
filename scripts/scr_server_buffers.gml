@@ -295,14 +295,13 @@ switch (msgId)
             }
             
             //Tell the player about the server lobby settings.
-            for (var i = 0; i < instance_number(obj_server_lobby); i++)
+            for (var i = 0; i < instance_number(obj_client_request); i++)
             {
-                var serverlobby = instance_find(obj_server_lobby, i);
+                var clientrequest = instance_find(obj_client_request, i);
                 
                 buffer_seek(global.buffer, buffer_seek_start, 0);
-                buffer_write(global.buffer, buffer_u8, 20);
-                buffer_write(global.buffer, buffer_bool, serverlobby.ArePlayersReady);
-                buffer_write(global.buffer, buffer_string, serverlobby.ServerRoom);
+                buffer_write(global.buffer, buffer_u8, 21);
+                buffer_write(global.buffer, buffer_string, clientrequest.RequestInfo);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
@@ -387,6 +386,18 @@ switch (msgId)
                 
                 
             }
+        }
+        
+        //Tell the player about the server lobby settings.
+        for (var i = 0; i < instance_number(obj_server_lobby); i++)
+        {
+            var serverlobby = instance_find(obj_server_lobby, i);
+            
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 20);
+            buffer_write(global.buffer, buffer_bool, serverlobby.ArePlayersReady);
+            buffer_write(global.buffer, buffer_string, serverlobby.ServerRoom);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
     break;
     

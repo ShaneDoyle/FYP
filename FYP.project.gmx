@@ -201,6 +201,7 @@
         <script>scripts\scr_showNotification.gml</script>
         <script>scripts\scr_getBufferSize.gml</script>
         <script>scripts\scr_mouseCheck.gml</script>
+        <script>scripts\scr_startClientPlay.gml</script>
       </scripts>
     </scripts>
     <scripts name="Player">
@@ -290,6 +291,7 @@
       <object>objects\obj_playerList</object>
       <object>objects\obj_projectile</object>
       <objects name="Lobby">
+        <object>objects\obj_remote_server_lobby</object>
         <object>objects\obj_LobbyPlay</object>
       </objects>
       <objects name="GUI">
@@ -302,6 +304,7 @@
       </objects>
       <objects name="Lobby">
         <object>objects\obj_PlayerBubble</object>
+        <object>objects\obj_client_request</object>
       </objects>
     </objects>
     <objects name="Level">
