@@ -23,7 +23,7 @@ grasschance = 75; //Percentage of a block having grass
 spawngrass = true; //If true, will ALWAYS spawn grass, regardless of percentage
 
 //Size of world.
-blocksize = choose(16,18); // choose(26,28,30,32,34,36);
+blocksize = choose(32,34,36,38,40); // choose(26,28,30,32,34,36);
 
 //Pitfalls
 pitfall = 0;

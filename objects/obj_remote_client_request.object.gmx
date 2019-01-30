@@ -25,16 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Send request to server
-RequestInfo = "StartGame";
+            <string>///Change server settings.
 
-//Send to server!
-if(rm_lobby)
+//Set the lobby server to start, putting the game 
+//(1).
+if(RequestInfo == "StartGame")
 {
-    buffer_seek(global.buffer, buffer_seek_start, 0);
-    buffer_write(global.buffer, buffer_u8, 21);
-    buffer_write(global.buffer, buffer_string, RequestInfo);
-    network_send_packet(obj_server_controller.socket, global.buffer, scr_getBufferSize());
+    obj_server_lobby.ServerRoom = "GameWorld";
 }
 </string>
           </argument>

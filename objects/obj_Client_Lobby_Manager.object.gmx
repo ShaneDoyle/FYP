@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Lobby variables
-ArePlayersReady = false;
-ServerRoom = "rm_test!";
+            <string>///Goto game room.
+scr_startClientPlay();
+room_goto(rm_gameWorld);
 </string>
           </argument>
         </arguments>
@@ -50,40 +50,25 @@ ServerRoom = "rm_test!";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Send to clients
-if(room == rm_server)
+            <string>///Change room if server room is different!
+if(room == rm_lobby)
 {
-    buffer_seek(global.buffer, buffer_seek_start, 0);
-    buffer_write(global.buffer, buffer_u8, 20);
-    buffer_write(global.buffer, buffer_bool, ArePlayersReady);
-    buffer_write(global.buffer, buffer_string, ServerRoom);
-    network_send_packet(obj_server_controller.socket, global.buffer, scr_getBufferSize());
+    //Change room if not lobby.
+    if(global.ClientRoom == "GameWorld")
+    {
+        if(alarm[0] == -1)
+        {
+            alarm[0] = 90;
+        }
+        
+        if(alarm[0] == 90)
+        {
+            audio_stop_sound(Lobby_Music);
+            instance_create(200,200,obj_transition2);
+        }
+    }
 }
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="71">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Change lobby name.
-ServerRoom = "GameWorld";
 </string>
           </argument>
         </arguments>

@@ -21,6 +21,7 @@
     <sound>sound\SwordShield2</sound>
     <sound>sound\SwordShield1</sound>
     <sound>sound\Jetpack</sound>
+    <sound>sound\Level_Start</sound>
     <sound>sound\SMB2Theme</sound>
     <sound>sound\Lobby_Music</sound>
   </sounds>
@@ -134,6 +135,7 @@
     </sprites>
     <sprites name="Transitions">
       <sprite>sprites\spr_Transition1</sprite>
+      <sprite>sprites\spr_Transition2</sprite>
     </sprites>
     <sprites name="Projectiles">
       <sprite>sprites\spr_projectile</sprite>
@@ -201,6 +203,7 @@
         <script>scripts\scr_showNotification.gml</script>
         <script>scripts\scr_getBufferSize.gml</script>
         <script>scripts\scr_mouseCheck.gml</script>
+        <script>scripts\scr_createTransition.gml</script>
         <script>scripts\scr_startClientPlay.gml</script>
       </scripts>
     </scripts>
@@ -228,6 +231,7 @@
     <font>fonts\font1</font>
   </fonts>
   <objects name="objects">
+    <object>objects\obj_Client_Lobby_Manager</object>
     <object>objects\obj_GlobalVariables</object>
     <objects name="LaunchScreen">
       <object>objects\obj_Create</object>
@@ -275,6 +279,7 @@
       </objects>
       <objects name="Transitions">
         <object>objects\obj_transition1</object>
+        <object>objects\obj_transition2</object>
       </objects>
       <object>objects\obj_controller</object>
       <object>objects\obj_message</object>
@@ -293,6 +298,8 @@
       <objects name="Lobby">
         <object>objects\obj_remote_server_lobby</object>
         <object>objects\obj_LobbyPlay</object>
+        <object>objects\obj_client_request</object>
+        <object>objects\obj_remote_client_request</object>
       </objects>
       <objects name="GUI">
         <object>objects\obj_createcontrols</object>
@@ -302,9 +309,8 @@
         <object>objects\obj_menubackgroundsettings</object>
         <object>objects\obj_Camera</object>
       </objects>
-      <objects name="Lobby">
+      <objects name="Unused">
         <object>objects\obj_PlayerBubble</object>
-        <object>objects\obj_client_request</object>
       </objects>
     </objects>
     <objects name="Level">
