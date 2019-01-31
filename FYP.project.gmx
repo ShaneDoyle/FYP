@@ -5,6 +5,7 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
+    <sound>sound\FatBee</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
     <sound>sound\Click2</sound>
@@ -135,6 +136,8 @@
     </sprites>
     <sprites name="Transitions">
       <sprite>sprites\spr_Transition1</sprite>
+      <sprite>sprites\spr_Go</sprite>
+      <sprite>sprites\spr_Numbers</sprite>
       <sprite>sprites\spr_Transition2</sprite>
     </sprites>
     <sprites name="Projectiles">
@@ -205,6 +208,7 @@
         <script>scripts\scr_mouseCheck.gml</script>
         <script>scripts\scr_createTransition.gml</script>
         <script>scripts\scr_startClientPlay.gml</script>
+        <script>scripts\scr_startGameWorld.gml</script>
       </scripts>
     </scripts>
     <scripts name="Player">
@@ -280,6 +284,8 @@
       <objects name="Transitions">
         <object>objects\obj_transition1</object>
         <object>objects\obj_transition2</object>
+        <object>objects\obj_countdown</object>
+        <object>objects\obj_transition_gamestart</object>
       </objects>
       <object>objects\obj_controller</object>
       <object>objects\obj_message</object>

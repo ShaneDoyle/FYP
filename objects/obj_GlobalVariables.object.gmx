@@ -31,6 +31,7 @@ global.playerName = "Shane";
 
 //Lobby variables
 global.ClientRoom = "rm_lobby";
+global.PlayerMove = false;
 
 //Debug
 global.musicset = 0;

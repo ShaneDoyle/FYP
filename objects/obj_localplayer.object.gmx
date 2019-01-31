@@ -74,6 +74,15 @@ jetpackanimation = false;
 miscsound = true;
 readytoproceed = false;
 
+//Controls
+key_right = noone;
+key_left = noone;
+key_up = noone;
+key_down = noone;
+key_jump = noone;
+key_attack = noone;
+
+
 switch(global.playerType)
 {
     case 0:
@@ -505,11 +514,24 @@ if (!global.typing)
             <string>///Moving Script
 if(room != rm_lobby)
 {
-key_right = keyboard_check(vk_right);
-key_left = keyboard_check(vk_left);
-key_up = keyboard_check(vk_up);
-key_down = keyboard_check(vk_down);
-key_jump = keyboard_check_pressed(vk_space);
+    if(global.PlayerMove == true)
+    {
+        key_right = keyboard_check(vk_right);
+        key_left = keyboard_check(vk_left);
+        key_up = keyboard_check(vk_up);
+        key_down = keyboard_check(vk_down);
+        key_jump = keyboard_check_pressed(vk_space);
+        key_attack = keyboard_check_pressed(ord('F'));
+    }
+    else
+    {
+        key_right = noone;
+        key_left = noone;
+        key_up = noone;
+        key_down = noone;
+        key_jump = noone; 
+        key_attack = noone;
+    }
 
 //Up
 if(dir = "up")
@@ -556,7 +578,7 @@ if(dir = "up")
     }
     
     //Jumping
-    if(place_meeting(x, y+1, obj_block) &amp;&amp; keyboard_check_pressed(vk_space))
+    if(place_meeting(x, y+1, obj_block) &amp;&amp; (key_jump))
     {
         vspd = -jumpspeed;
     }
@@ -876,12 +898,7 @@ else if(dir == "left")
             <string>///Attacking!
 if(room != rm_lobby)
 {
-key_attack = keyboard_check_pressed(ord('F'));
-key_right = keyboard_check(vk_right);
-key_left = keyboard_check(vk_left);
-key_up = keyboard_check(vk_up);
-key_down = keyboard_check(vk_down);
-key_jump = keyboard_check_pressed(vk_space);
+
 
 
 //(1) Sword &amp; Shield
@@ -1830,7 +1847,7 @@ ypos = 0
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar on GUI bar
-/*
+
 percentage = playerhp / playermaxhp
 xpos = 0
 ypos = 0
@@ -2056,8 +2073,8 @@ else
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar on GUI bar
-
 /*
+
 percentage = playerhp / playermaxhp
 xpos = x
 ypos = y - (30 * inverted)
@@ -2201,21 +2218,22 @@ if(playerhp &gt; 0)
 {
      //playerhp -= 1;
 }
-
-if(alarm[0] == -1)
+if(room == rm_lobby)
 {
-
-    audio_stop_sound(Jetpack);
-
-    if(powerup == 3)
+    if(alarm[0] == -1)
     {
-        powerup = 1;
+    
+        audio_stop_sound(Jetpack);
+    
+        if(powerup == 3)
+        {
+            powerup = 1;
+        }
+        else
+        {
+            powerup++;
+        }
     }
-    else
-    {
-        powerup++;
-    }
-
 }
 </string>
           </argument>
