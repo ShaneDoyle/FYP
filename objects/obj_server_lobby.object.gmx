@@ -28,6 +28,7 @@
             <string>///Lobby variables
 ArePlayersReady = false;
 ServerRoom = "rm_test!";
+MapSize = 0;
 </string>
           </argument>
         </arguments>
