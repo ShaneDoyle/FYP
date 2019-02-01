@@ -64,6 +64,9 @@
         <sprites name="Weapons">
           <sprites name="1. Zap Pack">
             <sprite>sprites\spr_PlayerRedIdle_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerRedJump_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerRedJetpack_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerRedMove_ShockBlaster</sprite>
           </sprites>
         </sprites>
       </sprites>
