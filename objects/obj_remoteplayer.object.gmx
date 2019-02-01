@@ -578,7 +578,7 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw HP
-/*
+
 percentage = self.remotePlayerHP / 20
 
 xpos = x

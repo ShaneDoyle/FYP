@@ -1,19 +1,28 @@
 if(global.playerId == 1)
 {
-    obj_localplayer.x = random_range(900,1100);
-    obj_localplayer.y = 500;
+    obj_localplayer.x = (32*20) + random_range(32*10, 32*20);
+    obj_localplayer.y = (32*20) - (32*10);
+    obj_localplayer.dir = "up";
+    obj_localplayer.image_angle = 0;
 }
 else if (global.playerId == 2)
 {
-        obj_localplayer.x = random_range(2000,2200);
-        obj_localplayer.y = random_range(1200,1400);
-        obj_localplayer.dir = "right";
-        obj_localplayer.image_angle = -90;
+    obj_localplayer.x = (32*20) + (32*30) + (32*1);
+    obj_localplayer.y = (32*20) + random_range(32*10, 32*20)
+    obj_localplayer.dir = "right";
+    obj_localplayer.image_angle = -90;
 }
 else if (global.playerId == 3)
 {
-        obj_localplayer.x = random_range(0,0);
-        obj_localplayer.y = random_range(1200,1400);
-        obj_localplayer.dir = "left";
-        obj_localplayer.image_angle = 90;
+    obj_localplayer.x = (32*10)
+    obj_localplayer.y = (32*20) + random_range(32*10, 32*20)
+    obj_localplayer.dir = "left";
+    obj_localplayer.image_angle = 90;
+}
+else if (global.playerId == 4)
+{
+    obj_localplayer.x = (32*20) + random_range(32*10, 32*20);
+    obj_localplayer.y = (32*20) + (32*30) + (32*10);
+    obj_localplayer.dir = "down";
+    obj_localplayer.image_angle = 180;
 }

@@ -3,8 +3,8 @@ randomize();
 top = 32 * 0 //Top limit of blocks
 bottom = 32 * 80; //Bottom limit of block (Don't change this under room_height - 32)
 
-startingx = 32 * 20; //Where we want to start generation on X, usually 0.
-startingy = 32 * choose(22,23,24,25,26); //Where we want to start on Y.
+startingx = 32 * 20; //Where we want to start generation on X, the very top left block.
+startingy = 32 * 20 //choose(22,23,24,25,26); //Where we want to start on Y. 
 
 currentx = startingx; //Adjusted throughout generation
 currenty = startingy; //Adjusted throughout generation
@@ -23,7 +23,7 @@ grasschance = 75; //Percentage of a block having grass
 spawngrass = true; //If true, will ALWAYS spawn grass, regardless of percentage
 
 //Size of world.
-blocksize = choose(32,34,36,38,40); // choose(26,28,30,32,34,36);
+blocksize = 30 //choose(32,34,36,38,40); // choose(26,28,30,32,34,36);
 obj_server_lobby.MapSize = blocksize;
 
 //Pitfalls

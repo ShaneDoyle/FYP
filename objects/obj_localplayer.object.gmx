@@ -36,7 +36,7 @@ inverted = 1; //Y
 xinverted = 0; //X
 
 //Movement
-grav = 3.6;
+grav = 8.6;
 hspd = 0;
 vspd = 0;
 acc = 0.3;
