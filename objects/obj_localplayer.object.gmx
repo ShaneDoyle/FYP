@@ -1848,6 +1848,7 @@ ypos = 0
             <kind>1</kind>
             <string>///Draw HP bar on GUI bar
 
+/*
 percentage = playerhp / playermaxhp
 xpos = 0
 ypos = 0
@@ -1925,6 +1926,7 @@ for (i = 0; i &lt; 51; i += 1)
             <kind>1</kind>
             <string>///Draw HP Bar
 
+/*
 percentage = playerhp / playermaxhp
 xpos = display_get_gui_width() / 2
 ypos = 26;
