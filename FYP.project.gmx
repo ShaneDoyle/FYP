@@ -43,7 +43,6 @@
           </sprites>
           <sprites name="2. Sword &amp; Shield">
             <sprite>sprites\spr_PlayerBlueIdle_SwordShield</sprite>
-            <sprite>sprites\spr_PlayerRedIdle_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueMove_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueAttack_SwordShield</sprite>
             <sprite>sprites\spr_PlayerBlueJump_SwordShield</sprite>
@@ -62,11 +61,22 @@
         <sprite>sprites\spr_PlayerRedSlash</sprite>
         <sprite>sprites\spr_PlayerRedDeath</sprite>
         <sprites name="Weapons">
-          <sprites name="1. Zap Pack">
+          <sprites name="1. Laser">
             <sprite>sprites\spr_PlayerRedIdle_ShockBlaster</sprite>
             <sprite>sprites\spr_PlayerRedJump_ShockBlaster</sprite>
             <sprite>sprites\spr_PlayerRedJetpack_ShockBlaster</sprite>
             <sprite>sprites\spr_PlayerRedMove_ShockBlaster</sprite>
+          </sprites>
+          <sprites name="2. Sword &amp; Shield">
+            <sprite>sprites\spr_PlayerRedIdle_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerRedMove_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerRedAttack_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerRedJump_SwordShield</sprite>
+          </sprites>
+          <sprites name="3. Summoning">
+            <sprite>sprites\spr_PlayerRedIdle_Summoning</sprite>
+            <sprite>sprites\spr_PlayerRedMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerRedJump_Summoning</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -77,8 +87,22 @@
         <sprite>sprites\spr_PlayerGreenSlash</sprite>
         <sprite>sprites\spr_PlayerGreenDeath</sprite>
         <sprites name="Weapons">
+          <sprites name="1. Laser">
+            <sprite>sprites\spr_PlayerGreenIdle_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerGreenJump_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerGreenJetpack_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_ShockBlaster</sprite>
+          </sprites>
+          <sprites name="2. Sword &amp; Shield">
+            <sprite>sprites\spr_PlayerGreenIdle_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerGreenAttack_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerGreenJump_SwordShield</sprite>
+          </sprites>
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerGreenIdle_Summoning</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerGreenJump_Summoning</sprite>
           </sprites>
         </sprites>
       </sprites>
