@@ -112,6 +112,25 @@
         <sprite>sprites\spr_PlayerYellowRun</sprite>
         <sprite>sprites\spr_PlayerYellowSlash</sprite>
         <sprite>sprites\spr_PlayerYellowDeath</sprite>
+        <sprites name="Weapons">
+          <sprites name="1. Laser">
+            <sprite>sprites\spr_PlayerYellowIdle_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerYellowJump_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerYellowJetpack_ShockBlaster</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_ShockBlaster</sprite>
+          </sprites>
+          <sprites name="2. Sword &amp; Shield">
+            <sprite>sprites\spr_PlayerYellowIdle_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerYellowAttack_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerYellowJump_SwordShield</sprite>
+          </sprites>
+          <sprites name="3. Summoning">
+            <sprite>sprites\spr_PlayerYellowIdle_Summoning</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerYellowJump_Summoning</sprite>
+          </sprites>
+        </sprites>
       </sprites>
       <sprite>sprites\spr_PlayerGreenHP</sprite>
       <sprite>sprites\spr_PlayerYellowHP</sprite>
