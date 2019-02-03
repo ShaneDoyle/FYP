@@ -132,9 +132,10 @@
           </sprites>
         </sprites>
       </sprites>
-      <sprite>sprites\spr_PlayerGreenHP</sprite>
+      <sprite>sprites\spr_PlayerGreenHP_OLD_</sprite>
       <sprite>sprites\spr_PlayerYellowHP</sprite>
       <sprite>sprites\spr_PlayerRedHP</sprite>
+      <sprite>sprites\spr_PlayerGreenHP</sprite>
       <sprite>sprites\spr_PlayerBlueHP</sprite>
       <sprite>sprites\spr_Heart</sprite>
     </sprites>
