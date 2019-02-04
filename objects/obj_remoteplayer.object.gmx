@@ -587,10 +587,10 @@ if(room != rm_lobby)
     
     for (i = 0; i &lt; 27; i += 1)
     {
-        temp = (0.038 * i)
-        temp2 = (0.038 * i+1)
+        self.temp = (0.038 * i)
+        self.temp2 = (0.038 * i+1)
     
-        if(percentage &gt;= temp &amp;&amp; percentage &lt;= temp2 &amp;&amp; percentage &gt; 0)
+        if(self.percentage &gt;= self.temp &amp;&amp; self.percentage &lt;= self.temp2 &amp;&amp; self.percentage &gt; 0)
         {
             switch(self.remotePlayerType)
             {
@@ -675,7 +675,7 @@ if(room != rm_lobby)
                 break;
             }
         }
-        else if(percentage &lt;= 0)
+        else if(self.percentage &gt;= self.temp &amp;&amp; self.percentage &lt;= self.temp2 &amp;&amp; self.percentage &lt;= 0)
         {
             switch(self.remotePlayerType)
             {
