@@ -583,7 +583,7 @@ if(room != rm_lobby)
     percentage = self.remotePlayerHP / 100
     xpos = x
     ypos = y
-    hpgap = 25;
+    hpgap = 30;
     
     for (i = 0; i &lt; 27; i += 1)
     {

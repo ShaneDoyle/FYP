@@ -29,6 +29,7 @@
 depth = 2;
 circlelight = 480 + 2000;
 hit = false;
+PlayerDeath = false;
 
 //Gravity
 dir = "up";
@@ -57,8 +58,8 @@ playerenergy = 100;
 death = false;
 playerhp = 100;
 playermaxhp = 100;
-playerenergy = 20;
-playermaxenergy = 20;
+playerenergy = 100;
+playermaxenergy = 100;
 immunity = false;
 
 //Attack
@@ -518,7 +519,7 @@ if (!global.typing)
             <string>///Moving Script
 if(room != rm_lobby)
 {
-    if(global.PlayerMove == true)
+    if(global.PlayerMove == true &amp;&amp; PlayerDeath == false)
     {
         key_right = keyboard_check(vk_right);
         key_left = keyboard_check(vk_left);
@@ -909,8 +910,9 @@ if(room != rm_lobby)
 if(powerup == 1)
 {
     //Slash
-    if(keyboard_check_pressed(ord('F')) &amp;&amp; alarm[0] == -1)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 30)
     {
+        playerenergy -= 30;
         if(dir == "up")
         {
             var bullet = instance_create(x + (50 * image_xscale), y + 10, obj_projectile);
@@ -967,8 +969,9 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check(ord('F')) &amp;&amp; alarm[0] == -1)
+    if(keyboard_check_pressed(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 25 &amp;&amp; PlayerDeath == false)
     {
+        playerenergy -= 25;
         slowmovement = true;
         alarm[0] = 16;
         if(dir == "up")
@@ -1049,8 +1052,14 @@ if(powerup == 2)
     
 
     
-    if(keyboard_check(vk_space) &amp;&amp; jetpack == true)
+    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerenergy &gt;= 15 &amp;&amp; PlayerDeath == false)
     {
+        if(playerenergy &lt;= 16)
+        {
+            playerenergy = 0;
+        }
+        playerenergy -= 0.75;
+        
         if(dir == "up")
         {
             vspd -= 1.1;
@@ -2483,9 +2492,47 @@ if(room == rm_lobby)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(playerhp &lt; 0)
+            <string>///HP and Energy Caps
+if(playerhp &lt;= 0)
 {
     playerhp = 0;
+    PlayerDeath = true;
+}
+
+if(playerenergy &gt;= 100)
+{
+    playerenergy = 100;
+}
+else
+{
+    playerenergy += 0.35;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Death Manager
+if(PlayerDeath == true)
+{
+    image_alpha -= 0.01;
+    image_speed = 0;
 }
 </string>
           </argument>
@@ -3108,7 +3155,7 @@ if(room != rm_lobby)
     
         if(percentage &gt;= temp &amp;&amp; percentage &lt;= temp2 &amp;&amp; percentage &gt; 0)
         {
-            switch(colour)
+            switch(global.playerType)
             {
                 //Blue
                 case 0:
@@ -3193,7 +3240,7 @@ if(room != rm_lobby)
         }
         else if(percentage &lt;= 0)
         {
-            switch(colour)
+            switch(global.playerType)
             {
                 //Blue
                 case 0:
@@ -3375,6 +3422,44 @@ if(room == rm_lobby)
         else
         {
             powerup++;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="69">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Change colour
+if(room == rm_lobby)
+{
+    if(alarm[0] == -1)
+    {
+    
+        if(global.playerType == 3)
+        {
+            global.playerType = 0;
+        }
+        else
+        {
+            global.playerType++;
         }
     }
 }
