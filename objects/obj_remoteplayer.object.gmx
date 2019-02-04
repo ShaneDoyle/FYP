@@ -577,66 +577,188 @@ if(room == rm_lobby)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw HP
-
-percentage = self.remotePlayerHP / 20
-
-xpos = x
-ypos = y - 30
-
-for (i = 0; i &lt; 27; i += 1)
+            <string>///Draw HP bar
+if(room != rm_lobby)
 {
-    temp = (0.038 * i)
-    temp2 = (0.038 * i+1)
-
-    if(percentage &gt;= temp &amp;&amp; percentage &lt;= temp2 &amp;&amp; percentage &gt; 0)
+    percentage = self.remotePlayerHP / 100
+    xpos = x
+    ypos = y
+    hpgap = 25;
+    
+    for (i = 0; i &lt; 27; i += 1)
     {
-        switch(remotePlayerType)
+        temp = (0.038 * i)
+        temp2 = (0.038 * i+1)
+    
+        if(percentage &gt;= temp &amp;&amp; percentage &lt;= temp2 &amp;&amp; percentage &gt; 0)
         {
-            //Blue
-            case 0:
-                draw_sprite(spr_PlayerBlueHP,26-i,xpos,ypos);
-            break;
-            
-            //Red
-            case 1:
-                draw_sprite(spr_PlayerRedHP,26-i,xpos,ypos);
-            break;
-            
-            //Green
-            case 2:
-                draw_sprite(spr_PlayerGreenHP,26-i,xpos,ypos);
-            break;
-            
-            //Yellow
-            case 3:
-                draw_sprite(spr_PlayerYellowHP,26-i,xpos,ypos);
-            break;
+            switch(self.remotePlayerType)
+            {
+                //Blue
+                case 0:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Red
+                case 1:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Green
+                case 2:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Yellow
+                case 3:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+            }
         }
-    }
-    else if(percentage &lt;= 0)
-    {
-        switch(remotePlayerType)
+        else if(percentage &lt;= 0)
         {
-            //Blue
-            case 0:
-                draw_sprite(spr_PlayerBlueHP,26,xpos,ypos);
-            break;
-            
-            //Red
-            case 1:
-                draw_sprite(spr_PlayerRedHP,26,xpos,ypos);
-            break;
-            
-            //Green
-            case 2:
-                draw_sprite(spr_PlayerGreenHP,26,xpos,ypos);
-            break;
-            
-            //Yellow
-            case 3:
-                draw_sprite(spr_PlayerYellowHP,26,xpos,ypos);
-            break;
+            switch(self.remotePlayerType)
+            {
+                //Blue
+                case 0:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerBlueHP,26, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Red
+                case 1:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerRedHP,26, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Green
+                case 2:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerGreenHP,26, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+                
+                //Yellow
+                case 3:
+                    if(image_angle == 0)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+                    }
+                    else if(image_angle == -90)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+                    }
+                    else if(image_angle == 90)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+                    }
+                    else if(image_angle == 180)
+                    {
+                        draw_sprite_ext( spr_PlayerYellowHP,26-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+                    }
+                break;
+            }
         }
     }
 }

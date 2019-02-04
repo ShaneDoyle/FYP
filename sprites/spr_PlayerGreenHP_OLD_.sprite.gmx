@@ -17,8 +17,8 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>69</width>
-  <height>13</height>
+  <width>30</width>
+  <height>8</height>
   <frames>
     <frame index="0">images\spr_PlayerGreenHP_OLD__0.png</frame>
     <frame index="1">images\spr_PlayerGreenHP_OLD__1.png</frame>
