@@ -58,8 +58,6 @@ playerenergy = 100;
 death = false;
 playerhp = 100;
 playermaxhp = 100;
-playerenergy = 100;
-playermaxenergy = 100;
 immunity = false;
 
 //Attack
@@ -920,7 +918,7 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 20;
+            bullet.damage = 35;
             attacking = true;
         }
         else if(dir == "down")
@@ -969,9 +967,9 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check_pressed(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 25 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 20 &amp;&amp; PlayerDeath == false)
     {
-        playerenergy -= 25;
+        playerenergy -= 20;
         slowmovement = true;
         alarm[0] = 16;
         if(dir == "up")
@@ -1052,13 +1050,13 @@ if(powerup == 2)
     
 
     
-    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerenergy &gt;= 15 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerenergy &gt;= 9 &amp;&amp; PlayerDeath == false)
     {
-        if(playerenergy &lt;= 16)
+        if(playerenergy &lt;= 10)
         {
             playerenergy = 0;
         }
-        playerenergy -= 0.75;
+        playerenergy -= 1;
         
         if(dir == "up")
         {
