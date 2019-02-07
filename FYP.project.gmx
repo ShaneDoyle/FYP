@@ -294,7 +294,11 @@
       <object>objects\obj_Create</object>
       <object>objects\obj_Play</object>
     </objects>
+    <objects name="MasterServer">
+      <object>objects\obj_master_server_controller</object>
+    </objects>
     <objects name="Server">
+      <object>objects\obj_connect_to_master</object>
       <object>objects\obj_server_globals</object>
       <object>objects\obj_server_lobby</object>
       <object>objects\obj_server_controller</object>
@@ -383,6 +387,9 @@
   <rooms name="rooms">
     <room>rooms\rm_launch</room>
     <room>rooms\rm_TitleScreen</room>
+    <rooms name="MasterServer">
+      <room>rooms\room_MasterServer</room>
+    </rooms>
     <rooms name="Server">
       <room>rooms\rm_server</room>
     </rooms>
