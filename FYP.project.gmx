@@ -3,7 +3,9 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="1">extensions\Get Computer IP</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\FatBee</sound>
     <sound>sound\music_2</sound>
@@ -276,6 +278,8 @@
       <script>scripts\scr_respawn.gml</script>
       <script>scripts\scr_angle_player.gml</script>
     </scripts>
+    <script>scripts\get_computer_ip_create.gml</script>
+    <script>scripts\get_computer_ip_http_event.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_hit.shader</shader>
