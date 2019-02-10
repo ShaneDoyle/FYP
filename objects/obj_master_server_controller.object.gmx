@@ -25,30 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Create master server
-server = network_create_server(network_socket_tcp,50001, 10);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///IP Holder
-IPAddress1 = "";
+            <string>///Variables
+var networkType = network_socket_tcp;
+var port = 50001;
+var maxPlayers = 8;
+var bufferSize = 1024;
+var bufferType = buffer_fixed;
+var bufferAlignment = 1;
+ResetId = false;
+
+server = network_create_server(networkType, port, maxPlayers);
+global.buffer = buffer_create(bufferSize, bufferType, bufferAlignment);
+
+global.players = ds_list_create();
+playerIdCounter = 0;
 </string>
           </argument>
         </arguments>
@@ -71,12 +61,105 @@ IPAddress1 = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if( ds_map_find_value(async_load, "type") == network_type_data)
+            <string>///Handle connection, disconnection and sending data
+var eventType = ds_map_find_value(async_load, "type");
+switch(eventType)
 {
-    var dat = ds_map_find_value(async_load, "buffer");
-    var store = buffer_read(dat,buffer_text);
-    show_message(store);
+    //Called when a player connects.
+    case network_type_connect:
+        var socket = ds_map_find_value(async_load, "socket");
+        
+        playerIdCounter++;
+        ResetId = true;
+        
+        var pId = playerIdCounter;
+        
+        ds_list_add(global.players, socket);
+        
+        //Send ID of the Player.
+        buffer_seek(global.buffer, buffer_seek_start, 0);
+        buffer_write(global.buffer, buffer_u8, 4);
+        buffer_write(global.buffer, buffer_u32, playerIdCounter);
+        network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+    break;
+    
+    //Called when a client disconnects
+    case network_type_disconnect:
+        var socket = ds_map_find_value(async_load, "socket");
+        var index = ds_list_find_index(global.players, socket);
+        
+        if (index != -1)
+        {
+            ds_list_delete(global.players, index);
+        }
+        
+        //Get information about the player leaving
+        var playerLeavingId = 0;
+        
+        with (obj_server_player)
+        {
+            if (playerSocket == socket)
+            {
+                playerLeavingId = playerIdentifier;
+            }
+        }
+        
+        //Notify all the connected clients
+        for (var i = 0; i &lt; ds_list_size(global.players);i++)
+        {
+            var storedPlayerSocket = ds_list_find_value(global.players, i);
+            
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 5);
+            buffer_write(global.buffer, buffer_u32, playerLeavingId);
+            network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
+        }
+        
+        with (obj_server_player)
+        {
+            if (playerIdentifier == playerLeavingId)
+            {
+                instance_destroy();
+            }
+        }
+        
+    break;
+    
+    //Called when we recieved information from the client
+    case network_type_data:
+       var buffer = ds_map_find_value(async_load, "buffer");   //Crate a read buffer and store incoming information in it
+       var socket = ds_map_find_value(async_load, "id");       //Get socket of the player sending the data
+       buffer_seek(buffer, buffer_seek_start, 0);              //Seek to the beginning of the new created read buffer
+       scr_server_buffers(buffer, socket);                     //Call server script
+    break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for(i=0; i&lt;ds_list_size(global.players); i++)
+{
+    draw_text(20, 20 + (i*10), ds_list_find_value(global.players,i));
+}
+
 </string>
           </argument>
         </arguments>

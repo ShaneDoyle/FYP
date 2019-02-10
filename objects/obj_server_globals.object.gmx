@@ -36,32 +36,6 @@ global.left_currentx = 0;
 global.left_currenty = 0;
 global.down_currentx = 0;
 global.down_currenty = 0;
-
-global.MyIP = get_computer_ip_create();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="62">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Get IP Address
-global.MyIP = get_computer_ip_http_event();
 </string>
           </argument>
         </arguments>

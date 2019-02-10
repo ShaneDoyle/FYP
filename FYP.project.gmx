@@ -4,7 +4,7 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions>
-    <extension index="1">extensions\Get Computer IP</extension>
+    <extension index="0">extensions\Get Computer IP</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\FatBee</sound>
@@ -298,7 +298,7 @@
       <object>objects\obj_master_server_controller</object>
     </objects>
     <objects name="Server">
-      <object>objects\obj_connect_to_master</object>
+      <object>objects\obj_server_to_master</object>
       <object>objects\obj_server_globals</object>
       <object>objects\obj_server_lobby</object>
       <object>objects\obj_server_controller</object>
@@ -388,7 +388,7 @@
     <room>rooms\rm_launch</room>
     <room>rooms\rm_TitleScreen</room>
     <rooms name="MasterServer">
-      <room>rooms\room_MasterServer</room>
+      <room>rooms\rm_masterserver</room>
     </rooms>
     <rooms name="Server">
       <room>rooms\rm_server</room>

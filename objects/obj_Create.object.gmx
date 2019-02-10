@@ -49,7 +49,8 @@ depth = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(room_MasterServer);
+            <string>///Jump to master server room
+room_goto(rm_masterserver);
 </string>
           </argument>
         </arguments>
