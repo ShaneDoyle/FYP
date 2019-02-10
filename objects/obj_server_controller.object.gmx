@@ -106,7 +106,7 @@ socket = network_create_socket(network_socket_tcp);
 if(!instance_exists(obj_server_player) &amp;&amp; ResetId == true)
 {
     ResetId = false;
-    room_restart();
+    playerIdCounter = 0;
 }
 </string>
           </argument>

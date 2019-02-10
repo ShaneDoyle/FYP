@@ -40,6 +40,32 @@ text = "";
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Send IP to server.
+IP = "109.255.128.138";
+data = buffer_create(1024, buffer_grow, 1);
+buffer_seek(data, buffer_seek_start, 0);
+buffer_write(data, buffer_text, IP);
+network_send_packet(socket, data, buffer_tell(data));
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="7" enumb="68">
       <action>
@@ -58,7 +84,19 @@ text = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>///When client recieves data from server
+/*
+var eventType = ds_map_find_value(async_load, "type");
+switch(eventType)
+{
+    //When the client receives data from the server
+    case network_type_data:
+    var buffer = ds_map_find_value(async_load, "buffer");//Create a read buffer and store incoming information in it
+    buffer_seek(buffer, buffer_seek_start, 0);           //Seek to the beginning of the newly created read buffer
+    scr_client_buffers(buffer)                           //Run script
+    break;
+}
+</string>
           </argument>
         </arguments>
       </action>

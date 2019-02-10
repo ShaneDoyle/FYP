@@ -74,7 +74,7 @@ switch(eventType)
         
         var pId = playerIdCounter;
         
-        ds_list_add(global.players, socket);
+        //ds_list_add(global.players, socket);
         
         //Send ID of the Player.
         buffer_seek(global.buffer, buffer_seek_start, 0);
@@ -91,37 +91,14 @@ switch(eventType)
         if (index != -1)
         {
             ds_list_delete(global.players, index);
+            ds_list_delete(global.players, index);
         }
         
         //Get information about the player leaving
         var playerLeavingId = 0;
         
-        with (obj_server_player)
-        {
-            if (playerSocket == socket)
-            {
-                playerLeavingId = playerIdentifier;
-            }
-        }
+
         
-        //Notify all the connected clients
-        for (var i = 0; i &lt; ds_list_size(global.players);i++)
-        {
-            var storedPlayerSocket = ds_list_find_value(global.players, i);
-            
-            buffer_seek(global.buffer, buffer_seek_start, 0);
-            buffer_write(global.buffer, buffer_u8, 5);
-            buffer_write(global.buffer, buffer_u32, playerLeavingId);
-            network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
-        }
-        
-        with (obj_server_player)
-        {
-            if (playerIdentifier == playerLeavingId)
-            {
-                instance_destroy();
-            }
-        }
         
     break;
     
@@ -130,7 +107,17 @@ switch(eventType)
        var buffer = ds_map_find_value(async_load, "buffer");   //Crate a read buffer and store incoming information in it
        var socket = ds_map_find_value(async_load, "id");       //Get socket of the player sending the data
        buffer_seek(buffer, buffer_seek_start, 0);              //Seek to the beginning of the new created read buffer
-       scr_server_buffers(buffer, socket);                     //Call server script
+       var IP = buffer_read(buffer, buffer_text);
+       
+       if(IP == "CLIENT")
+       {
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_string, "HOST IPS");
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+       }
+       
+        ds_list_add(global.players,socket, IP);
+       //scr_server_buffers(buffer, socket);                     //Call server script
     break;
 }
 </string>

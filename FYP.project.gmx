@@ -319,6 +319,7 @@
       </objects>
       <objects name="Networking">
         <object>objects\obj_RunConnect</object>
+        <object>objects\obj_client_to_master</object>
       </objects>
       <objects name="Settings">
         <object>objects\obj_PlayerColourBlue</object>
@@ -394,6 +395,7 @@
       <room>rooms\rm_server</room>
     </rooms>
     <rooms name="Client">
+      <room>rooms\rm_listofservers</room>
       <room>rooms\rm_connect</room>
       <room>rooms\rm_lobby</room>
       <room>rooms\rm_gameWorld</room>
