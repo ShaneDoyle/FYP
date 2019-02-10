@@ -40,6 +40,12 @@ global.buffer = buffer_create(bufferSize, bufferType, bufferAlignment);
 global.players = ds_list_create();
 global.playersnames = ds_list_create();
 playerIdCounter = 0;
+
+for(i=0; i&lt;10; i++)
+{
+    ds_list_add(global.playersnames,"");
+    ds_list_add(global.players,"");
+}
 </string>
           </argument>
         </arguments>
@@ -132,8 +138,9 @@ switch(eventType)
             }
        }
        
-       ds_list_add(global.playersnames, PlayerName); //ds_list_add(global.playersnames,socket, PlayerName);
-       ds_list_add(global.players, IP);      //ds_list_add(global.players,socket, IP);
+       ds_list_replace(global.playersnames, socket - 1, PlayerName); //ds_list_add(global.playersnames,socket, PlayerName);
+       ds_list_replace(global.players, socket - 1, IP);      //ds_list_add(global.players,socket, IP);
+       
        //scr_server_buffers(buffer, socket);                     //Call server script
     break;
 }
