@@ -53,11 +53,12 @@ global.HostIPS = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Send IP to server.
+            <string>///Send IP &amp; name to server.
 IP = "CLIENT";
 data = buffer_create(1024, buffer_grow, 1);
 buffer_seek(data, buffer_seek_start, 0);
-buffer_write(data, buffer_text, IP);
+buffer_write(data, buffer_string, global.playerName);
+buffer_write(data, buffer_string, IP);
 network_send_packet(socket, data, buffer_tell(data));
 </string>
           </argument>
@@ -99,7 +100,7 @@ switch(eventType)
         var socket = ds_map_find_value(async_load, "id");       //Get socket of the player sending the data
         buffer_seek(buffer, buffer_seek_start, 0);              //Seek to the beginning of the new created read buffer
         var IP = buffer_read(buffer, buffer_text);
-        global.HostIPS = IP;
+        global.HostIPS += IP;
         //scr_server_buffers(buffer, socket);                     //Call server script
     break;
 }

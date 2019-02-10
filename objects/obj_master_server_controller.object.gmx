@@ -38,6 +38,7 @@ server = network_create_server(networkType, port, maxPlayers);
 global.buffer = buffer_create(bufferSize, bufferType, bufferAlignment);
 
 global.players = ds_list_create();
+global.playersnames = ds_list_create();
 playerIdCounter = 0;
 </string>
           </argument>
@@ -86,13 +87,24 @@ switch(eventType)
     //Called when a client disconnects
     case network_type_disconnect:
         var socket = ds_map_find_value(async_load, "socket");
-        var index = ds_list_find_index(global.players, socket);
+        var index = ds_list_find_index(global.playersnames, socket);
+        var index2 = ds_list_find_index(global.players, socket);
         
-        if (index != -1)
-        {
-            ds_list_delete(global.players, index);
-            ds_list_delete(global.players, index);
-        }
+        //if(index != -1)
+        //{
+            //ds_list_delete(global.playersnames, index + 1);
+            //ds_list_delete(global.playersnames, index);
+            //ds_list_delete(global.players, index2 + 1);
+            //ds_list_delete(global.players, index2);
+            //ds_list_delete(global.playersnames, socket - 1);
+            //ds_list_delete(global.players, socket - 1);
+            
+        //}
+        
+
+        ds_list_replace(global.playersnames, socket - 1, "Disconnected");
+        ds_list_replace(global.players, socket - 1, "Disconncted");
+
         
         //Get information about the player leaving
         var playerLeavingId = 0;
@@ -107,16 +119,21 @@ switch(eventType)
        var buffer = ds_map_find_value(async_load, "buffer");   //Crate a read buffer and store incoming information in it
        var socket = ds_map_find_value(async_load, "id");       //Get socket of the player sending the data
        buffer_seek(buffer, buffer_seek_start, 0);              //Seek to the beginning of the new created read buffer
-       var IP = buffer_read(buffer, buffer_text);
+       var PlayerName = buffer_read(buffer, buffer_string);
+       var IP = buffer_read(buffer, buffer_string);
        
        if(IP == "CLIENT")
        {
-            buffer_seek(global.buffer, buffer_seek_start, 0);
-            buffer_write(global.buffer, buffer_string, "HOST IPS");
-            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            for(i=0; i&lt;ds_list_size(global.players); i++)
+            {
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_string, string(ds_list_find_value(global.players, i)));
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            }
        }
        
-        ds_list_add(global.players,socket, IP);
+       ds_list_add(global.playersnames, PlayerName); //ds_list_add(global.playersnames,socket, PlayerName);
+       ds_list_add(global.players, IP);      //ds_list_add(global.players,socket, IP);
        //scr_server_buffers(buffer, socket);                     //Call server script
     break;
 }
@@ -142,9 +159,21 @@ switch(eventType)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(i=0; i&lt;ds_list_size(global.players); i++)
+            <string>///Draw connections
+draw_set_font(font1);
+draw_set_colour(c_black);
+
+//Draw Name
+for(i=0; i&lt;ds_list_size(global.playersnames); i++)
 {
-    draw_text(20, 20 + (i*10), ds_list_find_value(global.players,i));
+    draw_text(0, 20 + (i*20) , "Connection " + string(i+1) + ": ");
+    draw_text(320, 20 + (i*20), "(" + ds_list_find_value(global.playersnames,i) + ")");
+}
+
+//Draw IP
+for(i=0; i&lt;ds_list_size(global.players); i++)
+{
+    draw_text(150, 20 + (i*20), ds_list_find_value(global.players,i));
 }
 
 </string>

@@ -60,7 +60,8 @@ text = "";
 IP = "109.255.128.138";
 data = buffer_create(1024, buffer_grow, 1);
 buffer_seek(data, buffer_seek_start, 0);
-buffer_write(data, buffer_text, IP);
+buffer_write(data, buffer_string, global.playerName);
+buffer_write(data, buffer_string, IP);
 network_send_packet(socket, data, buffer_tell(data));
 </string>
           </argument>

@@ -32,6 +32,7 @@ global.playerName = "Shane";
 //Lobby variables
 global.ClientRoom = "rm_lobby";
 global.PlayerMove = false;
+global.ConnectToIP = "127.0.0.1";
 
 //Debug
 global.musicset = 0;
