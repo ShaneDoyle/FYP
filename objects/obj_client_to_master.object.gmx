@@ -99,7 +99,8 @@ switch(eventType)
         var buffer = ds_map_find_value(async_load, "buffer");   //Crate a read buffer and store incoming information in it
         var socket = ds_map_find_value(async_load, "id");       //Get socket of the player sending the data
         buffer_seek(buffer, buffer_seek_start, 0);              //Seek to the beginning of the new created read buffer
-        var IP = buffer_read(buffer, buffer_text);
+        var IP = buffer_read(buffer, buffer_string);
+        show_message(IP);
         global.HostIPS += IP;
         //scr_server_buffers(buffer, socket);                     //Call server script
     break;
