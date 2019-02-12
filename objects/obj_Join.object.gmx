@@ -37,6 +37,8 @@ alarm[0] = 10;
 
 //Sound
 playsound = false;
+
+IP = "127.0.0.1";
 </string>
           </argument>
         </arguments>
@@ -150,6 +152,7 @@ room_goto(rm_listofservers);
           <argument>
             <kind>1</kind>
             <string>///Go to connect room
+global.ConnectToIP = IP;
 room_goto(rm_connect);
 </string>
           </argument>

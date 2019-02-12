@@ -259,6 +259,7 @@
         <script>scripts\scr_mouseCheck.gml</script>
         <script>scripts\scr_createTransition.gml</script>
         <script>scripts\scr_startClientPlay.gml</script>
+        <script>scripts\scr_createServerList.gml</script>
         <script>scripts\scr_startGameWorld.gml</script>
       </scripts>
     </scripts>
@@ -367,6 +368,9 @@
       </objects>
       <objects name="GUI">
         <object>objects\obj_createcontrols</object>
+      </objects>
+      <objects name="ServerList">
+        <object>objects\obj_JoinServer</object>
       </objects>
       <objects name="RoomSettings">
         <object>objects\obj_backgroundsettings</object>

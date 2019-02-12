@@ -108,8 +108,8 @@ switch(eventType)
         //}
         
 
-        ds_list_replace(global.playersnames, socket - 1, "Disconnected");
-        ds_list_replace(global.players, socket - 1, "Disconncted");
+        ds_list_replace(global.playersnames, socket - 1, "");
+        ds_list_replace(global.players, socket - 1, "");
 
         
         //Get information about the player leaving
@@ -133,8 +133,11 @@ switch(eventType)
             for(i=0; i&lt;ds_list_size(global.players); i++)
             {
                 buffer_seek(global.buffer, buffer_seek_start, 0);
-                buffer_write(global.buffer, buffer_string, string(ds_list_find_value(global.players, i)));
-                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+                if(string(ds_list_find_value(global.players,i)) != "" &amp;&amp; string(ds_list_find_value(global.players,i)) != "CLIENT" )
+                {
+                    buffer_write(global.buffer, buffer_string, string(ds_list_find_value(global.players, i)));
+                    network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+                }
             }
        }
        
