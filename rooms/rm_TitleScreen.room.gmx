@@ -12,7 +12,6 @@
   <showcolour>-1</showcolour>
   <code>if(!audio_is_playing(music_2))
 {
-    global.playerType = 0;
     audio_play_sound(music_2,0,true)
 }
 

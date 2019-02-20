@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Connection Variables
 socket = network_create_socket(network_socket_tcp);
-ip = "127.0.0.1";
+ip = "83.212.126.208"; //83.212.126.208 //127.0.0.1
 isConnected = network_connect(socket, ip, 50001);
 global.buffer = buffer_create(1024, buffer_fixed, 1);
 global.latency = 0;
@@ -36,6 +36,10 @@ global.typing = false;
 maxWidth = 300;
 blink = false;
 text = "";
+
+//Used to send and manage the global IP.
+SendIP = false;
+MyIP = get_computer_ip_create();
 </string>
           </argument>
         </arguments>
@@ -57,12 +61,50 @@ text = "";
           <argument>
             <kind>1</kind>
             <string>///Send IP to server.
-IP = "109.255.128.138";
+//IP = "109.255.128.138";
+/*
 data = buffer_create(1024, buffer_grow, 1);
 buffer_seek(data, buffer_seek_start, 0);
 buffer_write(data, buffer_string, global.playerName);
 buffer_write(data, buffer_string, IP);
 network_send_packet(socket, data, buffer_tell(data));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Send IP.
+if(SendIP == true)
+{
+        ///Send IP to server.
+    //IP = "109.255.128.138";
+    //IP = MyIP;
+    IP = string_insert(MyIP,"","");
+   
+    data = buffer_create(1024, buffer_grow, 1);
+    buffer_seek(data, buffer_seek_start, 0);
+    buffer_write(data, buffer_string, global.playerName);
+    buffer_write(data, buffer_string, IP);
+    network_send_packet(socket, data, buffer_tell(data));   
+    SendIP = false;
+}
 </string>
           </argument>
         </arguments>
@@ -97,6 +139,54 @@ switch(eventType)
     scr_client_buffers(buffer)                           //Run script
     break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Get my IP.
+MyIP = get_computer_ip_http_event();
+SendIP = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(300,300,MyIP);
 </string>
           </argument>
         </arguments>

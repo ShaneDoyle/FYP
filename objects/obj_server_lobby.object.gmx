@@ -29,9 +29,6 @@
 ArePlayersReady = false;
 ServerRoom = "rm_test!";
 MapSize = 0;
-
-//IP Stuff
-MyIp = get_computer_ip_create();
 </string>
           </argument>
         </arguments>
@@ -86,8 +83,7 @@ if(room == rm_server)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>MyIp = get_computer_ip_http_event();
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -109,8 +105,7 @@ if(room == rm_server)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(600,800,MyIp);
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>

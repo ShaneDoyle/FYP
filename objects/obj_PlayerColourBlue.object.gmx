@@ -52,7 +52,15 @@ image_speed = 0.3;
             <string>///Change colour
 if(global.playerType == 0)
 {
-    sprite_index = spr_PlayerBlueIdle
+            //(0) Idle
+    if(global.powerup == 0)
+    {
+        sprite_index = spr_PlayerBlueIdle;
+    }
+    else if(global.powerup == 1)
+    {
+        sprite_index = spr_PlayerBlueIdle_ShockBlaster;
+    }
 }
 else if(global.playerType == 1)
 {

@@ -28,11 +28,14 @@
             <string>///Global Variables
 //Player variables
 global.playerName = "Shane";
+global.powerup = 0;
+global.playerType = 0; //Colour
 
 //Lobby variables
 global.ClientRoom = "rm_lobby";
 global.PlayerMove = false;
 global.ConnectToIP = "127.0.0.1";
+global.MyIP = "";
 
 //Debug
 global.musicset = 0;

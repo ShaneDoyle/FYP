@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Connection Variables
 socket = network_create_socket(network_socket_tcp);
-ip = "127.0.0.1";
+ip = "83.212.126.208"; //127.0.0.1
 isConnected = network_connect(socket, ip, 50001);
 global.buffer = buffer_create(1024, buffer_fixed, 1);
 

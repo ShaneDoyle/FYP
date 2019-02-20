@@ -34,6 +34,55 @@ IP = "127.0.0.1";
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Go to connect room (local host)
+global.ConnectToIP = "127.0.0.1";
+room_goto(rm_connect);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>Click1</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -51,8 +100,8 @@ IP = "127.0.0.1";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Go to connect room
-global.ConnectToIP = "127.0.0.1" //IP;
+            <string>  ///Go to connect room
+global.ConnectToIP = IP;
 room_goto(rm_connect);
 </string>
           </argument>
