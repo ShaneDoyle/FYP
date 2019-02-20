@@ -220,6 +220,10 @@
       <sprite>sprites\spr_DownPortal</sprite>
       <sprite>sprites\spr_Crate</sprite>
     </sprites>
+    <sprites name="Settings">
+      <sprite>sprites\spr_DisplayName</sprite>
+      <sprite>sprites\spr_WeaponDisplay</sprite>
+    </sprites>
     <sprites name="Lobby">
       <sprite>sprites\spr_Tick</sprite>
       <sprite>sprites\spr_X</sprite>
@@ -327,8 +331,12 @@
         <object>objects\obj_PlayerColourRed</object>
         <object>objects\obj_Back</object>
         <object>objects\obj_PlayerColourRightArrow</object>
+        <object>objects\obj_PlayerPowerUpRightArrow</object>
         <object>objects\obj_PlayerColourLeftArrow</object>
+        <object>objects\obj_PlayerPowerUpLeftArrow</object>
         <object>objects\obj_ColourIcon</object>
+        <object>objects\obj_WeaponIcon</object>
+        <object>objects\obj_DisplayName</object>
         <object>objects\obj_SettingsMenu</object>
       </objects>
       <objects name="Title Screen">

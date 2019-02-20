@@ -2987,7 +2987,7 @@ draw_sprite(spr_Heart,0,xpos,ypos - 14);
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>

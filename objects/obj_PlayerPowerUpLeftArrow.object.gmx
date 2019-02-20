@@ -49,14 +49,14 @@ depth = -100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Change colour
-if(global.playerType &lt;= 0)
+            <string>///Change powerup
+if(global.powerup &lt;= 0)
 {
-    global.playerType = 3;
+    global.powerup = 3;
 }
 else
 {
-    global.playerType--;
+    global.powerup--;
 }
 </string>
           </argument>
