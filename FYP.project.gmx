@@ -224,6 +224,7 @@
       <sprite>sprites\spr_DisplayName</sprite>
       <sprite>sprites\spr_Stats</sprite>
       <sprite>sprites\spr_Damage_Icon</sprite>
+      <sprite>sprites\spr_Speed_Icon</sprite>
       <sprite>sprites\spr_Health_Icon</sprite>
       <sprite>sprites\spr_WeaponDisplay</sprite>
     </sprites>

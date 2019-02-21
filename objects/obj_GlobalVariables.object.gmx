@@ -31,6 +31,11 @@ global.playerName = "Shane";
 global.powerup = 1;
 global.playerType = 0; //Colour
 
+//Battle Stats
+global.playerHP = 0;
+global.playerDamage = 0;
+global.playerSpeed = 0;
+
 //Lobby variables
 global.ClientRoom = "rm_lobby";
 global.PlayerMove = false;
