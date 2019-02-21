@@ -222,6 +222,9 @@
     </sprites>
     <sprites name="Settings">
       <sprite>sprites\spr_DisplayName</sprite>
+      <sprite>sprites\spr_Stats</sprite>
+      <sprite>sprites\spr_Damage_Icon</sprite>
+      <sprite>sprites\spr_Health_Icon</sprite>
       <sprite>sprites\spr_WeaponDisplay</sprite>
     </sprites>
     <sprites name="Lobby">
@@ -335,6 +338,10 @@
         <object>objects\obj_PlayerColourLeftArrow</object>
         <object>objects\obj_PlayerPowerUpLeftArrow</object>
         <object>objects\obj_ColourIcon</object>
+        <object>objects\obj_HP_Icon</object>
+        <object>objects\obj_HP_Stats</object>
+        <object>objects\obj_Damage_Stats</object>
+        <object>objects\obj_Speed_Stats</object>
         <object>objects\obj_WeaponIcon</object>
         <object>objects\obj_DisplayName</object>
         <object>objects\obj_SettingsMenu</object>
