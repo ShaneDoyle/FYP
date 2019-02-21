@@ -74,7 +74,6 @@ audio_play_sound(Lobby_Music,0,true);</code>
   </views>
   <instances>
     <instance objName="obj_block" x="0" y="360" name="inst_A551A750" locked="0" code="" scaleX="20" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_GlobalVariables" x="64" y="288" name="inst_5BDA0526" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_LobbyPlay" x="320" y="320" name="inst_BF7E8E18" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="obj_Client_Lobby_Manager" x="96" y="288" name="inst_341C729D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
