@@ -56,7 +56,6 @@
     <instance objName="obj_server_camera" x="1792" y="1248" name="inst_FE791C16" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_server_globals" x="192" y="32" name="inst_B97B1B0D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_server_lobby" x="256" y="32" name="inst_A8ABF741" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_server_gem" x="736" y="512" name="inst_4D6D8CAF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

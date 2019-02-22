@@ -399,6 +399,18 @@ switch (msgId)
             buffer_write(global.buffer, buffer_string, serverlobby.ServerRoom);
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
+        
+        //Tell the player about existing gems.
+        for (var i = 0; i < instance_number(obj_server_gem); i++)
+        {
+            var gem = instance_find(obj_server_gem, i);
+            
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 22);
+            buffer_write(global.buffer, buffer_f32, x);
+            buffer_write(global.buffer, buffer_f32, y);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+        }
     break;
     
     //Chat request (unused)

@@ -606,6 +606,7 @@ if(dir = "up")
     //Jumping
     if(place_meeting(x, y+1, obj_block) &amp;&amp; (key_jump))
     {
+        y -= 1;
         vspd = -jumpspeed;
     }
     
@@ -778,10 +779,13 @@ else if(dir == "right")
         hspd -= grav;
     }
     
-    if(place_meeting(x - 1,y,obj_block))
+    //Jumping
+    if(place_meeting(x - 1, y, obj_block) &amp;&amp; (key_jump))
     {
-        hspd = key_jump * jumpspeed;
+        x += 1;
+        hspd = jumpspeed;
     }
+    
     
     if(!place_meeting(x-1, y, obj_block))
     {

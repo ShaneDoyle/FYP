@@ -352,5 +352,13 @@ switch(msgId)
         clientrequest.RequestInfo = RequestInfo;
     break;
     
+    //Get Server Gem Settings
+    case 22:
+        var xx = buffer_read(buffer, buffer_f32);
+        var yy = buffer_read(buffer, buffer_f32);
+        
+        var gem = instance_create(xx, yy, obj_client_gem);
+    break;
+    
     
 }
