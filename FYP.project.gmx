@@ -217,6 +217,7 @@
       <sprite>sprites\spr_LeftPortal</sprite>
       <sprite>sprites\spr_RightPortal</sprite>
       <sprite>sprites\spr_UpPortal</sprite>
+      <sprite>sprites\spr_Gem</sprite>
       <sprite>sprites\spr_DownPortal</sprite>
       <sprite>sprites\spr_Crate</sprite>
     </sprites>
@@ -315,6 +316,7 @@
       <object>objects\obj_server_player</object>
       <object>objects\obj_server_npc</object>
       <object>objects\obj_server_projectile</object>
+      <object>objects\obj_server_gem</object>
       <object>objects\obj_server_camera</object>
       <objects name="Enemys">
         <object>objects\obj_Enemy1</object>

@@ -37,12 +37,12 @@ inverted = 1; //Y
 xinverted = 0; //X
 
 //Movement
-grav = 8.0;
+grav = 9.0;
 hspd = 0;
 vspd = 0;
 acc = 0.3;
 dacc = 0.15;
-jumpspeed = 9;
+jumpspeed = 9.5;
 maxspeed = 2.7;
 grounded = false;
 slowmovement = false;
