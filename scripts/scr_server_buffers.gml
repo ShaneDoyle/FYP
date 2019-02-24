@@ -407,8 +407,10 @@ switch (msgId)
             
             buffer_seek(global.buffer, buffer_seek_start, 0);
             buffer_write(global.buffer, buffer_u8, 22);
+            buffer_write(global.buffer, buffer_u32, gem.gemID);
             buffer_write(global.buffer, buffer_f32, gem.x);
             buffer_write(global.buffer, buffer_f32, gem.y);
+            buffer_write(global.buffer, buffer_string, gem.status);
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
     break;

@@ -354,16 +354,29 @@ switch(msgId)
     
     //Get Server Gem Settings
     case 22:
+        var gemID = buffer_read(buffer, buffer_u32);
         var xx = buffer_read(buffer, buffer_f32);
         var yy = buffer_read(buffer, buffer_f32);
+        var status = buffer_read(buffer, buffer_string);
         
-        if(instance_number(obj_client_gem) < 1)
+        if(status == "active")
         {
-            var gem = instance_create(xx, yy, obj_client_gem);
+            if(instance_number(obj_client_gem) < 1)
+            {
+                var gem = instance_create(xx, yy, obj_client_gem);
+            }
+        }
+        else
+        {
+            with(obj_client_gem)
+            {
+                if(status == "death")
+                {
+                    instance_destroy();
+                }
+            }
         }
 
         
     break;
-    
-    
 }

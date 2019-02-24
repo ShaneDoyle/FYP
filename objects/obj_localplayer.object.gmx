@@ -69,6 +69,9 @@ createhitbox = true;
 attackcool = 0;
 powerup = global.powerup;
 
+//Gamemode
+playerscore = 3;
+
 //Misc
 sendbuffer = 0;
 colour = global.playerType;
@@ -3049,29 +3052,78 @@ statsgrid = ds_grid_create(3, loopnumber+1);
 
 //Populate the grid with our own info.
 ds_grid_add(statsgrid, 0, 0, global.name);
-ds_grid_add(statsgrid, 1, 0, 3);
+ds_grid_add(statsgrid, 1, 0, playerscore);
+ds_grid_add(statsgrid, 2, 0, global.playerType);
 
 //Loop through all remote players.
 var i = 1;
 with(obj_remoteplayer)
 {
     name = remotePlayerName;
+    colour = remotePlayerType;
     ds_grid_add(other.statsgrid, 0, i, name);
-    ds_grid_add(other.statsgrid, 1, i, 3);
+    ds_grid_add(other.statsgrid, 1, i, 1);
+    ds_grid_add(other.statsgrid, 2, i, colour);
     i++;
 }
 
-
+//Sort the stats ds_grid.
+ds_grid_sort(statsgrid, 1, false);
 
 //Draw details.
 if(room == rm_gameWorld)
 {
     for(i=0; i&lt;loopnumber+1; i++)
     {
-        draw_sprite(spr_StatIcon,0 , 10, 8 + (i * 15))
+        //Blue
+        if(ds_grid_get(statsgrid,2,i) == 0)
+        {
+            draw_sprite(spr_StatIcon, 0, 10, 8 + (i * 15))
+        }
+        //Red
+        else if(ds_grid_get(statsgrid,2,i) == 1)
+        {
+            draw_sprite(spr_StatIcon, 1, 10, 8 + (i * 15))
+        }
+        //Green
+        else if(ds_grid_get(statsgrid,2,i) == 2)
+        {
+            draw_sprite(spr_StatIcon, 2, 10, 8 + (i * 15))
+        }
+        //Yellow
+        else if(ds_grid_get(statsgrid,2,i) == 3)
+        {
+            draw_sprite(spr_StatIcon, 3, 10, 8 + (i * 15))
+        }
     
-        draw_text(64,  13 + (i * 15), ds_grid_get(statsgrid,0,i));
-        draw_text(124, 13 + (i * 15), ds_grid_get(statsgrid,1,i));
+        namelength = string_length(ds_grid_get(statsgrid,0,i)) * 1.35;
+        
+        
+        //Draw Name
+        draw_text(62 + namelength,  13 + (i * 15), ds_grid_get(statsgrid,0,i));
+        
+        //Draw Score counter
+        if(ds_grid_get(statsgrid,1,i) == 1)
+        {
+            draw_sprite(spr_GemCounter, 0, 94, 13 + (i * 15))
+        }
+        else if(ds_grid_get(statsgrid,1,i) == 2)
+        {
+            draw_sprite(spr_GemCounter, 1, 94, 13 + (i * 15))
+        }
+        else if(ds_grid_get(statsgrid,1,i) == 3)
+        {
+            draw_sprite(spr_GemCounter, 2, 94, 13 + (i * 15))
+        }
+        else if(ds_grid_get(statsgrid,1,i) == 4)
+        {
+            draw_sprite(spr_GemCounter, 3, 94, 13 + (i * 15))
+        }
+        else if(ds_grid_get(statsgrid,1,i) == 5)
+        {
+            draw_sprite(spr_GemCounter, 4, 94, 13 + (i * 15))
+        }
+ 
     }
 }
 
