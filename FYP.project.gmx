@@ -297,6 +297,7 @@
   </shaders>
   <fonts name="fonts">
     <font>fonts\font1</font>
+    <font>fonts\stats</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_Client_Lobby_Manager</object>

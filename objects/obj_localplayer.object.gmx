@@ -292,6 +292,26 @@ self.colour = global.playerType;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="11">
       <action>
@@ -3018,11 +3038,41 @@ draw_sprite(spr_Heart,0,xpos,ypos - 14);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw scores
+            <string>///Draw scores &amp; DS_GRID
+draw_set_colour(c_black);
+draw_set_font(stats);
+
+//Create DS_GRID for displaying stats.
+statsgrid = ds_grid_create(10,10)
+
+
+//Populate the grid with our own info.
+ds_grid_add(statsgrid, 0, 0, global.name);
+ds_grid_add(statsgrid, 1, 0, "SCORE");
+
+//Loop through all remote players.
+loopnumber = instance_number(obj_remoteplayer)
+for(i=0; i&lt;loopnumber; i++)
+{
+    remoteplayer = instance_find(obj_remoteplayer, i);
+    
+    ds_grid_add(statsgrid, 0, i, remoteplayer.remotePlayerName);
+    ds_grid_add(statsgrid, 1, i, "SCORE");
+}
+
+//Draw details.
 if(room == rm_gameWorld)
 {
-    draw_sprite(spr_StatIcon,0,10,8)
+    for(i=0; i&lt;loopnumber+1; i++)
+    {
+        draw_sprite(spr_StatIcon,0 , 10, 8 + (i * 15))
+    
+        draw_text(64,  13 + (i * 15), ds_grid_get(statsgrid,0,i));
+        draw_text(124, 13 + (i * 15), ds_grid_get(statsgrid,1,i));
+    }
 }
+
+ds_grid_destroy(statsgrid);
 </string>
           </argument>
         </arguments>
