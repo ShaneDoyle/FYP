@@ -29,6 +29,16 @@
 socket = network_create_socket(network_socket_tcp);
 //ip = get_string("IP Address: ", "127.0.0.1"); //109.255.126.138
 isConnected = network_connect(socket, global.ConnectToIP, 50000);
+if(isConnected == 0)
+{
+    show_message("Connected")
+}
+else
+{
+    show_message("Not Connected");
+    room_goto(rm_TitleScreen);
+    instance_destroy();
+}
 global.buffer = buffer_create(1024, buffer_fixed, 1);
 global.latency = 0;
 

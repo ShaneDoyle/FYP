@@ -344,7 +344,7 @@ switch(msgId)
         
     break;
     
-    //Get Server Lobby Settings
+    //Get client request stuff.
     case 21:
         var RequestInfo = buffer_read(buffer, buffer_string);
         
@@ -357,7 +357,12 @@ switch(msgId)
         var xx = buffer_read(buffer, buffer_f32);
         var yy = buffer_read(buffer, buffer_f32);
         
-        var gem = instance_create(xx, yy, obj_client_gem);
+        if(instance_number(obj_client_gem) < 1)
+        {
+            var gem = instance_create(xx, yy, obj_client_gem);
+        }
+
+        
     break;
     
     

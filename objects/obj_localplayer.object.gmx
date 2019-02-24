@@ -3373,8 +3373,7 @@ if(room != rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Invert character
-//view_wview *= -1;
-view_angle = -90
+instance_create(x,y,obj_client_gem);
 </string>
           </argument>
         </arguments>

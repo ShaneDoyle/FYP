@@ -60,7 +60,7 @@ background_x[1] = view_xview * 0.7
 background_x[0] = (view_xview * 0.7) + xscrolling;
 background_y[0] = (view_yview * 0.8) ;//- 75;
 
-xscrolling -= 0// 0.25;
+xscrolling -= 0; //0.25;
 </string>
           </argument>
         </arguments>
