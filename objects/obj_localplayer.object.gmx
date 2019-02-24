@@ -3043,22 +3043,25 @@ draw_set_colour(c_black);
 draw_set_font(stats);
 
 //Create DS_GRID for displaying stats.
-statsgrid = ds_grid_create(10,10)
+loopnumber = instance_number(obj_remoteplayer);
+statsgrid = ds_grid_create(3, loopnumber+1);
 
 
 //Populate the grid with our own info.
 ds_grid_add(statsgrid, 0, 0, global.name);
-ds_grid_add(statsgrid, 1, 0, "SCORE");
+ds_grid_add(statsgrid, 1, 0, 3);
 
 //Loop through all remote players.
-loopnumber = instance_number(obj_remoteplayer)
-for(i=0; i&lt;loopnumber; i++)
+var i = 1;
+with(obj_remoteplayer)
 {
-    remoteplayer = instance_find(obj_remoteplayer, i);
-    
-    ds_grid_add(statsgrid, 0, i, remoteplayer.remotePlayerName);
-    ds_grid_add(statsgrid, 1, i, "SCORE");
+    name = remotePlayerName;
+    ds_grid_add(other.statsgrid, 0, i, name);
+    ds_grid_add(other.statsgrid, 1, i, 3);
+    i++;
 }
+
+
 
 //Draw details.
 if(room == rm_gameWorld)
