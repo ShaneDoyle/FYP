@@ -381,6 +381,7 @@
       <object>objects\obj_npc</object>
       <object>objects\obj_playerList</object>
       <object>objects\obj_client_gem</object>
+      <object>objects\obj_client_claim_gem</object>
       <object>objects\obj_projectile</object>
       <objects name="Lobby">
         <object>objects\obj_remote_server_lobby</object>

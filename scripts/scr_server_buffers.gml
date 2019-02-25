@@ -306,6 +306,7 @@ switch (msgId)
             }
             
             
+            
             //Save this room change
             ini_open(pName + ".ini");
             ini_write_real("position", "room", roomId);
@@ -614,6 +615,22 @@ switch (msgId)
                     }
                 }
             }
+        }
+    break;
+    
+    //Read in gem claim request. 
+    case 23:
+        var pId = buffer_read(buffer, buffer_u32);
+        var gemID = buffer_read(buffer, buffer_u32);
+        
+        with(obj_server_gem)
+        {
+            status = "death";
+            
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 23);
+            buffer_write(global.buffer, buffer_u32, pId);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
     break;
 }

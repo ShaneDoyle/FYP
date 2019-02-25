@@ -376,7 +376,15 @@ switch(msgId)
                 }
             }
         }
-
-        
+    break;
+    
+    //Claim gem reward.
+    case 23:
+        var playerclaimed = buffer_read(buffer, buffer_u32);
+        if(playerclaimed == global.playerId)
+        {
+            obj_localplayer.playerscore++;
+        }
     break;
 }
+

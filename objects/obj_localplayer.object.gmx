@@ -2713,6 +2713,33 @@ scr_angle_player("left");
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_client_gem">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Request to server to delete the gem, and gain points!
+if(instance_number(obj_client_claim_gem) &lt; 1)
+{
+    instance_create(x,y,obj_client_claim_gem);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_remoteProjectile">
       <action>
         <libid>1</libid>
