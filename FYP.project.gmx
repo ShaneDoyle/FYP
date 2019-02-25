@@ -27,6 +27,7 @@
     <sound>sound\Level_Start</sound>
     <sound>sound\SMB2Theme</sound>
     <sound>sound\Lobby_Music</sound>
+    <sound>sound\ClaimGem</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Player">

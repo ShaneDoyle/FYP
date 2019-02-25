@@ -387,6 +387,7 @@ switch(msgId)
         {
             obj_localplayer.playerscore++;
         }
+        audio_play_sound(ClaimGem,0,false);
     break;
 }
 
