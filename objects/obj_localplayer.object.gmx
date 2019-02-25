@@ -42,8 +42,8 @@ hspd = 0;
 vspd = 0;
 acc = 0.3;
 dacc = 0.15;
-jumpspeed = 9.5;
-maxspeed = 2.7;
+jumpspeed = 9.0;
+maxspeed = 2.5;
 grounded = false;
 slowmovement = false;
 reverse_image_speed = 1;
@@ -510,6 +510,7 @@ buffer_write(global.buffer, buffer_s16, image_angle);
 buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
+buffer_write(global.buffer, buffer_u8, playermaxhp);
 buffer_write(global.buffer, buffer_u8, playerscore);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
@@ -969,7 +970,6 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 30;
             attacking = true;
         }
         else if(dir == "down")
@@ -979,7 +979,6 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 30;
             bullet.image_angle = -180;
             attacking = true;
         }
@@ -990,7 +989,6 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 30;
             bullet.image_angle = -90;
             attacking = true;
         }
@@ -1001,10 +999,11 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 30;
             bullet.image_angle = -270;
             attacking = true;
         }
+        
+        bullet.damage = 20;
     }
     
     //Shield Ability
@@ -1196,14 +1195,24 @@ if(powerup == 2)
 if(powerup == 3)
 {
     //Dark Sphere
-    if(key_attack &amp;&amp; alarm[0] == -1)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 70 )
     {
-        alarm[0] = 45;
-        var bullet = instance_create(x + (60 * image_xscale), y, obj_projectile);
+        playerenergy -= 70;
+        image_index = 0;
+        image_speed = 0.65;
+        
+        
+        attacking = true;
+        alarm[0] = 90;
+        var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
+        bullet.hspeed = 3 * image_xscale;
         bullet.sprite_index = spr_DarkSphere;
+        bullet.powerup = 3;
         bullet.life = 100;
-        bullet.rotate = 15;
-        bullet.fadein = true;
+        bullet.rotate = 25;
+        bullet.fadein = false;
+        bullet.damage = 35;
+        
     }
 }
 
@@ -1343,7 +1352,22 @@ if(global.playerType == 0)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(vspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerBlueAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
             {
                 sprite_index = spr_PlayerBlueJump_Summoning;
             }
@@ -2473,6 +2497,54 @@ view_angle = lerp( view_angle, image_angle * -1, 0.125);
 if (alarm[9] == -1)
 {
     alarm[9] = 15;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Change stats per class (Lobby).
+if(room == rm_lobby)
+{
+    //Sword &amp; Shield
+    if(powerup == 1)
+    {
+        playermaxhp = 140;
+        playerhp = 140;
+        maxspeed = 2.4;
+        jumpspeed = 9.0;
+    }
+    //Shock Blaster
+    else if(powerup == 2)
+    {
+        playermaxhp = 110;
+        playerhp = 110;
+        maxspeed = 2.4 + (0.3 * 1);
+        jumpspeed = 9.0 + (0.25 * 1);
+    }
+    //Summoner
+    else if(powerup == 3)
+    {
+        playermaxhp = 100;
+        playerhp = 100;
+        maxspeed = 2.4 + (0.3 * 1);
+        jumpspeed = 9.0 + (0.25 * 1);
+    }
 }
 </string>
           </argument>

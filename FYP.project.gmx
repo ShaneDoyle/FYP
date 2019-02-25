@@ -7,6 +7,7 @@
     <extension index="0">extensions\Get Computer IP</extension>
   </NewExtensions>
   <sounds name="sound">
+    <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
@@ -53,6 +54,7 @@
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerBlueIdle_Summoning</sprite>
             <sprite>sprites\spr_PlayerBlueMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerBlueAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerBlueJump_Summoning</sprite>
           </sprites>
         </sprites>

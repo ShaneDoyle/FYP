@@ -30,9 +30,9 @@
 remotePlayerName = "";
 remotePlayerType = 0;
 remotePlayerLatency = 0;
-remotePlayerHP = 10;
+remotePlayerHP = 100;
+remotePlayerMaxHP = 100;
 remotePlayerScore = 10;
-remotePlayerMaxHP = 10;
 remotePlayerAttacking = false;
 remotePlayerId = 0;
 remotePlayersprite = 0;
@@ -579,9 +579,9 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar
-if(room != rm_lobby)
+if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0)
 {
-    percentage = self.remotePlayerHP / 100
+    percentage = self.remotePlayerHP / self.remotePlayerMaxHP;
     xpos = x
     ypos = y
     hpgap = 30;

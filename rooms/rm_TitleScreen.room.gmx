@@ -57,10 +57,8 @@ display_set_gui_size(640, 360);</code>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_Join" x="192" y="224" name="inst_0DAC94C7" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
-    <instance objName="obj_RockButton" x="192" y="320" name="inst_4B56D0E7" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
-    <instance objName="obj_RockButton2" x="448" y="224" name="inst_A88A9149" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Settings" x="448" y="320" name="inst_DA17D8B1" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Join" x="320" y="224" name="inst_0DAC94C7" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Settings" x="324" y="320" name="inst_DA17D8B1" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4294967295" rotation="0"/>
     <instance objName="obj_PlayerColourBlue" x="864" y="160" name="inst_02A388EF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_PlayerColourRightArrow" x="928" y="256" name="inst_44CD3245" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_PlayerColourLeftArrow" x="800" y="256" name="inst_BEA5233A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -69,8 +67,8 @@ display_set_gui_size(640, 360);</code>
     <instance objName="obj_SettingsPlatform" x="864" y="224" name="inst_58B116B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_menubackgroundsettings" x="0" y="0" name="inst_13083EE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_GlobalVariables" x="608" y="0" name="inst_693F1C8D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Orbit" x="320" y="96" name="inst_3A595484" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_Orbit_Planet" x="320" y="96" name="inst_0C076798" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Orbit" x="320" y="80" name="inst_3A595484" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Orbit_Planet" x="320" y="80" name="inst_0C076798" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
