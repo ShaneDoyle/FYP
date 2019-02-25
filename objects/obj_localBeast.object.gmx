@@ -66,33 +66,27 @@ xdifference = x - obj_localplayer.x;
 ydifference = y - obj_localplayer.y;
 
 
-    if(xdifference &lt;= -160)
-    {
-        image_xscale = 1;
-        following = true;
+if(xdifference &lt;= -100)
+{
+    image_xscale = 1;
+    following = true;
     
-        hspd += acc;
-        if(hspd &gt; maxspeed)
-        {
-            hspd = maxspeed;
-        }
-    }
+    hspd += acc;
+}
 
+else if(xdifference &gt;= 100)
+{
+    image_xscale = -1;
+    following = true;
 
+    hspd -= acc;
+}
+else
+{
+    hspd = 0;
+}
 
-
-    if(xdifference &gt;= 160)
-    {
-        image_xscale = -1;
-        following = true;
-    
-        hspd -= acc;
-        if(hspd &lt; (maxspeed*-1))
-        {
-            hspd = (maxspeed*-1);
-        }
-    }
-
+/*
 
 if(xdifference &lt; 160 &amp;&amp; xdifference &gt; -160)
 {
@@ -123,8 +117,9 @@ if(xdifference &lt; 160 &amp;&amp; xdifference &gt; -160)
 if(hspd == 0)
 {
     sprite_index = spr_Enemy1Idle;
+    image_speed = 0.2;
 }
-else
+else if (hspd != 0)
 {
     sprite_index = spr_Enemy1Move
     image_speed = 0.2 * hspd * image_xscale;
@@ -195,6 +190,8 @@ if (place_meeting(x+hspd, y, obj_block))
     {
         x += sign(hspd);
     }
+    
+    hspd = 0;
 }
 
 //Set horizontal position
@@ -235,6 +232,7 @@ y += vspd;
           <argument>
             <kind>1</kind>
             <string>///Stand Check
+/*
 //If standing still...
 if (following == false)
 { 

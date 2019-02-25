@@ -322,7 +322,10 @@
       <object>objects\obj_server_player</object>
       <object>objects\obj_server_npc</object>
       <object>objects\obj_server_projectile</object>
-      <object>objects\obj_server_gem</object>
+      <objects name="Gem">
+        <object>objects\obj_server_gem</object>
+        <object>objects\obj_server_gem_creator</object>
+      </objects>
       <object>objects\obj_server_camera</object>
       <objects name="Enemys">
         <object>objects\obj_Enemy1</object>
@@ -374,6 +377,7 @@
       <object>objects\obj_message</object>
       <object>objects\obj_remoteplayer</object>
       <object>objects\obj_localplayer</object>
+      <object>objects\obj_companion</object>
       <object>objects\obj_lighting</object>
       <object>objects\obj_lighting_backup_</object>
       <object>objects\obj_lighting_2</object>

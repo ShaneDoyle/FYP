@@ -3604,7 +3604,7 @@ if(room != rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Invert character
-instance_create(x,y,obj_client_gem);
+instance_create(x, y - 30, obj_localBeast);
 </string>
           </argument>
         </arguments>
