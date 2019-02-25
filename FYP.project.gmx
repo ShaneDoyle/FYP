@@ -376,13 +376,13 @@
       <object>objects\obj_lighting_backup_</object>
       <object>objects\obj_lighting_2</object>
       <object>objects\obj_localBeast</object>
-      <object>objects\obj_remoteProjectile</object>
       <object>objects\obj_block</object>
       <object>objects\obj_chat</object>
       <object>objects\obj_npc</object>
       <object>objects\obj_playerList</object>
       <object>objects\obj_client_gem</object>
       <object>objects\obj_client_claim_gem</object>
+      <object>objects\obj_remoteProjectile</object>
       <object>objects\obj_projectile</object>
       <objects name="Lobby">
         <object>objects\obj_remote_server_lobby</object>

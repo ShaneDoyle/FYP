@@ -223,6 +223,7 @@ switch(msgId)
         var xdir = buffer_read(buffer, buffer_s8);
         var ydir = buffer_read(buffer, buffer_s8);
         var powerup = buffer_read(buffer, buffer_u8);
+        var damage = buffer_read(buffer, buffer_u8);
         var life = buffer_read(buffer, buffer_u8);
         
         var projectile = noone;
@@ -254,6 +255,7 @@ switch(msgId)
             p.image_angle = angle_image;
             p.life = life;
             p.powerup = powerup;
+            p.damage = damage;
         }
     break;
     

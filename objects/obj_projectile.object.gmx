@@ -164,6 +164,7 @@ buffer_write(global.buffer, buffer_s16, image_angle);
 buffer_write(global.buffer, buffer_s8, image_xscale);
 buffer_write(global.buffer, buffer_s8, image_yscale);
 buffer_write(global.buffer, buffer_u8, powerup);
+buffer_write(global.buffer, buffer_u8, damage);
 buffer_write(global.buffer, buffer_u8, life);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());

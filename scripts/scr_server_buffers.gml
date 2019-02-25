@@ -501,6 +501,7 @@ switch (msgId)
         var xdir = buffer_read(buffer, buffer_s8);
         var ydir = buffer_read(buffer, buffer_s8);
         var powerup = buffer_read(buffer, buffer_u8);
+        var damage = buffer_read(buffer, buffer_u8);
         var life = buffer_read(buffer, buffer_u8);
         var roomId = buffer_read(buffer, buffer_u8);
         
@@ -532,6 +533,7 @@ switch (msgId)
             p.image_xscale = xdir;
             p.image_yscale = ydir;
             p.powerup = powerup;
+            p.damage = damage;
         }
         
         //Send data to other clients about new update
@@ -565,6 +567,7 @@ switch (msgId)
                             buffer_write(global.buffer, buffer_s8, xdir);
                             buffer_write(global.buffer, buffer_s8, ydir);
                             buffer_write(global.buffer, buffer_u8, powerup);
+                            buffer_write(global.buffer, buffer_u8, damage);
                             buffer_write(global.buffer, buffer_u8, life);
                             network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
                         }

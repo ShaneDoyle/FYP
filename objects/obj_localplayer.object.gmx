@@ -360,7 +360,7 @@ if(grounded == false)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Hit
+            <string>///Remove hit
 hit = false;
 </string>
           </argument>
@@ -969,7 +969,7 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 35;
+            bullet.damage = 30;
             attacking = true;
         }
         else if(dir == "down")
@@ -979,7 +979,7 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 20;
+            bullet.damage = 30;
             bullet.image_angle = -180;
             attacking = true;
         }
@@ -990,7 +990,7 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 20;
+            bullet.damage = 30;
             bullet.image_angle = -90;
             attacking = true;
         }
@@ -1001,7 +1001,7 @@ if(powerup == 1)
             image_speed = 0.65;
             alarm[0] = 20;
             bullet.life = 5;
-            bullet.damage = 20;
+            bullet.damage = 30;
             bullet.image_angle = -270;
             attacking = true;
         }
@@ -1064,6 +1064,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
+        bullet.damage = 15;
         bullet.image_index = irandom_range(0,0);
         
         sound = choose(1,2,3)

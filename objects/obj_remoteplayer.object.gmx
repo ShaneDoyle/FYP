@@ -453,7 +453,7 @@ if(remotePlayerAttacking == false)
             <string>///Refresh position
 if (remote_hspd == 0)
 {
-    //alarm[0] = 1;
+    alarm[0] = 1;
 }
 </string>
           </argument>
