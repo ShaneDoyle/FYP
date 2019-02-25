@@ -35,6 +35,12 @@ switch(msgId)
     case 3: 
         var response = buffer_read(buffer, buffer_u8);
         
+        global.playerX = buffer_read(buffer, buffer_u32);
+        global.playerY = buffer_read(buffer, buffer_u32);
+        global.playerRoom = buffer_read(buffer, buffer_u8);
+                
+        room_goto(rm_lobby);
+        /*
         switch(response)
         {
             //Failure
@@ -51,11 +57,13 @@ switch(msgId)
                 room_goto(rm_lobby);
             break;
         }
+        */
     break;
     
     //Player ID Response
     case 4:
         global.playerId = buffer_read(buffer, buffer_u32);
+        show_message(global.playerId);
     break;
     
     //Remote player disconnect response

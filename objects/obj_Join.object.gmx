@@ -128,7 +128,8 @@ else
           <argument>
             <kind>1</kind>
             <string>///Go to connect room
-room_goto(rm_listofservers);
+global.ConnectToIP = IP;
+room_goto(rm_connect);
 </string>
           </argument>
         </arguments>
@@ -175,9 +176,8 @@ room_goto(rm_listofservers);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Go to connect room
-global.ConnectToIP = IP;
-room_goto(rm_connect);
+            <string>///Go to server list room.
+room_goto(rm_listofservers);
 </string>
           </argument>
         </arguments>

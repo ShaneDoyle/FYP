@@ -412,7 +412,7 @@ if(circlelight &lt; 300)
           <argument>
             <kind>1</kind>
             <string>///Revive player.
-playerhp += playermaxhp;
+playerhp = playermaxhp;
 PlayerDeath = false;
 image_alpha = 1;
 </string>
@@ -2672,7 +2672,7 @@ if(room == rm_lobby)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///HP and Energy Caps
+            <string>///HP, Energy &amp; Score Caps
 if(playerhp &lt;= 0)
 {
     playerhp = 0;
@@ -2686,6 +2686,11 @@ if(playerenergy &gt;= 100)
 else
 {
     playerenergy += 0.35;
+}
+
+if(playerscore &lt; 0)
+{
+    playerscore = 0;
 }
 
 </string>
@@ -2715,6 +2720,7 @@ if(PlayerDeath == true)
     image_speed = 0;
     if(alarm[8] == -1)
     {
+        playerscore--;
         alarm[8] = 600;
     } 
 }
@@ -3772,7 +3778,7 @@ if(room == rm_lobby)
     
         if(global.playerType == 3)
         {
-    //        global.playerType = 0;
+            global.playerType = 0;
         }
         else
         {

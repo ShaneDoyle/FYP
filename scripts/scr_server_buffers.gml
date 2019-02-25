@@ -51,7 +51,7 @@ switch (msgId)
         var pId = buffer_read(buffer, buffer_u32);
         var playerUsername = buffer_read(buffer, buffer_string);
         var passwordHash = buffer_read(buffer, buffer_string);
-        var response = 0;
+        var response = 1;
         var positionX = 224;
         var positionY = 160;
         var currentRoom = 0;

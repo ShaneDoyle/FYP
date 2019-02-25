@@ -30,6 +30,7 @@
 global.playerName = "Shane";
 global.powerup = 1;
 global.playerType = 0; //Colour
+global.playerId = 0;
 
 //Battle Stats
 global.playerHP = 0;
