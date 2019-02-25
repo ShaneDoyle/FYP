@@ -394,6 +394,32 @@ if(circlelight &lt; 300)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Revive player.
+playerhp += playermaxhp;
+PlayerDeath = false;
+image_alpha = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -1200,12 +1226,29 @@ if(powerup == 3)
         playerenergy -= 70;
         image_index = 0;
         image_speed = 0.65;
-        
-        
         attacking = true;
         alarm[0] = 90;
-        var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
-        bullet.hspeed = 3 * image_xscale;
+        if(dir == "up")
+        {
+            var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = 3 * image_xscale;
+        }
+        else if(dir == "down")
+        {
+            var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = -3 * image_xscale;
+        }
+        else if (dir == "right")
+        {
+            var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
+            bullet.vspeed = 3 * image_xscale;
+        }
+        else if (dir == "left")
+        {
+            var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
+            bullet.vspeed = -3 * image_xscale;
+        }
+        
         bullet.sprite_index = spr_DarkSphere;
         bullet.powerup = 3;
         bullet.life = 100;
@@ -1509,7 +1552,22 @@ if(global.playerType == 0)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(hspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerBlueAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(hspd != 0)
             {
                 sprite_index = spr_PlayerBlueJump_Summoning;
             }
@@ -2655,6 +2713,10 @@ if(PlayerDeath == true)
 {
     image_alpha -= 0.01;
     image_speed = 0;
+    if(alarm[8] == -1)
+    {
+        alarm[8] = 600;
+    } 
 }
 </string>
           </argument>
@@ -2787,33 +2849,6 @@ scr_angle_player("left");
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_client_gem">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Request to server to delete the gem, and gain points!
-if(instance_number(obj_client_claim_gem) &lt; 1)
-{
-    instance_create(x,y,obj_client_claim_gem);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="obj_remoteProjectile">
       <action>
         <libid>1</libid>
@@ -2837,6 +2872,33 @@ if(hit == false)
     playerhp -= obj_remoteProjectile.damage;
     hit = true
     alarm[10] = 30;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_gem">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Request to server to delete the gem, and gain points!
+if(instance_number(obj_client_claim_gem) &lt; 1)
+{
+    instance_create(x,y,obj_client_claim_gem);
 }
 </string>
           </argument>

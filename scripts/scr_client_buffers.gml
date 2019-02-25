@@ -394,4 +394,3 @@ switch(msgId)
         audio_play_sound(ClaimGem,0,false);
     break;
 }
-
