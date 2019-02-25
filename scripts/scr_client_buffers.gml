@@ -132,6 +132,7 @@ switch(msgId)
         var sprite_number = buffer_read(buffer, buffer_s16);
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
+        var playerscore = buffer_read(buffer, buffer_u8);
         var attacking = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
         
@@ -152,6 +153,7 @@ switch(msgId)
                 remote_vspd = vspd;
                 remote_imageangle = imageangle;
                 remotePlayerHP = hp;
+                remotePlayerScore = playerscore;
                 remotePlayerAttacking = attacking;
                 remotePlayerxx = xx;
                 remotePlayeryy = yy;

@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
-gemID = 1;
+gemID = global.gemnumber;
+global.gemnumber++;
 status = "active";
 depth = -100;
 </string>

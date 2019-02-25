@@ -31,6 +31,7 @@ remotePlayerName = "";
 remotePlayerType = 0;
 remotePlayerLatency = 0;
 remotePlayerHP = 10;
+remotePlayerScore = 10;
 remotePlayerMaxHP = 10;
 remotePlayerAttacking = false;
 remotePlayerId = 0;

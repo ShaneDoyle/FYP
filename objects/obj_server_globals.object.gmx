@@ -36,6 +36,8 @@ global.left_currentx = 0;
 global.left_currenty = 0;
 global.down_currentx = 0;
 global.down_currenty = 0;
+
+global.gemnumber = 1;
 </string>
           </argument>
         </arguments>
@@ -59,6 +61,10 @@ global.down_currenty = 0;
           <argument>
             <kind>1</kind>
             <string>///Create Gem
+with(obj_server_gem)
+{
+    instance_destroy();
+}
 instance_create(800,600,obj_server_gem);
 </string>
           </argument>
