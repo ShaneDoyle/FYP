@@ -1623,7 +1623,6 @@ else if(dir == "down")
 {
     reverse_image_speed = -1;
 }
-
 //Player Red
 if(global.playerType == 1)
 {
@@ -1730,7 +1729,22 @@ if(global.playerType == 1)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(vspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerRedAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
             {
                 sprite_index = spr_PlayerRedJump_Summoning;
             }
@@ -1872,7 +1886,22 @@ if(global.playerType == 1)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(hspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerRedAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(hspd != 0)
             {
                 sprite_index = spr_PlayerRedJump_Summoning;
             }
@@ -1928,7 +1957,6 @@ else if(dir == "down")
 {
     reverse_image_speed = -1;
 }
-
 //Player Green
 if(global.playerType == 2)
 {
@@ -2035,7 +2063,22 @@ if(global.playerType == 2)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(vspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerGreenAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
             {
                 sprite_index = spr_PlayerGreenJump_Summoning;
             }
@@ -2177,7 +2220,22 @@ if(global.playerType == 2)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(hspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerGreenAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(hspd != 0)
             {
                 sprite_index = spr_PlayerGreenJump_Summoning;
             }
@@ -2233,7 +2291,6 @@ else if(dir == "down")
 {
     reverse_image_speed = -1;
 }
-
 //Player Yellow
 if(global.playerType == 3)
 {
@@ -2340,7 +2397,22 @@ if(global.playerType == 3)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(vspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerYellowAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
             {
                 sprite_index = spr_PlayerYellowJump_Summoning;
             }
@@ -2482,7 +2554,22 @@ if(global.playerType == 3)
         //(3) Summoning (Necromancer)
         else if(powerup == 3)
         {
-            if(hspd != 0)
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerYellowAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(hspd != 0)
             {
                 sprite_index = spr_PlayerYellowJump_Summoning;
             }

@@ -81,6 +81,7 @@
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerRedIdle_Summoning</sprite>
             <sprite>sprites\spr_PlayerRedMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerRedAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerRedJump_Summoning</sprite>
           </sprites>
         </sprites>
@@ -107,6 +108,7 @@
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerGreenIdle_Summoning</sprite>
             <sprite>sprites\spr_PlayerGreenMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerGreenAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerGreenJump_Summoning</sprite>
           </sprites>
         </sprites>
@@ -133,6 +135,7 @@
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerYellowIdle_Summoning</sprite>
             <sprite>sprites\spr_PlayerYellowMove_Summoning</sprite>
+            <sprite>sprites\spr_PlayerYellowAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerYellowJump_Summoning</sprite>
           </sprites>
         </sprites>
