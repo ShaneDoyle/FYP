@@ -71,6 +71,7 @@ powerup = global.powerup;
 
 //Gamemode
 playerscore = 0;
+planetnumber = 0;
 
 //Misc
 sendbuffer = 0;
@@ -2834,14 +2835,17 @@ if(PlayerDeath == true)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(alarm[9] == -1)
+if(obj_DownPortal.planetnumber == obj_localplayer.planetnumber)
 {
-    alarm[9] = 20;
+    if(alarm[9] == -1)
+    {
+        alarm[9] = 20;
+    }
+    
+    
+    dir = "down";
+    scr_angle_player("down");
 }
-
-
-dir = "down";
-scr_angle_player("down");
 </string>
           </argument>
         </arguments>
@@ -2865,15 +2869,19 @@ scr_angle_player("down");
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(alarm[9] == -1)
+if(obj_Portal.planetnumber == obj_localplayer.planetnumber)
 {
-    alarm[9] = 20;
+    if(alarm[9] == -1)
+    {
+        alarm[9] = 20;
+    }
+    inverted = 1;
+    xinverted = 0;
+    
+    dir = "up";
+    scr_angle_player("up");
 }
-inverted = 1;
-xinverted = 0;
 
-dir = "up";
-scr_angle_player("up");
 </string>
           </argument>
         </arguments>
@@ -2897,14 +2905,17 @@ scr_angle_player("up");
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(alarm[9] == -1)
+if(obj_RightPortal.planetnumber == obj_localplayer.planetnumber)
 {
-    alarm[9] = 20;
+    if(alarm[9] == -1)
+    {
+        alarm[9] = 20;
+    }
+    
+    dir = "right";
+    
+    scr_angle_player("right");
 }
-
-dir = "right";
-
-scr_angle_player("right");
 </string>
           </argument>
         </arguments>
@@ -2928,15 +2939,18 @@ scr_angle_player("right");
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(alarm[9] == -1)
+if(obj_LeftPortal.planetnumber == obj_localplayer.planetnumber)
 {
-    alarm[9] = 20;
-}
-
-dir = "left";
-
+    if(alarm[9] == -1)
+    {
+        alarm[9] = 20;
+    }
     
-scr_angle_player("left");
+    dir = "left";
+    
+        
+    scr_angle_player("left");
+}
 </string>
           </argument>
         </arguments>

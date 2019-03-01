@@ -35,7 +35,8 @@ if(room == rm_server)
     alarm[0] = 10;
 }
 
-
+//Misc
+planetnumber = global.planetnumber;
 </string>
           </argument>
         </arguments>
