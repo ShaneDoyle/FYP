@@ -2932,7 +2932,7 @@ if(other.planetnumber == obj_localplayer.planetnumber)
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>obj_localplayer</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -2941,7 +2941,6 @@ if(other.planetnumber == obj_localplayer.planetnumber)
             <string>///Flip player
 if(other.planetnumber == obj_localplayer.planetnumber)
 {
-    show_message(other.planetnumber);
     if(alarm[9] == -1)
     {
         alarm[9] = 20;

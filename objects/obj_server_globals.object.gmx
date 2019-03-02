@@ -38,7 +38,7 @@ global.down_currentx = 0;
 global.down_currenty = 0;
 
 global.gemnumber = 1;
-global.planetnumber = 2;
+global.planetnumber = 1;
 </string>
           </argument>
         </arguments>
