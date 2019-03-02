@@ -30,6 +30,9 @@ image_speed = 0.4;
 hue = 0;
 
 image_alpha = global.hideportals;
+
+//Misc
+planetnumber = global.planetnumber;
 </string>
           </argument>
         </arguments>

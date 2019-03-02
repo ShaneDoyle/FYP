@@ -71,7 +71,7 @@ powerup = global.powerup;
 
 //Gamemode
 playerscore = 0;
-planetnumber = 0;
+planetnumber = 1;
 
 //Misc
 sendbuffer = 0;
@@ -2835,7 +2835,7 @@ if(PlayerDeath == true)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(obj_DownPortal.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber)
 {
     if(alarm[9] == -1)
     {
@@ -2869,7 +2869,7 @@ if(obj_DownPortal.planetnumber == obj_localplayer.planetnumber)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(obj_Portal.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber)
 {
     if(alarm[9] == -1)
     {
@@ -2905,7 +2905,7 @@ if(obj_Portal.planetnumber == obj_localplayer.planetnumber)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(obj_RightPortal.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber)
 {
     if(alarm[9] == -1)
     {
@@ -2932,15 +2932,16 @@ if(obj_RightPortal.planetnumber == obj_localplayer.planetnumber)
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>obj_localplayer</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(obj_LeftPortal.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber)
 {
+    show_message(other.planetnumber);
     if(alarm[9] == -1)
     {
         alarm[9] = 20;

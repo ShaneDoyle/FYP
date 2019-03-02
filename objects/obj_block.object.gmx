@@ -117,6 +117,7 @@ if(rm_server)
     buffer_write(global.buffer, buffer_s32, x);
     buffer_write(global.buffer, buffer_s32, y);
     buffer_write(global.buffer, buffer_u8, image_index);
+    buffer_write(global.buffer, buffer_u8, planetnumber);
     network_send_packet(obj_server_controller.socket, global.buffer, scr_getBufferSize());
 }
 else

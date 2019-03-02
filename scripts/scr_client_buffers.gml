@@ -288,9 +288,11 @@ switch(msgId)
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
         var image = buffer_read(buffer, buffer_u8);
+        var planetnumber = buffer_read(buffer, buffer_u8);
         
         var block = instance_create(xx, yy, obj_block);
         block.image_index = image;
+        block.planetnumber = planetnumber;
     break;
     
     //Bush Creation
@@ -317,32 +319,40 @@ switch(msgId)
     case 16:
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
+        var planetnumber = buffer_read(buffer, buffer_u8);
         
         var rightportal = instance_create(xx, yy, obj_RightPortal);
+        rightportal.planetnumber = planetnumber;
     break;
     
     //Up Portal Creation
     case 17:
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
+        var planetnumber = buffer_read(buffer, buffer_u8);
         
         var upportal = instance_create(xx, yy, obj_Portal);
+        upportal.planetnumber = planetnumber;
     break;
     
     //Left Portal Creation
     case 18:
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
+        var planetnumber = buffer_read(buffer, buffer_u8);
         
         var leftportal = instance_create(xx, yy, obj_LeftPortal);
+        leftportal.planetnumber = planetnumber;
     break;
     
     //Down Portal Creation
     case 19:
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
+        var planetnumber = buffer_read(buffer, buffer_u8);
         
         var downportal = instance_create(xx, yy, obj_DownPortal);
+        downportal.planetnumber = planetnumber;
     break;
     
     //Get Server Lobby Settings

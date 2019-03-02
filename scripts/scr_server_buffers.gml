@@ -214,6 +214,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_s32, block.x);
                 buffer_write(global.buffer, buffer_s32, block.y);
                 buffer_write(global.buffer, buffer_s8, block.image_index);
+                buffer_write(global.buffer, buffer_s8, block.planetnumber);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
                 
             }
@@ -255,6 +256,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_u8, 16);
                 buffer_write(global.buffer, buffer_s32, rightportal.x);
                 buffer_write(global.buffer, buffer_s32, rightportal.y);
+                buffer_write(global.buffer, buffer_u8, rightportal.planetnumber);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
@@ -267,6 +269,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_u8, 17);
                 buffer_write(global.buffer, buffer_s32, upportal.x);
                 buffer_write(global.buffer, buffer_s32, upportal.y);
+                buffer_write(global.buffer, buffer_u8, upportal.planetnumber);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
@@ -279,6 +282,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_u8, 18);
                 buffer_write(global.buffer, buffer_s32, leftportal.x);
                 buffer_write(global.buffer, buffer_s32, leftportal.y);
+                buffer_write(global.buffer, buffer_u8, leftportal.planetnumber);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
@@ -291,6 +295,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_u8, 19);
                 buffer_write(global.buffer, buffer_s32, downportal.x);
                 buffer_write(global.buffer, buffer_s32, downportal.y);
+                buffer_write(global.buffer, buffer_u8, downportal.planetnumber);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
