@@ -57,6 +57,9 @@
             <sprite>sprites\spr_PlayerBlueAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerBlueJump_Summoning</sprite>
           </sprites>
+          <sprites name="4. Demolitioner">
+            <sprite>sprites\spr_PlayerBlueIdle_Demolitioner</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="PlayerRed">

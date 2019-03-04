@@ -1428,6 +1428,42 @@ if(global.playerType == 0)
                 image_speed = 0.25 * hspd * image_xscale;
             }
         }
+        
+        //(4) Demolitioner
+        else if(powerup == 4)
+        {
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerBlueAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Demolitioner;
+            }
+            
+            else if(hspd == 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Demolitioner;
+                image_speed = 0.25;
+            }
+            
+            else if (hspd != 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Demolitioner;
+                image_speed = 0.25 * hspd * image_xscale;
+            }
+        }
     }
     
     else if(dir == "right" || dir == "left")
