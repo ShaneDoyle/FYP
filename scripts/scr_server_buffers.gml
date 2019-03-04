@@ -310,6 +310,18 @@ switch (msgId)
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
+            //Tell this player about existing cannons!
+            for (var i = 0; i < instance_number(obj_server_cannon); i++)
+            {
+                var cannon = instance_find(obj_server_cannon, i);
+                
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 24);
+                buffer_write(global.buffer, buffer_s32, cannon.x);
+                buffer_write(global.buffer, buffer_s32, cannon.y);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            }
+            
             
             
             //Save this room change

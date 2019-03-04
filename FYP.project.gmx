@@ -60,6 +60,9 @@
           <sprites name="4. Demolitioner">
             <sprite>sprites\spr_PlayerBlueIdle_Demolitioner</sprite>
           </sprites>
+          <sprites name="5. Ice">
+            <sprite>sprites\spr_PlayerBlueIdle_Ice</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="PlayerRed">
@@ -344,6 +347,9 @@
       </objects>
     </objects>
     <objects name="Client">
+      <objects name="Objects">
+        <object>objects\obj_client_cannon</object>
+      </objects>
       <objects name="Tilesets">
         <object>objects\obj_bush1</object>
         <object>objects\obj_grass1</object>

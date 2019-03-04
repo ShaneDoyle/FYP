@@ -52,7 +52,7 @@ depth = -100;
             <string>///Change powerup
 if(global.powerup &lt;= 1)
 {
-    global.powerup = 4;
+    global.powerup = 5;
 }
 else
 {

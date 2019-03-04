@@ -75,11 +75,20 @@ else if(global.powerup == 3)
     global.playerDamage = 4;
     global.playerSpeed = 1;
 }
+//(4) Demolitioner
 else if(global.powerup == 4)
 {
     image_index = 3;
     global.playerHP = 0;
     global.playerDamage = 5;
+    global.playerSpeed = 0;
+}
+//(5) Ice
+else if(global.powerup == 5)
+{
+    image_index = 4;
+    global.playerHP = 3;
+    global.playerDamage = 2;
     global.playerSpeed = 0;
 }
 </string>

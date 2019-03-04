@@ -1444,6 +1444,42 @@ if(global.playerType == 0)
                 image_speed = 0.25 * hspd * image_xscale;
             }
         }
+        
+        //(5) Ice
+        else if(powerup == 5)
+        {
+            if(attacking == true)
+            {            
+                sprite_index = spr_PlayerBlueAttack_Summoning;
+                image_speed -= 0.025;
+                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
+                {
+    
+                }
+                if(image_index &gt;= 7)
+                {
+                    attacking = false;
+                    attacksound = true;
+                }
+            }
+            
+            else if(vspd != 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Ice;
+            }
+            
+            else if(hspd == 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Ice;
+                image_speed = 0.50;
+            }
+            
+            else if (hspd != 0)
+            {
+                sprite_index = spr_PlayerBlueIdle_Ice;
+                image_speed = 0.25 * hspd * image_xscale;
+            }
+        }
     }
     
     else if(dir == "right" || dir == "left")
@@ -2709,6 +2745,27 @@ if(room == rm_lobby)
     }
     //(4) Demolitioner
     else if(powerup == 4)
+    {
+        playermaxhp = 100;
+        playerhp = 100;
+        maxspeed = 2.4;
+        jumpspeed = 9.0;
+    }
+    
+    //(5) Ice
+    else if(powerup == 5)
+    {
+        playermaxhp = 130;
+        playerhp = 130;
+        maxspeed = 2.4;
+        jumpspeed = 9.0;
+    }
+    
+    
+    
+    
+    
+    else
     {
         playermaxhp = 100;
         playerhp = 100;

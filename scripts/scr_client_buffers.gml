@@ -411,4 +411,12 @@ switch(msgId)
         }
         audio_play_sound(ClaimGem,0,false);
     break;
+    
+    //Cannon creation
+    case 24:
+        var xx = buffer_read(buffer, buffer_s32);
+        var yy = buffer_read(buffer, buffer_s32);
+        
+        var cannon = instance_create(xx, yy, obj_client_cannon);
+    break;
 }
