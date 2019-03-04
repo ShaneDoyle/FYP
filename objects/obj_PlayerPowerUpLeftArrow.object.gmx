@@ -50,7 +50,7 @@ depth = -100;
           <argument>
             <kind>1</kind>
             <string>///Change powerup
-if(global.powerup &lt;= 0)
+if(global.powerup &lt;= 1)
 {
     global.powerup = 4;
 }

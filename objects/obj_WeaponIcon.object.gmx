@@ -78,6 +78,9 @@ else if(global.powerup == 3)
 else if(global.powerup == 4)
 {
     image_index = 3;
+    global.playerHP = 0;
+    global.playerDamage = 5;
+    global.playerSpeed = 0;
 }
 </string>
           </argument>

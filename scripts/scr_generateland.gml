@@ -44,6 +44,12 @@ instance_create(startingx - 96, startingy + 16, obj_LeftPortal);
 //Up 
 for(i=0; i<blocksize; i++)
 {
+    //Spawn Cannon
+    if(i == blocksize/2)
+    {
+        instance_create(currentx, currenty, obj_server_cannon);
+    }
+    
     altitudecheck++;
     bush++;
     pitfall++;

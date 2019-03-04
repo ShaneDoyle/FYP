@@ -42,7 +42,7 @@ hspd = 0;
 vspd = 0;
 acc = 0.3;
 dacc = 0.15;
-jumpspeed = 9.0;
+jumpspeed = 5.0;
 maxspeed = 2.5;
 grounded = false;
 slowmovement = false;
@@ -293,26 +293,6 @@ instance_create(x,y,obj_transition1);
 self.powerup = global.powerup;
 self.colour = global.playerType;
 </string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
@@ -2727,6 +2707,15 @@ if(room == rm_lobby)
         maxspeed = 2.4 + (0.3 * 1);
         jumpspeed = 9.0 + (0.25 * 1);
     }
+    //(4) Demolitioner
+    else if(powerup == 4)
+    {
+        playermaxhp = 100;
+        playerhp = 100;
+        maxspeed = 2.4;
+        jumpspeed = 9.0;
+    }
+    
 }
 </string>
           </argument>
