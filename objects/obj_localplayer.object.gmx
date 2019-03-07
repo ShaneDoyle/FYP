@@ -49,6 +49,7 @@ grounded = false;
 slowmovement = false;
 reverse_image_speed = 1;
 movementtype = "lobby";
+removecannon = true;
 
 
 //---Combat Stats
@@ -404,6 +405,33 @@ image_alpha = 1;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Blast Player from Cannon
+audio_play_sound(CannonBlast,0,false);
+image_alpha = 1;
+vspeed = -12;
+hspeed = 8;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -421,7 +449,8 @@ image_alpha = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Ability cooldown
+            <string>///Player cannon stuff.
+removecannon = true;
 </string>
           </argument>
         </arguments>
@@ -1308,9 +1337,35 @@ if(powerup == 3)
           <argument>
             <kind>1</kind>
             <string>///Manual movement (Cannons etc.)
-if(keyboard_check_pressed(ord('Y')))
+if(keyboard_check_pressed(ord('Y')) &amp;&amp; place_meeting(x,y,obj_client_cannon))
 {  
+    x = obj_client_cannon.x;
+    y = obj_client_cannon.y;
+    image_alpha = 0;
     movementtype = "cannon";
+    image_xscale = 1;
+    if (alarm[2] == -1)
+    {
+        audio_play_sound(CannonReady,0,false);
+        alarm[2] = 60;
+    }
+    if(alarm[1] == -1)
+    {
+        removecannon = false;
+        alarm[1] = 90;
+    }
+}
+
+if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
+{
+    vspeed += 0.3;
+}
+
+if(place_meeting(x,y+30,obj_block) &amp;&amp; removecannon == true)
+{
+    movementtype = "player";
+    vspeed = 0;
+    hspeed = 0;
 }
 </string>
           </argument>
@@ -1370,7 +1425,12 @@ if(global.playerType == 0)
         //(1) Sword &amp; Shield
         else if(powerup == 1)
         {
-            if(attacking == true)
+            if(vspeed != 0)
+            {
+                sprite_index = spr_PlayerBlueJump_SwordShield;
+            }
+            
+            else if(attacking == true)
             {            
                 sprite_index = spr_PlayerBlueAttack_SwordShield
                 image_speed -= 0.025;
@@ -2926,7 +2986,7 @@ if(playerenergy &gt;= 100)
 }
 else
 {
-    playerenergy += 10.35;
+    playerenergy += 0.4;
 }
 
 if(playerscore &lt; 0)
@@ -2988,7 +3048,7 @@ if(PlayerDeath == true)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(other.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer.movementtype == "player")
 {
     if(alarm[9] == -1)
     {
@@ -3037,7 +3097,7 @@ if(other.planetnumber == obj_localplayer.planetnumber)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(other.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer.movementtype == "player")
 {
     if(alarm[9] == -1)
     {
@@ -3083,7 +3143,7 @@ if(other.planetnumber == obj_localplayer.planetnumber)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(other.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer.movementtype == "player")
 {
     if(alarm[9] == -1)
     {
@@ -3131,7 +3191,7 @@ if(other.planetnumber == obj_localplayer.planetnumber)
           <argument>
             <kind>1</kind>
             <string>///Flip player
-if(other.planetnumber == obj_localplayer.planetnumber)
+if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer.movementtype == "player")
 {
     if(alarm[9] == -1)
     {
@@ -3208,6 +3268,31 @@ if(instance_number(obj_client_claim_gem) &lt; 1)
 {
     instance_create(x,y,obj_client_claim_gem);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_block">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Take planet number.
+obj_localplayer.planetnumber = other.planetnumber;
+
 </string>
           </argument>
         </arguments>
