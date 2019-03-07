@@ -48,6 +48,7 @@ maxspeed = 2.5;
 grounded = false;
 slowmovement = false;
 reverse_image_speed = 1;
+movementtype = "lobby";
 
 
 //---Combat Stats
@@ -89,6 +90,7 @@ key_up = noone;
 key_down = noone;
 key_jump = noone;
 key_attack = noone;
+key_interact = noone;
 
 
 switch(global.playerType)
@@ -571,7 +573,7 @@ if (!global.typing)
           <argument>
             <kind>1</kind>
             <string>///Moving Script
-if(room != rm_lobby)
+if(movementtype == "player")
 {
     if(global.PlayerMove == true &amp;&amp; PlayerDeath == false)
     {
@@ -581,6 +583,7 @@ if(room != rm_lobby)
         key_down = keyboard_check(vk_down);
         key_jump = keyboard_check_pressed(vk_space);
         key_attack = keyboard_check_pressed(ord('F'));
+        key_interact = keyboard_check_pressed(ord('Y'));
     }
     else
     {
@@ -590,6 +593,7 @@ if(room != rm_lobby)
         key_down = noone;
         key_jump = noone; 
         key_attack = noone;
+        key_interact = noone;
     }
 
 //Up
@@ -1111,7 +1115,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 15;
+        bullet.damage = 12;
         bullet.image_index = irandom_range(0,0);
         
         sound = choose(1,2,3)
@@ -1194,6 +1198,7 @@ if(powerup == 2)
         if (miscsound == true)
         {
             audio_play_sound(Jetpack, 0, false);
+            playerenergy -= 10;
         }
         miscsound = false;
     }
@@ -1281,6 +1286,31 @@ if(powerup == 3)
     }
 }
 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Manual movement (Cannons etc.)
+if(keyboard_check_pressed(ord('Y')))
+{  
+    movementtype = "cannon";
 }
 </string>
           </argument>
@@ -2711,7 +2741,7 @@ if(global.playerType == 3)
           <argument>
             <kind>1</kind>
             <string>///View Angle
-view_angle = lerp( view_angle, image_angle * -1, 0.2525);
+view_angle = lerp( view_angle, image_angle * -1, 0.1525);
 </string>
           </argument>
         </arguments>
@@ -2966,6 +2996,11 @@ if(other.planetnumber == obj_localplayer.planetnumber)
     }
     
     
+    if(dir == "right")
+    {
+        //view_angle = -90;
+    }
+    
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
     if(dir != "down")
     {
@@ -3053,6 +3088,11 @@ if(other.planetnumber == obj_localplayer.planetnumber)
     if(alarm[9] == -1)
     {
         alarm[9] = 20;
+    }
+    
+    if(dir == "down")
+    {
+        //image_angle = 180
     }
     
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.

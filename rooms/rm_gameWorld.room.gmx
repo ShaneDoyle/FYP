@@ -17,6 +17,7 @@ randomize();
 //instance_create(random_range(900,1000), 0, obj_localplayer);
 instance_create(obj_localplayer.x,obj_localplayer.y,obj_Camera);
 instance_create(obj_localplayer.x,obj_localplayer.y,obj_transition_gamestart);
+obj_localplayer.movementtype = "player";
 audio_stop_sound(Lobby_Music);
 
 global.playerRoom = 1;
@@ -83,7 +84,6 @@ global.musicset = 1;
   <instances>
     <instance objName="obj_createcontrols" x="32" y="32" name="inst_CF246A6C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_backgroundsettings" x="160" y="32" name="inst_5D0530D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_server_cannon" x="608" y="512" name="inst_0C93C143" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
