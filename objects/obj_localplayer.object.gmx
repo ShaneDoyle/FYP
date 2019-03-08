@@ -3045,8 +3045,8 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     
     if(dir == "right")
     {
-        image_angle = -180;
-        view_angle = -180;
+        image_angle = -270;
+        view_angle = -270;
     }
     
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
@@ -3143,8 +3143,8 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     
     if(dir == "down")
     {
-        image_angle = 90;
-        view_angle = 90;
+        image_angle = 180;
+        view_angle = 180;
     }
     
     //Fix weird spin glitch.
