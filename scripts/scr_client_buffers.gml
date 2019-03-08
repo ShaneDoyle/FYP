@@ -416,7 +416,9 @@ switch(msgId)
     case 24:
         var xx = buffer_read(buffer, buffer_s32);
         var yy = buffer_read(buffer, buffer_s32);
+        var cannondirection = buffer_read(buffer, buffer_string);
         
         var cannon = instance_create(xx, yy, obj_client_cannon);
+        cannon.cannondirection = cannondirection;
     break;
 }

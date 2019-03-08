@@ -173,6 +173,8 @@
         <sprite>sprites\spr_rightarrow</sprite>
         <sprite>sprites\spr_button1</sprite>
         <sprite>sprites\spr_button2</sprite>
+        <sprite>sprites\sprite133</sprite>
+        <sprite>sprites\spr_button3</sprite>
       </sprites>
       <sprites name="Stats">
         <sprite>sprites\spr_HPBar</sprite>
@@ -236,7 +238,10 @@
       <sprite>sprites\spr_Gem</sprite>
       <sprite>sprites\spr_DownPortal</sprite>
       <sprite>sprites\spr_Crate</sprite>
-      <sprite>sprites\spr_Cannon</sprite>
+      <sprite>sprites\spr_Cannon_Up_Right</sprite>
+      <sprite>sprites\spr_Cannon_Up_Left</sprite>
+      <sprite>sprites\spr_Cannon_Down_Right</sprite>
+      <sprite>sprites\spr_Cannon_Down_Left</sprite>
       <sprite>sprites\spr_WarpPortal</sprite>
     </sprites>
     <sprites name="Settings">

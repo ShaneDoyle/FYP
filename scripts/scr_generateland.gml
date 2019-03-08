@@ -44,10 +44,22 @@ instance_create(startingx - 96, startingy + 16, obj_LeftPortal);
 //Up 
 for(i=0; i<blocksize; i++)
 {
-    //Spawn Cannon
-    if(i == blocksize/2)
+    //Spawn Cannons
+    if(i == 2)
     {
-        instance_create(currentx, currenty, obj_server_cannon);
+        if(global.planetnumber == 2)
+        {
+            var cannon = instance_create(currentx, currenty, obj_server_cannon);
+            cannon.cannondirection = "left";
+        }
+    }
+    if(i == blocksize - 2)
+    {
+        if(global.planetnumber == 1)
+        {
+            var cannon = instance_create(currentx, currenty, obj_server_cannon);
+            cannon.cannondirection = "right";
+        }
     }
     
     altitudecheck++;
@@ -352,7 +364,6 @@ for(i=0; i< down_loop * 2; i++)
     grasschance = 65;
     
     
-
     var block = instance_create(currentx, currenty, obj_block);
     block.image_index = 8;
     

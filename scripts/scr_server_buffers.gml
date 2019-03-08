@@ -319,6 +319,7 @@ switch (msgId)
                 buffer_write(global.buffer, buffer_u8, 24);
                 buffer_write(global.buffer, buffer_s32, cannon.x);
                 buffer_write(global.buffer, buffer_s32, cannon.y);
+                buffer_write(global.buffer, buffer_string, cannon.cannondirection);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             

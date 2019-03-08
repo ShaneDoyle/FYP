@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Create virutal keys
-if(os_type == os_android)
+if(os_type == os_android || global.controldebug == true)
 {
     height = 360
     width = 640
@@ -35,6 +35,7 @@ if(os_type == os_android)
     key_jump = virtual_key_add(width - (width * 0.25),     height - height*0.175,    width * 0.10,     height *0.175,     vk_space);
    // key_space = virtual_key_add(width - (width * 0.25),     height - height*0.175,    width * 0.10,     height *0.175,     ord(");
     key_attack = virtual_key_add(width - (width * 0.15),     height - height*0.175,    width * 0.10,     height *0.175,     ord('F'));
+    key_interact = virtual_key_add(width - (width * 0.15),     height - height*0.350,    width * 0.10,     height *0.175,     ord('Y'));
 }
 //virtual_key_show(key_right);
 //virtual_key_show(key_left);
@@ -62,12 +63,13 @@ if(os_type == os_android)
           <argument>
             <kind>1</kind>
             <string>///Arrows
-if(os_type == os_android)
+if(os_type == os_android || global.controldebug = true)
 {
     draw_sprite(spr_leftarrow,0,width - (width * 0.92),  height - height*0.15  );
     draw_sprite(spr_rightarrow,0,width - (width * 0.83),  height - height*0.15  );
     draw_sprite(spr_button1,0,width - (width * 0.25),  height - height*0.175  );
     draw_sprite(spr_button2,0,width - (width * 0.15),  height - height*0.175  );
+    draw_sprite(spr_button3,0,width - (width * 0.15),  height - height*0.350  );
 }
 
 

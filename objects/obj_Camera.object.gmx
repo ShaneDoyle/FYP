@@ -57,10 +57,23 @@ view_object[0] = obj_Camera;
 //Smoothly Transition camera.
 if(obj_localplayer.death == false)
 {
-    if(obj_localplayer.dir == "up")
+    if(obj_localplayer.dir == "up" &amp;&amp; obj_localplayer.movementtype == "player")
     {
         x = lerp(x, obj_localplayer.x ,0.08);
         y = lerp(y, obj_localplayer.y - 32 ,0.08);//- (32*1) ,0.1)
+    }
+    else if(obj_localplayer.dir == "up" &amp;&amp; obj_localplayer.movementtype == "cannon")
+    {
+        if(obj_localplayer.vspeed == 0)
+        {
+            x = lerp(x, obj_localplayer.x ,0.08);
+            y = lerp(y, obj_localplayer.y - 32 ,0.08);
+        }
+        else
+        {
+            x = lerp(x, obj_localplayer.x ,0.08);
+            y = lerp(y, obj_localplayer.y - 32 ,0.00);
+        }
     }
     else if(obj_localplayer.dir == "right")
     {

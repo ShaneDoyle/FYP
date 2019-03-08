@@ -8,15 +8,12 @@ if(grav_dir == "up")
 {
     image_angle = lerp (initial_angle, 0, 1);
     image_yscale = 1;
-
-    //obj_localplayer.vspd -= pushplayerspeed;
     obj_localplayer.y -= pushplayerspeed * 4;
     
 }
 if(grav_dir == "right")
 {
     image_angle = lerp (initial_angle, -90, 1);
-    //obj_localplayer.hspd += pushplayerspeed;
     obj_localplayer.x += pushplayerspeed * 4;
     
 }
@@ -24,16 +21,12 @@ if(grav_dir == "left")
 {
     image_angle = lerp (initial_angle, 90, 1);
     image_yscale = 1;
-    
-    //obj_localplayer.hspd -= pushplayerspeed;
     obj_localplayer.x -= pushplayerspeed * 4;
 }
 if(grav_dir == "down")
 {
     image_angle = lerp (initial_angle, 180, 1);
     image_yscale = 1;
-    
-   // obj_localplayer.vspd += pushplayerspeed;
     obj_localplayer.y += pushplayerspeed * 4;
 }
 

@@ -49,7 +49,10 @@ grounded = false;
 slowmovement = false;
 reverse_image_speed = 1;
 movementtype = "lobby";
-removecannon = true;
+removecannon = false;
+
+//Cannon stuff
+cannon_hspeed = 0;
 
 
 //---Combat Stats
@@ -425,8 +428,9 @@ image_alpha = 1;
             <string>///Blast Player from Cannon
 audio_play_sound(CannonBlast,0,false);
 image_alpha = 1;
-vspeed = -12;
-hspeed = 8;
+vspeed = -10;
+hspeed = cannon_hspeed;
+planetnumber = 0;
 </string>
           </argument>
         </arguments>
@@ -451,6 +455,7 @@ hspeed = 8;
             <kind>1</kind>
             <string>///Player cannon stuff.
 removecannon = true;
+planetnumber = 0;
 </string>
           </argument>
         </arguments>
@@ -1337,31 +1342,13 @@ if(powerup == 3)
           <argument>
             <kind>1</kind>
             <string>///Manual movement (Cannons etc.)
-if(keyboard_check_pressed(ord('Y')) &amp;&amp; place_meeting(x,y,obj_client_cannon))
-{  
-    x = obj_client_cannon.x;
-    y = obj_client_cannon.y;
-    image_alpha = 0;
-    movementtype = "cannon";
-    image_xscale = 1;
-    if (alarm[2] == -1)
-    {
-        audio_play_sound(CannonReady,0,false);
-        alarm[2] = 60;
-    }
-    if(alarm[1] == -1)
-    {
-        removecannon = false;
-        alarm[1] = 90;
-    }
-}
 
 if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
 {
     vspeed += 0.3;
 }
 
-if(place_meeting(x,y+30,obj_block) &amp;&amp; removecannon == true)
+if(place_meeting(x,y+15,obj_block) &amp;&amp; removecannon == true)
 {
     movementtype = "player";
     vspeed = 0;
@@ -1425,7 +1412,7 @@ if(global.playerType == 0)
         //(1) Sword &amp; Shield
         else if(powerup == 1)
         {
-            if(vspeed != 0)
+            if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerBlueJump_SwordShield;
             }
@@ -2801,7 +2788,7 @@ if(global.playerType == 3)
           <argument>
             <kind>1</kind>
             <string>///View Angle
-view_angle = lerp( view_angle, image_angle * -1, 0.1525);
+view_angle = lerp( view_angle, image_angle * -1, 0.15);
 </string>
           </argument>
         </arguments>
@@ -3058,13 +3045,16 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     
     if(dir == "right")
     {
-        //view_angle = -90;
+        image_angle = -180;
+        view_angle = -180;
     }
     
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
     if(dir != "down")
     {
         pushplayer = 3;
+        //view_angle = 270;
+        //image_angle = 270;
     }
     else
     {
@@ -3105,11 +3095,12 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     }
     inverted = 1;
     xinverted = 0;
+
     
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
     if(dir != "up")
     {
-        pushplayer = 5;
+        pushplayer = 3;
     }
     else
     {
@@ -3152,9 +3143,16 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     
     if(dir == "down")
     {
-        //image_angle = 180
+        image_angle = 90;
+        view_angle = 90;
     }
     
+    //Fix weird spin glitch.
+    if(dir == "up")
+    {
+        //image_angle = 359;
+        //view_angle = 359;
+    }
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
     if(dir != "right")
     {
@@ -3291,8 +3289,49 @@ if(instance_number(obj_client_claim_gem) &lt; 1)
           <argument>
             <kind>1</kind>
             <string>///Take planet number.
-obj_localplayer.planetnumber = other.planetnumber;
+planetnumber = other.planetnumber;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_cannon">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player")
+{
+    cannon_hspeed = other.cannon_hspeed;
+    x = other.x;
+    y = other.y - 10;
+    image_alpha = 0;
+    movementtype = "cannon";
+    image_xscale = 1;
+    if (alarm[2] == -1)
+    {
+        audio_play_sound(CannonReady,0,false);
+        alarm[2] = 60;
+    }
+    if(alarm[1] == -1)
+    {
+        removecannon = false;
+        alarm[1] = 90;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -4059,7 +4098,8 @@ if(room != rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Invert character
-instance_create(x, y - 30, obj_localBeast);
+//instance_create(x, y - 30, obj_localBeast);
+image_angle = 270;
 </string>
           </argument>
         </arguments>
