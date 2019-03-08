@@ -26,10 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
+depth = -100000;
 image_alpha = 1;
 fade = false;
 
-alarm[0] = 60;
+alarm[0] = 90;
 </string>
           </argument>
         </arguments>
@@ -108,8 +109,8 @@ if(image_alpha &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>///Follow player.
-x = obj_localplayer.x;
-y = obj_localplayer.y;
+x = obj_Camera.x;
+y = obj_Camera.y;
 </string>
           </argument>
         </arguments>

@@ -18,6 +18,7 @@ randomize();
 instance_create(obj_localplayer.x,obj_localplayer.y,obj_Camera);
 instance_create(obj_localplayer.x,obj_localplayer.y,obj_transition_gamestart);
 obj_localplayer.movementtype = "player";
+instance_create(x,y,obj_localplayer_spawner);
 audio_stop_sound(Lobby_Music);
 
 global.playerRoom = 1;

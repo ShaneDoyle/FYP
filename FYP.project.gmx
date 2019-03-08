@@ -7,6 +7,7 @@
     <extension index="0">extensions\Get Computer IP</extension>
   </NewExtensions>
   <sounds name="sound">
+    <sound>sound\IceHeadbutt</sound>
     <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
     <sound>sound\music_2</sound>
@@ -64,6 +65,9 @@
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerBlueIdle_Ice</sprite>
+            <sprite>sprites\spr_PlayerBlueMove_Ice</sprite>
+            <sprite>sprites\spr_PlayerBlueJump_Ice</sprite>
+            <sprite>sprites\spr_PlayerBlueAttack_Ice</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -402,6 +406,7 @@
       <object>objects\obj_message</object>
       <object>objects\obj_remoteplayer</object>
       <object>objects\obj_localplayer</object>
+      <object>objects\obj_localplayer_spawner</object>
       <object>objects\obj_companion</object>
       <object>objects\obj_lighting</object>
       <object>objects\obj_lighting_backup_</object>
