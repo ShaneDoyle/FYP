@@ -583,7 +583,7 @@ buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_u8, playermaxhp);
-buffer_write(global.buffer, buffer_u8, playerscore);
+buffer_write(global.buffer, buffer_u8, playermaxhp);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
@@ -657,6 +657,8 @@ if(movementtype == "player")
         key_attack = noone;
         key_interact = noone;
     }
+    
+    
 
 //Up
 if(dir = "up")
@@ -3148,6 +3150,7 @@ if(playerscore &lt; 0)
             <string>///Death Manager
 if(PlayerDeath == true)
 {
+    readytoproceed = true;
     if(image_alpha == 1)
     {
         audio_play_sound(DeathSoundVulf,0,false);
@@ -3163,6 +3166,56 @@ if(PlayerDeath == true)
         playerscore--;
         alarm[8] = 200;
     } 
+}
+else
+{
+    readytoproceed = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check win condition
+if(room == rm_gameWorld)
+{
+    var i = 1;
+    var nextround = 0;
+    if(readytoproceed == true)
+    {
+        nextround++;
+    }
+    with(obj_remoteplayer)
+    {
+        playerready = remotePlayerReadyToProceed;
+        if(playerready == true)
+        {
+            nextround++;
+        }
+    }
+    
+    if(nextround &gt;= instance_number(obj_remoteplayer) &amp;&amp; nextround &gt; 0)
+    {
+        if(instance_number(obj_endofround_transition) == 0 &amp;&amp; instance_number(obj_transition_newround) == 0)
+        {
+            instance_create(0,0,obj_endofround_transition);
+        }
+    }
 }
 </string>
           </argument>
