@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[1] = 15;
+            <string>alarm[1] = 45;
 activated = false;
 pickspeed = 0;
 planetnumber = 0;
@@ -57,7 +57,7 @@ planetnumber = inst.planetnumber;
 x = inst.x;
 y = inst.y;
 
-pickspeed = irandom_range(1,4);
+pickspeed = irandom_range(1,1);
 switch(pickspeed)
 {
     case 1: hspeed = 20; vspeed = 0; break;
@@ -102,7 +102,7 @@ else if(pickspeed == 2)
 else if(pickspeed == 3)
 {
     obj_localplayer.dir = "down";
-    obj_localplayer.image_angle = -180;
+    obj_localplayer.image_angle = 180;
 }
 else if(pickspeed = 4)
 {
@@ -141,7 +141,7 @@ if(!place_meeting(x,y,obj_block))
 {
     if(alarm[0] == -1 &amp;&amp; activated == true)
     {
-        alarm[0] = 45;
+        alarm[0] = 5;
     }
 }
 </string>

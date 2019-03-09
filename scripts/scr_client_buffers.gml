@@ -137,6 +137,7 @@ switch(msgId)
        // var imageIndex = buffer_read(buffer, buffer_u8);
         var dir = buffer_read(buffer, buffer_s8);
         var imageangle = buffer_read(buffer, buffer_s16);
+        var imagealpha = buffer_read(buffer, buffer_u8);
         var sprite_number = buffer_read(buffer, buffer_s16);
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
@@ -161,6 +162,7 @@ switch(msgId)
                 remote_hspd = hspd;
                 remote_vspd = vspd;
                 remote_imageangle = imageangle;
+                remote_imagealpha = imagealpha;
                 remotePlayerHP = hp;
                 remotePlayerMaxHP = maxhp;
                 remotePlayerScore = playerscore;

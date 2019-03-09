@@ -86,6 +86,7 @@ jetpack = false; //Powerup 1
 jetpackanimation = false;
 miscsound = true;
 readytoproceed = false;
+drawplayerbars = true;
 
 //Controls
 key_right = noone;
@@ -303,6 +304,26 @@ self.colour = global.playerType;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="11">
       <action>
@@ -400,9 +421,7 @@ if(circlelight &lt; 300)
           <argument>
             <kind>1</kind>
             <string>///Revive player.
-playerhp = playermaxhp;
-PlayerDeath = false;
-image_alpha = 1;
+drawplayerbars = false;
 </string>
           </argument>
         </arguments>
@@ -559,6 +578,7 @@ buffer_write(global.buffer, buffer_f32, hspd);
 buffer_write(global.buffer, buffer_f32, vspd); 
 buffer_write(global.buffer, buffer_s8, image_xscale);
 buffer_write(global.buffer, buffer_s16, image_angle);
+buffer_write(global.buffer, buffer_u8, image_alpha);
 buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
@@ -1405,13 +1425,12 @@ if(powerup == 5)
           <argument>
             <kind>1</kind>
             <string>///Manual movement (Cannons etc.)
-
 if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
 {
     vspeed += 0.3;
 }
 
-if(place_meeting(x,y+15,obj_block) &amp;&amp; removecannon == true)
+if(place_meeting(x,y+25,obj_block) &amp;&amp; removecannon == true)
 {
     movementtype = "player";
     vspeed = 0;
@@ -2906,7 +2925,14 @@ if(global.playerType == 3)
           <argument>
             <kind>1</kind>
             <string>///View Angle
-view_angle = lerp( view_angle, image_angle * -1, 0.15);
+if(drawplayerbars == true)
+{
+    view_angle = lerp( view_angle, image_angle * -1, 0.15);
+}
+else
+{
+    view_angle = lerp( view_angle, 0, 0.05);
+}
 </string>
           </argument>
         </arguments>
@@ -2961,7 +2987,7 @@ if(room == rm_lobby)
         playermaxhp = 140;
         playerhp = 140;
         maxspeed = 2.4;
-        jumpspeed = 9.0;
+        jumpspeed = 9.001;
     }
     //Shock Blaster
     else if(powerup == 2)
@@ -2985,7 +3011,7 @@ if(room == rm_lobby)
         playermaxhp = 100;
         playerhp = 100;
         maxspeed = 2.4;
-        jumpspeed = 9.0;
+        jumpspeed = 9.001;
     }
     
     //(5) Ice
@@ -2994,7 +3020,7 @@ if(room == rm_lobby)
         playermaxhp = 130;
         playerhp = 130;
         maxspeed = 2.4;
-        jumpspeed = 9.0;
+        jumpspeed = 9.001;
     }
     
     
@@ -3122,12 +3148,20 @@ if(playerscore &lt; 0)
             <string>///Death Manager
 if(PlayerDeath == true)
 {
-    image_alpha -= 0.01;
+    if(image_alpha == 1)
+    {
+        audio_play_sound(DeathSoundVulf,0,false);
+        audio_stop_sound(SMB2Theme);
+    }
+    if(image_alpha &gt; 0)
+    {
+        image_alpha -= 0.01;
+    }
     image_speed = 0;
     if(alarm[8] == -1)
     {
         playerscore--;
-        alarm[8] = 600;
+        alarm[8] = 200;
     } 
 }
 </string>
@@ -3408,7 +3442,6 @@ if(instance_number(obj_client_claim_gem) &lt; 1)
             <kind>1</kind>
             <string>///Take planet number.
 planetnumber = other.planetnumber;
-
 </string>
           </argument>
         </arguments>
@@ -3846,6 +3879,28 @@ ds_grid_destroy(statsgrid);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw Planet Numer
+draw_text(20,20,planetnumber);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -3937,7 +3992,7 @@ else
           <argument>
             <kind>1</kind>
             <string>///Draw Energy bar
-if(room != rm_lobby)
+if(room != rm_lobby &amp;&amp; drawplayerbars == true)
 {
     percentage = playerenergy / playermaxenergy
     xpos = x
@@ -4010,7 +4065,7 @@ if(room != rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar
-if(room != rm_lobby)
+if(room != rm_lobby &amp;&amp; drawplayerbars == true)
 {
     percentage = playerhp / playermaxhp
     xpos = x
@@ -4217,8 +4272,7 @@ if(room != rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Invert character
-//instance_create(x, y - 30, obj_localBeast);
-image_angle = 270;
+playerhp = 0;
 </string>
           </argument>
         </arguments>

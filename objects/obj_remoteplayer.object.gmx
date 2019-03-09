@@ -44,6 +44,7 @@ remote_direction = 1;
 remote_hspd = 0;
 remote_vspd = 0;
 remote_imageangle = 0;
+remote_imagealpha = 0;
 remotePlayerxx = 0;
 remotePlayeryy = 0;
 
@@ -390,6 +391,7 @@ image_xscale = remote_direction;
 image_angle = remote_imageangle;
 sprite_index = remotePlayersprite;
 image_index = remotePlayerimageindex;
+image_alpha = remote_imagealpha;
 
 if(room != rm_lobby)
 {
