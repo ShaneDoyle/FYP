@@ -224,6 +224,7 @@
           <sprite>sprites\spr_Laser</sprite>
         </sprites>
         <sprites name="4. Bomb">
+          <sprite>sprites\spr_BombExplosion</sprite>
           <sprite>sprites\spr_Bomb</sprite>
         </sprites>
         <sprites name="3. Summoning">

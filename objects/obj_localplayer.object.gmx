@@ -1379,9 +1379,9 @@ if(powerup == 4)
         
         bullet.sprite_index = spr_Bomb;
         bullet.powerup = 4;
-        bullet.life = 100;
+        bullet.life = 1000;
         bullet.rotate = 30;
-        bullet.damage = 40;
+        bullet.backupdamage = 40;
         object_set_solid( bullet, solid );
         
         
@@ -3508,7 +3508,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-if(hit == false)
+if(hit == false &amp;&amp; obj_remoteProjectile.damage &gt;= 0)
 {
     playerhp -= obj_remoteProjectile.damage;
     hit = true
