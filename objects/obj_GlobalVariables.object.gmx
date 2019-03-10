@@ -46,7 +46,7 @@ global.MyIP = "";
 //Debug
 global.musicset = 0;
 global.hideportals = 0;
-global.controldebug = false; //true;
+global.controldebug = false;
 
 //World Settings.
 global.planetnumber = 0;

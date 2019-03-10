@@ -26,34 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
-depth = -100000;
-image_alpha = 1;
-fade = false;
+//fade = 1;
+image_alpha = 0;
+alarm[0] = 45;
+depth = -1000;
 
-alarm[0] = 30;
-scr_newRound();
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_endofround_transition</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Destroy previous tansition
-instance_destroy();
+endtransition = false;
 </string>
           </argument>
         </arguments>
@@ -76,9 +54,7 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Activate fading.
-fade = true;
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -100,17 +76,8 @@ fade = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Fading
-if(fade == true)
-{
-    image_alpha -= 0.020;
-}
-
-if(image_alpha &lt;= 0)
-{
-    instance_destroy();
-    instance_create(obj_localplayer.x, obj_localplayer.y, obj_countdown);
-}
+            <string>///Apply fading
+image_alpha += 0.020;
 </string>
           </argument>
         </arguments>
@@ -131,9 +98,34 @@ if(image_alpha &lt;= 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Follow player.
+            <string>///Follow camera
 x = obj_Camera.x;
 y = obj_Camera.y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///When fully black!
+if(image_alpha &gt;=1)
+{
+   instance_create(obj_Camera.x, obj_Camera.y, obj_transition_gamestart);
+}
 </string>
           </argument>
         </arguments>

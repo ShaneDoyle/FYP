@@ -121,7 +121,7 @@ switch(msgId)
         {
             with (instance)
             {
-                instance_destroy();
+                //instance_destroy();
             }
         }
     break;
@@ -137,7 +137,7 @@ switch(msgId)
        // var imageIndex = buffer_read(buffer, buffer_u8);
         var dir = buffer_read(buffer, buffer_s8);
         var imageangle = buffer_read(buffer, buffer_s16);
-        var imagealpha = buffer_read(buffer, buffer_u8);
+        var imagealpha = buffer_read(buffer, buffer_f32);
         var sprite_number = buffer_read(buffer, buffer_s16);
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
@@ -409,7 +409,7 @@ switch(msgId)
         var playerclaimed = buffer_read(buffer, buffer_u32);
         if(playerclaimed == global.playerId)
         {
-            obj_localplayer.playerscore++;
+            //scr_getStar();
         }
         audio_play_sound(ClaimGem,0,false);
     break;

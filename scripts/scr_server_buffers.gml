@@ -354,7 +354,7 @@ switch (msgId)
         //var imageIndex = buffer_read(buffer, buffer_u8);
         var dir = buffer_read(buffer, buffer_s8);
         var imageangle = buffer_read(buffer, buffer_s16);
-        var imagealpha = buffer_read(buffer, buffer_u8);
+        var imagealpha = buffer_read(buffer, buffer_f32);
         var sprite_number = buffer_read(buffer, buffer_s16);
         var image_frame = buffer_read(buffer, buffer_s16);
         var hp = buffer_read(buffer, buffer_u8);
@@ -397,7 +397,7 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_f32, vacc);
                         buffer_write(global.buffer, buffer_s8, dir);
                         buffer_write(global.buffer, buffer_s16, imageangle);
-                        buffer_write(global.buffer, buffer_u8, imagealpha);
+                        buffer_write(global.buffer, buffer_f32, imagealpha);
                         buffer_write(global.buffer, buffer_s16, sprite_number);
                         buffer_write(global.buffer, buffer_s16, image_frame);
                         buffer_write(global.buffer, buffer_u8, hp);

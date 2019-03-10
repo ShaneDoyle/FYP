@@ -26,12 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
-depth = -100000;
-image_alpha = 1;
+//fade = 1;
+image_alpha = 0;
+//alarm[0] = 20;
+depth = -1000;
 fade = false;
-
-alarm[0] = 30;
-scr_newRound();
+alarm[0] = 60;
 </string>
           </argument>
         </arguments>
@@ -46,14 +46,17 @@ scr_newRound();
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>obj_endofround_transition</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Destroy previous tansition
-instance_destroy();
+            <string>///If alive, give a point.
+if(obj_localplayer.playerhp &gt; 0)
+{
+    obj_localplayer.playerscore++;
+}
 </string>
           </argument>
         </arguments>
@@ -76,7 +79,7 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Activate fading.
+            <string>///Start fade
 fade = true;
 </string>
           </argument>
@@ -100,16 +103,10 @@ fade = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Fading
+            <string>///Apply fading
 if(fade == true)
 {
-    image_alpha -= 0.020;
-}
-
-if(image_alpha &lt;= 0)
-{
-    instance_destroy();
-    instance_create(obj_localplayer.x, obj_localplayer.y, obj_countdown);
+    image_alpha += 0.020;
 }
 </string>
           </argument>
@@ -131,9 +128,12 @@ if(image_alpha &lt;= 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Follow player.
-x = obj_Camera.x;
-y = obj_Camera.y;
+            <string>///Delete
+if(image_alpha &gt;= 1)
+{
+    instance_destroy();
+    scr_newRound();
+}
 </string>
           </argument>
         </arguments>

@@ -55,7 +55,7 @@
 view_object[0] = obj_Camera;
 
 //Smoothly Transition camera.
-if(obj_localplayer.PlayerDeath == false)
+if(obj_localplayer.death == false)
 {
     if(obj_localplayer.dir == "up" &amp;&amp; obj_localplayer.movementtype == "player")
     {
@@ -93,7 +93,7 @@ if(obj_localplayer.PlayerDeath == false)
 }
 else
 {
-    
+    //Nothing
 }
 </string>
           </argument>

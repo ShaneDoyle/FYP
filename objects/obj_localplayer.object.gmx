@@ -86,7 +86,6 @@ jetpack = false; //Powerup 1
 jetpackanimation = false;
 miscsound = true;
 readytoproceed = false;
-drawplayerbars = true;
 
 //Controls
 key_right = noone;
@@ -304,26 +303,6 @@ self.colour = global.playerType;
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="2" enumb="11">
       <action>
@@ -421,7 +400,9 @@ if(circlelight &lt; 300)
           <argument>
             <kind>1</kind>
             <string>///Revive player.
-drawplayerbars = false;
+playerhp = playermaxhp;
+PlayerDeath = false;
+image_alpha = 1;
 </string>
           </argument>
         </arguments>
@@ -458,6 +439,8 @@ image_alpha = 1;
 vspeed = -10;
 hspeed = cannon_hspeed;
 planetnumber = 0;
+
+
 </string>
           </argument>
         </arguments>
@@ -482,7 +465,7 @@ planetnumber = 0;
             <kind>1</kind>
             <string>///Player cannon stuff.
 removecannon = true;
-planetnumber = 0;
+//planetnumber = 0;
 </string>
           </argument>
         </arguments>
@@ -578,12 +561,12 @@ buffer_write(global.buffer, buffer_f32, hspd);
 buffer_write(global.buffer, buffer_f32, vspd); 
 buffer_write(global.buffer, buffer_s8, image_xscale);
 buffer_write(global.buffer, buffer_s16, image_angle);
-buffer_write(global.buffer, buffer_u8, image_alpha);
+buffer_write(global.buffer, buffer_f32, image_alpha);
 buffer_write(global.buffer, buffer_s16, sprite_index);
 buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_u8, playermaxhp);
-buffer_write(global.buffer, buffer_u8, playermaxhp);
+buffer_write(global.buffer, buffer_u8, playerscore);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
@@ -657,8 +640,6 @@ if(movementtype == "player")
         key_attack = noone;
         key_interact = noone;
     }
-    
-    
 
 //Up
 if(dir = "up")
@@ -1427,6 +1408,7 @@ if(powerup == 5)
           <argument>
             <kind>1</kind>
             <string>///Manual movement (Cannons etc.)
+
 if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
 {
     vspeed += 0.3;
@@ -1437,6 +1419,16 @@ if(place_meeting(x,y+25,obj_block) &amp;&amp; removecannon == true)
     movementtype = "player";
     vspeed = 0;
     hspeed = 0;
+    if (cannon_hspeed &gt; 0)
+    {
+        planetnumber = 1;
+        cannon_hspeed = 0;
+    }
+    else if(cannon_hspeed &lt; 0)
+    {
+        planetnumber = 2;
+        cannon_hspeed = 0;
+    }
 }
 </string>
           </argument>
@@ -2927,14 +2919,7 @@ if(global.playerType == 3)
           <argument>
             <kind>1</kind>
             <string>///View Angle
-if(drawplayerbars == true)
-{
-    view_angle = lerp( view_angle, image_angle * -1, 0.15);
-}
-else
-{
-    view_angle = lerp( view_angle, 0, 0.05);
-}
+view_angle = lerp( view_angle, image_angle * -1, 0.15);
 </string>
           </argument>
         </arguments>
@@ -3113,6 +3098,11 @@ if(playerhp &lt;= 0)
     PlayerDeath = true;
 }
 
+if(playerhp &gt; playermaxhp)
+{
+    playerhp = playermaxhp;
+}
+
 if(playerenergy &gt;= 100)
 {
     playerenergy = 100;
@@ -3150,26 +3140,16 @@ if(playerscore &lt; 0)
             <string>///Death Manager
 if(PlayerDeath == true)
 {
-    readytoproceed = true;
     if(image_alpha == 1)
     {
         audio_play_sound(DeathSoundVulf,0,false);
-        audio_stop_sound(SMB2Theme);
-    }
-    if(image_alpha &gt; 0)
-    {
         image_alpha -= 0.01;
     }
-    image_speed = 0;
-    if(alarm[8] == -1)
+    else if(image_alpha &gt; 0)
     {
-        playerscore--;
-        alarm[8] = 200;
-    } 
-}
-else
-{
-    readytoproceed = false;
+        image_alpha -= 0.01;
+        image_speed = 0;
+    }
 }
 </string>
           </argument>
@@ -3191,31 +3171,70 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check win condition
-if(room == rm_gameWorld)
+            <string>///Check for winning conditions
+if(global.PlayerMove == true)
 {
-    var i = 1;
-    var nextround = 0;
-    if(readytoproceed == true)
+    var startnextround = 0;
+    if(playerhp == 0)
     {
-        nextround++;
+        startnextround++;
     }
+    
     with(obj_remoteplayer)
     {
-        playerready = remotePlayerReadyToProceed;
-        if(playerready == true)
+        remotehp = remotePlayerHP;
+        if(remotehp == 0)
         {
-            nextround++;
+            startnextround++;
         }
     }
     
-    if(nextround &gt;= instance_number(obj_remoteplayer) &amp;&amp; nextround &gt; 0)
+    if(startnextround == instance_number(obj_remoteplayer) &amp;&amp; instance_number(obj_remoteplayer) &gt; 0)
     {
-        if(instance_number(obj_endofround_transition) == 0 &amp;&amp; instance_number(obj_transition_newround) == 0)
-        {
-            instance_create(0,0,obj_endofround_transition);
-        }
+        global.PlayerMove = false;
+        instance_create(obj_Camera.x, obj_Camera.y, obj_transition_endround);
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>other</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check other blocks near to get planet number.
+var touchingblock = instance_place(x-10,y,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x+10,y,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x,y+10,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x,y-10,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
 }
 </string>
           </argument>
@@ -3493,9 +3512,7 @@ if(instance_number(obj_client_claim_gem) &lt; 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Take planet number.
-planetnumber = other.planetnumber;
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -3517,11 +3534,11 @@ planetnumber = other.planetnumber;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player")
+            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player" &amp;&amp; PlayerDeath == false)
 {
     cannon_hspeed = other.cannon_hspeed;
     x = other.x;
-    y = other.y - 10;
+    y = other.y - 15;
     image_alpha = 0;
     movementtype = "cannon";
     
@@ -3621,6 +3638,12 @@ if (state == "standing" &amp;&amp; !jumping &amp;&amp; !falling)
           <argument>
             <kind>1</kind>
             <string>///Teleport back to start
+if(instance_number(obj_localplayer_spawner) &lt; 1)
+{
+    instance_create(0,0,obj_localplayer_spawner);
+}
+
+
 //vspd = 0;
 //hspd = 0;
 /*
@@ -3932,28 +3955,6 @@ ds_grid_destroy(statsgrid);
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw Planet Numer
-draw_text(20,20,planetnumber);
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -4045,7 +4046,7 @@ else
           <argument>
             <kind>1</kind>
             <string>///Draw Energy bar
-if(room != rm_lobby &amp;&amp; drawplayerbars == true)
+if(room != rm_lobby)
 {
     percentage = playerenergy / playermaxenergy
     xpos = x
@@ -4118,7 +4119,7 @@ if(room != rm_lobby &amp;&amp; drawplayerbars == true)
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar
-if(room != rm_lobby &amp;&amp; drawplayerbars == true)
+if(room != rm_lobby)
 {
     percentage = playerhp / playermaxhp
     xpos = x
@@ -4325,7 +4326,8 @@ if(room != rm_lobby &amp;&amp; drawplayerbars == true)
           <argument>
             <kind>1</kind>
             <string>///Invert character
-playerhp = 0;
+//instance_create(x, y - 30, obj_localBeast);
+image_angle = 270;
 </string>
           </argument>
         </arguments>

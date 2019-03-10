@@ -13,12 +13,12 @@
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
     <sound>sound\Click2</sound>
-    <sound>sound\DeathSoundVulf</sound>
     <sound>sound\CannonBlast</sound>
     <sound>sound\CannonReady</sound>
     <sound>sound\Click1</sound>
     <sound>sound\Pop_1</sound>
     <sound>sound\BackClick1</sound>
+    <sound>sound\DeathSoundVulf</sound>
     <sound>sound\DeathSound_1</sound>
     <sound>sound\Slash_1</sound>
     <sound>sound\Gen2SurfTheme</sound>
@@ -114,8 +114,8 @@
           </sprites>
           <sprites name="2. Sword &amp; Shield">
             <sprite>sprites\spr_PlayerGreenIdle_SwordShield</sprite>
-            <sprite>sprites\spr_PlayerGreenMove_SwordShield</sprite>
             <sprite>sprites\spr_PlayerGreenAttack_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_SwordShield</sprite>
             <sprite>sprites\spr_PlayerGreenJump_SwordShield</sprite>
           </sprites>
           <sprites name="3. Summoning">
@@ -141,9 +141,9 @@
           </sprites>
           <sprites name="2. Sword &amp; Shield">
             <sprite>sprites\spr_PlayerYellowIdle_SwordShield</sprite>
-            <sprite>sprites\spr_PlayerYellowMove_SwordShield</sprite>
             <sprite>sprites\spr_PlayerYellowAttack_SwordShield</sprite>
             <sprite>sprites\spr_PlayerYellowJump_SwordShield</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_SwordShield</sprite>
           </sprites>
           <sprites name="3. Summoning">
             <sprite>sprites\spr_PlayerYellowIdle_Summoning</sprite>
@@ -298,7 +298,7 @@
         <script>scripts\scr_startClientPlay.gml</script>
         <script>scripts\scr_createServerList.gml</script>
         <script>scripts\scr_newRound.gml</script>
-        <script>scripts\scr_newPlayerSpawn.gml</script>
+        <script>scripts\scr_getStar.gml</script>
         <script>scripts\scr_startGameWorld.gml</script>
       </scripts>
     </scripts>
@@ -402,10 +402,9 @@
       <objects name="Transitions">
         <object>objects\obj_transition1</object>
         <object>objects\obj_transition2</object>
-        <object>objects\obj_endofround_transition</object>
         <object>objects\obj_countdown</object>
         <object>objects\obj_transition_gamestart</object>
-        <object>objects\obj_transition_newround</object>
+        <object>objects\obj_transition_endround</object>
       </objects>
       <object>objects\obj_controller</object>
       <object>objects\obj_message</object>
