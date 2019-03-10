@@ -1337,6 +1337,57 @@ if(powerup == 3)
     }
 }
 
+//(4) Bomber
+if(powerup == 4)
+{
+    //Dark Sphere
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 40 )
+    {
+        playerenergy -= 40;
+        image_index = 0;
+        image_speed = 0.65;
+        attacking = true;
+        alarm[0] = 20;
+        if(dir == "up")
+        {
+            var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = 3 * image_xscale;
+            bullet.vspeed = -3;
+            bullet.vspeeddrag = 0.25;
+        }
+        else if(dir == "down")
+        {
+            var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = -3 * image_xscale;
+            bullet.vspeed = 3;
+            bullet.vspeeddrag = -0.25;
+        }
+        else if (dir == "right")
+        {
+            var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
+            bullet.vspeed = 3 * image_xscale;
+            bullet.hspeed = 3;
+            bullet.hspeeddrag = -0.25;
+        }
+        else if (dir == "left")
+        {
+            var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
+            bullet.vspeed = -3 * image_xscale;
+            bullet.hspeed = -3;
+            bullet.hspeeddrag = 0.25;
+        }
+        
+        bullet.sprite_index = spr_Bomb;
+        bullet.powerup = 4;
+        bullet.life = 100;
+        bullet.rotate = 30;
+        bullet.damage = 40;
+        object_set_solid( bullet, solid );
+        
+        
+    }
+}
+
 //(5) Ice
 if(powerup == 5)
 {
@@ -1382,7 +1433,7 @@ if(powerup == 5)
         }
         
         bullet.damage = 25;
-        bullet.powerup = 4;
+        bullet.powerup = 5;
     }
 }
 
@@ -1421,12 +1472,12 @@ if(place_meeting(x,y+25,obj_block) &amp;&amp; removecannon == true)
     hspeed = 0;
     if (cannon_hspeed &gt; 0)
     {
-        planetnumber = 1;
+        planetnumber = 2;
         cannon_hspeed = 0;
     }
     else if(cannon_hspeed &lt; 0)
     {
-        planetnumber = 2;
+        planetnumber = 1;
         cannon_hspeed = 0;
     }
 }
@@ -1608,13 +1659,13 @@ if(global.playerType == 0)
         {
             if(attacking == true)
             {            
-                sprite_index = spr_PlayerBlueAttack_Summoning;
+                sprite_index = spr_PlayerBlueAttack_Bomb;
                 image_speed -= 0.025;
                 if(image_index &gt;= 2 &amp;&amp; attacksound == true)
                 {
     
                 }
-                if(image_index &gt;= 7)
+                if(image_index &gt;= 8)
                 {
                     attacking = false;
                     attacksound = true;

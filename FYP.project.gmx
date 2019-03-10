@@ -10,6 +10,7 @@
     <sound>sound\IceHeadbutt</sound>
     <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
+    <sound>sound\BombToss</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
     <sound>sound\Click2</sound>
@@ -62,6 +63,7 @@
             <sprite>sprites\spr_PlayerBlueJump_Summoning</sprite>
           </sprites>
           <sprites name="4. Demolitioner">
+            <sprite>sprites\spr_PlayerBlueAttack_Bomb</sprite>
             <sprite>sprites\spr_PlayerBlueIdle_Demolitioner</sprite>
           </sprites>
           <sprites name="5. Ice">
@@ -220,6 +222,9 @@
       <sprites name="Weapons">
         <sprites name="1. Laser">
           <sprite>sprites\spr_Laser</sprite>
+        </sprites>
+        <sprites name="4. Bomb">
+          <sprite>sprites\spr_Bomb</sprite>
         </sprites>
         <sprites name="3. Summoning">
           <sprite>sprites\spr_DarkSphere</sprite>
