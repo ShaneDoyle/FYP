@@ -1299,9 +1299,9 @@ if(powerup == 2)
 if(powerup == 3)
 {
     //Dark Sphere
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 70 )
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 60 )
     {
-        playerenergy -= 70;
+        playerenergy -= 60;
         image_index = 0;
         image_speed = 0.65;
         attacking = true;
@@ -1309,27 +1309,27 @@ if(powerup == 3)
         if(dir == "up")
         {
             var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = 3 * image_xscale;
+            bullet.hspeed = 2.25 * image_xscale;
         }
         else if(dir == "down")
         {
             var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = -3 * image_xscale;
+            bullet.hspeed = -2.25 * image_xscale;
         }
         else if (dir == "right")
         {
             var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
-            bullet.vspeed = 3 * image_xscale;
+            bullet.vspeed = 2.25 * image_xscale;
         }
         else if (dir == "left")
         {
             var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
-            bullet.vspeed = -3 * image_xscale;
+            bullet.vspeed = -2.25 * image_xscale;
         }
         
         bullet.sprite_index = spr_DarkSphere;
         bullet.powerup = 3;
-        bullet.life = 100;
+        bullet.life = 140;
         bullet.rotate = 25;
         bullet.fadein = false;
         bullet.damage = 35;
@@ -1381,8 +1381,8 @@ if(powerup == 4)
         bullet.powerup = 4;
         bullet.life = 1000;
         bullet.rotate = 30;
-        bullet.backupdamage = 40;
-        bullet.damage = 40;
+        bullet.backupdamage = 30;
+        bullet.damage = 30;
         object_set_solid( bullet, solid );
         
         
@@ -1433,7 +1433,7 @@ if(powerup == 5)
             attacking = true;
         }
         
-        bullet.damage = 25;
+        bullet.damage = 20;
         bullet.powerup = 5;
     }
 }
@@ -3596,11 +3596,11 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-if(hit == false &amp;&amp; obj_remoteProjectile.damage &gt;= 0)
+if(hit == false &amp;&amp; obj_remoteProjectile.damage &gt; 0)
 {
     playerhp -= obj_remoteProjectile.damage;
     hit = true
-    alarm[10] = obj_remoteProjectile.damage;
+    alarm[10] = 40;
 }
 </string>
           </argument>
@@ -4466,8 +4466,8 @@ if(room != rm_lobby &amp;&amp; playerhp &gt; 0)
             <kind>1</kind>
             <string>///Invert character
 //instance_create(x, y - 30, obj_localBeast);
-PlayerDeath = true;
-playerhp = 0;
+//PlayerDeath = true;
+playerhp -= 20;
 </string>
           </argument>
         </arguments>

@@ -11,6 +11,7 @@
     <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
     <sound>sound\BombToss</sound>
+    <sound>sound\BombExplosion</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
     <sound>sound\Click2</sound>
@@ -63,10 +64,10 @@
             <sprite>sprites\spr_PlayerBlueJump_Summoning</sprite>
           </sprites>
           <sprites name="4. Demolitioner">
-            <sprite>sprites\spr_PlayerBlueAttack_Bomb</sprite>
-            <sprite>sprites\spr_PlayerBlueMove_Bomb</sprite>
-            <sprite>sprites\spr_PlayerBlueJump_Bomb</sprite>
             <sprite>sprites\spr_PlayerBlueIdle_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueMove_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueAttack_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueJump_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerBlueIdle_Ice</sprite>
@@ -100,6 +101,19 @@
             <sprite>sprites\spr_PlayerRedMove_Summoning</sprite>
             <sprite>sprites\spr_PlayerRedAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerRedJump_Summoning</sprite>
+            <sprite>sprites\sprite145</sprite>
+          </sprites>
+          <sprites name="4. Bomb">
+            <sprite>sprites\spr_PlayerRedAttack_Bomb</sprite>
+            <sprite>sprites\spr_PlayerRedMove_Bomb</sprite>
+            <sprite>sprites\spr_PlayerRedJump_Bomb</sprite>
+            <sprite>sprites\spr_PlayerRedIdle_Bomb</sprite>
+          </sprites>
+          <sprites name="5. Ice">
+            <sprite>sprites\spr_PlayerRedIdle_Ice</sprite>
+            <sprite>sprites\spr_PlayerRedMove_Ice</sprite>
+            <sprite>sprites\spr_PlayerRedJump_Ice</sprite>
+            <sprite>sprites\spr_PlayerRedAttack_Ice</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -128,6 +142,18 @@
             <sprite>sprites\spr_PlayerGreenAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerGreenJump_Summoning</sprite>
           </sprites>
+          <sprites name="4. Bomb">
+            <sprite>sprites\spr_PlayerGreenIdle_Bomb</sprite>
+            <sprite>sprites\spr_PlayerGreenAttack_Bomb</sprite>
+            <sprite>sprites\spr_PlayerGreenJump_Bomb</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_Bomb</sprite>
+          </sprites>
+          <sprites name="5. Ice">
+            <sprite>sprites\spr_PlayerGreenIdle_Ice</sprite>
+            <sprite>sprites\spr_PlayerGreenMove_Ice</sprite>
+            <sprite>sprites\spr_PlayerGreenJump_Ice</sprite>
+            <sprite>sprites\spr_PlayerGreenAttack_Ice</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="PlayerYellow">
@@ -154,6 +180,18 @@
             <sprite>sprites\spr_PlayerYellowMove_Summoning</sprite>
             <sprite>sprites\spr_PlayerYellowAttack_Summoning</sprite>
             <sprite>sprites\spr_PlayerYellowJump_Summoning</sprite>
+          </sprites>
+          <sprites name="4. Bomb">
+            <sprite>sprites\spr_PlayerYellowIdle_Bomb</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_Bomb</sprite>
+            <sprite>sprites\spr_PlayerYellowAttack_Bomb</sprite>
+            <sprite>sprites\spr_PlayerYellowJump_Bomb</sprite>
+          </sprites>
+          <sprites name="5. Ice">
+            <sprite>sprites\spr_PlayerYellowIdle_Ice</sprite>
+            <sprite>sprites\spr_PlayerYellowMove_Ice</sprite>
+            <sprite>sprites\spr_PlayerYellowJump_Ice</sprite>
+            <sprite>sprites\spr_PlayerYellowAttack_Ice</sprite>
           </sprites>
         </sprites>
       </sprites>

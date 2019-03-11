@@ -409,7 +409,7 @@ switch(msgId)
         var playerclaimed = buffer_read(buffer, buffer_u32);
         if(playerclaimed == global.playerId)
         {
-            //scr_getStar();
+            scr_getStar();
         }
         audio_play_sound(ClaimGem,0,false);
     break;
