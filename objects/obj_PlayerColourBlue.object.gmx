@@ -70,7 +70,7 @@ if(global.playerType == 0)
     }
     else if(global.powerup == 4)
     {
-        sprite_index = spr_PlayerBlueIdle_Demolitioner;
+        sprite_index = spr_PlayerBlueIdle_Bomb;
     }
     else if(global.powerup == 5)
     {
@@ -95,6 +95,14 @@ else if(global.playerType == 1)
     {
         sprite_index = spr_PlayerRedIdle_Summoning;
     }
+    else if(global.powerup == 4)
+    {
+        sprite_index = spr_PlayerRedIdle_Bomb;
+    }
+    else if(global.powerup == 5)
+    {
+        sprite_index = spr_PlayerRedIdle_Ice;
+    }
 }
 else if(global.playerType == 2)
 {
@@ -114,6 +122,14 @@ else if(global.playerType == 2)
     {
         sprite_index = spr_PlayerGreenIdle_Summoning;
     }
+    else if(global.powerup == 4)
+    {
+        sprite_index = spr_PlayerGreenIdle_Bomb;
+    }
+    else if(global.powerup == 5)
+    {
+        sprite_index = spr_PlayerGreenIdle_Ice;
+    }
 }
 else if(global.playerType == 3)
 {
@@ -132,6 +148,14 @@ else if(global.playerType == 3)
     else if(global.powerup == 3)
     {
         sprite_index = spr_PlayerYellowIdle_Summoning;
+    }
+    else if(global.powerup == 4)
+    {
+        sprite_index = spr_PlayerYellowIdle_Bomb;
+    }
+    else if(global.powerup == 5)
+    {
+        sprite_index = spr_PlayerYellowIdle_Ice;
     }
 }
 </string>

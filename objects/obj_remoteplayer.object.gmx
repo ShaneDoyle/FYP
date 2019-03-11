@@ -480,7 +480,7 @@ if (remote_hspd == 0)
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-if(hit == false)
+if(hit == false &amp;&amp; obj_projectile.damage &gt; 0)
 {
     hit = true
     alarm[10] = 45;
