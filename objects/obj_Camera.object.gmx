@@ -55,7 +55,7 @@
 view_object[0] = obj_Camera;
 
 //Smoothly Transition camera.
-if(obj_localplayer.death == false)
+if(obj_localplayer.PlayerDeath == false)
 {
     if(obj_localplayer.dir == "up" &amp;&amp; obj_localplayer.movementtype == "player")
     {
@@ -92,8 +92,29 @@ if(obj_localplayer.death == false)
     }
 }
 else
-{
-    //Nothing
+{   
+    key_right = keyboard_check(vk_right);
+    key_left = keyboard_check(vk_left);
+    key_up = keyboard_check(vk_up);
+    key_down = keyboard_check(vk_down);
+    
+    if(key_right)
+    {
+        x+= 5
+    }
+    else if(key_left)
+    {
+        x -= 5
+    }
+    
+    if(key_up)
+    {
+        y -= 5
+    }
+    else if(key_down)
+    {
+        y += 5
+    }
 }
 </string>
           </argument>

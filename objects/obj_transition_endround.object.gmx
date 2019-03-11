@@ -31,7 +31,7 @@ image_alpha = 0;
 //alarm[0] = 20;
 depth = -1000;
 fade = false;
-alarm[0] = 60;
+alarm[0] = 240;
 </string>
           </argument>
         </arguments>

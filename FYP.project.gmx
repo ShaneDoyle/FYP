@@ -64,7 +64,9 @@
           </sprites>
           <sprites name="4. Demolitioner">
             <sprite>sprites\spr_PlayerBlueAttack_Bomb</sprite>
-            <sprite>sprites\spr_PlayerBlueIdle_Demolitioner</sprite>
+            <sprite>sprites\spr_PlayerBlueMove_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueJump_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueIdle_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerBlueIdle_Ice</sprite>

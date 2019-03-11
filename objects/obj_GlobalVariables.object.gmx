@@ -36,6 +36,7 @@ global.playerId = 0;
 global.playerHP = 0;
 global.playerDamage = 0;
 global.playerSpeed = 0;
+global.projectilenumber = 0;
 
 //Lobby variables
 global.ClientRoom = "rm_lobby";

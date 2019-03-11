@@ -32,6 +32,7 @@ sprite = noone;
 life = 60;
 powerup = 0;
 damage = 0;
+damageinput = 0;
 
 
 //Misc
@@ -187,6 +188,39 @@ if(powerup == 4 &amp;&amp; life &lt;= 60)
         image_xscale = lerp(image_xscale, 2, 0.2);
         image_yscale = lerp(image_yscale, 2, 0.2);
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Special Powerup Stuff (Damage etc.)
+if(powerup == 4 &amp;&amp; sprite_index == spr_BombExplosion)
+{
+    damage = damageinput;
+}
+else if (powerup == 4)
+{
+    damage = 0;
+}
+else
+{
+    damage = damageinput;
 }
 </string>
           </argument>

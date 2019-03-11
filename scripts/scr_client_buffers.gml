@@ -255,19 +255,19 @@ switch(msgId)
             projectile.image_xscale = xdir;
             //projectile.image_yscale = ydir;
             projectile.image_angle = angle_image;
-            projectile.sprite = sprite_number;
             
+            projectile.sprite = sprite_number;
         }
         else
         {
             var p = instance_create(xx, yy, obj_remoteProjectile);
             p.owner = pId;
             p.projectileId = projectileId;
-            p.image_angle = angle_image;
             p.sprite = sprite_number;
+            p.image_angle = angle_image;
             p.life = life;
             p.powerup = powerup;
-            p.damage = damage;
+            p.damageinput = damage;
         }
     break;
     

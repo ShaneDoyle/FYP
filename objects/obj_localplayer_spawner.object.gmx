@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[1] = 25;
+            <string>alarm[1] = 45;
 activated = false;
 pickspeed = 0;
 planetnumber = 0;
@@ -104,7 +104,7 @@ else if(pickspeed == 2)
 else if(pickspeed == 3)
 {
     obj_localplayer.dir = "down";
-    obj_localplayer.image_angle = -180;
+    obj_localplayer.image_angle = 180;
 }
 else if(pickspeed = 4)
 {
