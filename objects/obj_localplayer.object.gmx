@@ -512,43 +512,8 @@ removecannon = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Movement
-/*
-    if(1 == 1)
-    {
-        
-        scr_detectKey();
-        scr_setSprite();
-        scr_attackKey();
-        scr_leftCheck();
-        scr_rightCheck();
-        scr_groundCheck();
-        scr_jumpCheck();
-        scr_standCheck();
-        scr_collisionCheck();
-        scr_mouseCheck();
-        
-    }
-    else
-    {
-        scr_death();
-    }
+            <string>///Send Buffers
 
-
-//Change direction
-var d = 0;
-switch (dir)
-{
-    case "left":
-        d = 1;
-    break
-    
-    case "right":
-        d = 2;
-    break;
-}
-
-*/
 //Update player data
 d = image_xscale
 
@@ -568,35 +533,10 @@ buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_u8, playermaxhp);
 buffer_write(global.buffer, buffer_u8, playerscore);
 buffer_write(global.buffer, buffer_bool, attacking);
+buffer_write(global.buffer, buffer_bool, hit);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
-
-
-
-//Typing stuff (unused)
-/*
-if (!global.typing)
-{
-    if (keyboard_check(ord("P")))
-    {
-        if (!instance_exists(obj_playerList))
-        {
-            instance_create(x, y, obj_playerList);
-        }
-    }
-    else
-    {
-        if (instance_exists(obj_playerList))
-        {
-            with(obj_playerList)
-            {
-                instance_destroy();
-            }
-        }
-    }
-}
-*/
 </string>
           </argument>
         </arguments>
@@ -826,7 +766,8 @@ if(dir = "down")
         }
         hspd = 0;
     }
-
+    x += hspd;
+    
     //Vertical Collision
     if(place_meeting(x,y + vspd,obj_block))
     {
@@ -836,11 +777,8 @@ if(dir = "down")
         }
         vspd = 0;
     }
-
-    x += hspd;
     y += vspd;
 }
-
 
 //Right
 else if(dir == "right")
@@ -922,6 +860,7 @@ else if(dir == "right")
         }
         hspd = 0;
     }
+    x += hspd;
 
     //Vertical Collision
     if(place_meeting(x,y + vspd,obj_block))
@@ -933,9 +872,8 @@ else if(dir == "right")
         vspd = 0;
     }
 
-    x += hspd;
+
     y += vspd;
-    
 
 }
 
@@ -1018,6 +956,7 @@ else if(dir == "left")
         }
         hspd = 0;
     }
+    x += hspd;
 
     //Vertical Collision
     if(place_meeting(x,y + vspd,obj_block))
@@ -1028,8 +967,6 @@ else if(dir == "left")
         }
         vspd = 0;
     }
-
-    x += hspd;
     y += vspd;
 }
 }
@@ -4152,7 +4089,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     //Push Player up if changing to a new side. Prevents getting stuck in blocks sometimes.
     if(dir != "right")
     {
-        pushplayer = 5;
+        pushplayer = 3;
     }
     else
     {
@@ -4229,11 +4166,11 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-if(hit == false &amp;&amp; obj_remoteProjectile.damage &gt; 0)
+if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
 {
-    playerhp -= obj_remoteProjectile.damage;
+    playerhp -= other.damage;
     hit = true
-    alarm[10] = obj_remoteProjectile.damage;
+    alarm[10] = other.damage;
 }
 </string>
           </argument>

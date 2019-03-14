@@ -361,6 +361,7 @@ switch (msgId)
         var maxhp = buffer_read(buffer, buffer_u8);
         var playerscore = buffer_read(buffer, buffer_u8);
         var attacking = buffer_read(buffer, buffer_bool);
+        var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
         var roomId = buffer_read(buffer, buffer_u8);
     
@@ -404,6 +405,7 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_u8, maxhp);
                         buffer_write(global.buffer, buffer_u8, playerscore);
                         buffer_write(global.buffer, buffer_bool, attacking);
+                        buffer_write(global.buffer, buffer_bool, hit);
                         buffer_write(global.buffer, buffer_bool, readytoproceed);
                         network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
                     }

@@ -509,9 +509,9 @@ if(powerup == 4)
         vspeed = 0;
         hspeed = 0;
         rotate = 0;
-        if(life &gt; 100)
+        if(life &gt; 120)
         {
-            life = 99
+            life = 119;
         }
     }
     

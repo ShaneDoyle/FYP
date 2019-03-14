@@ -34,6 +34,7 @@ remotePlayerHP = 100;
 remotePlayerMaxHP = 100;
 remotePlayerScore = 10;
 remotePlayerAttacking = false;
+remotePlayerHit = false;
 remotePlayerId = 0;
 remotePlayersprite = 0;
 remotePlayerimageindex = 0;
@@ -85,7 +86,6 @@ attacksound = true;
 death = false;
 smooth = false;
 resetsound = true;
-hit = false;
 </string>
           </argument>
         </arguments>
@@ -480,7 +480,8 @@ if (remote_hspd == 0)
           <argument>
             <kind>1</kind>
             <string>///Do damage and other...
-if(hit == false &amp;&amp; obj_projectile.damage &gt; 0)
+/*
+if(remotePlayerHit == false &amp;&amp; obj_projectile.damage &gt; 0)
 {
     hit = true
     alarm[10] = 45;
@@ -508,7 +509,7 @@ if(hit == false &amp;&amp; obj_projectile.damage &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw player
-if(hit == true)
+if(remotePlayerHit == true)
 {
     shader_set(shader_hit);
     draw_self();
@@ -516,7 +517,9 @@ if(hit == true)
 }
 else
 { 
-    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+
+    draw_self();
+    //draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
 }
 
 draw_set_font(font1);
