@@ -74,6 +74,9 @@ attacksound = true;
 createhitbox = true;
 attackcool = 0;
 powerup = global.powerup;
+ability = false;
+playerabilitypower = 8;
+
 
 //Gamemode
 playerscore = 0;
@@ -403,6 +406,36 @@ if(circlelight &lt; 300)
 playerhp = playermaxhp;
 PlayerDeath = false;
 image_alpha = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(ability == true)
+{
+    playerabilitypower -= 1;
+}
+else if(playerabilitypower &lt; 8)
+{
+    playerabilitypower += 1;
+}
 </string>
           </argument>
         </arguments>
@@ -1049,8 +1082,31 @@ if(powerup == 1)
     //Shield Ability
     if(keyboard_check_pressed(ord('G')))
     {
-        
+        if(ability == false &amp;&amp; playerabilitypower == 8)
+        {
+            ability = true;
+            audio_play_sound(SwordShieldAbility,0,false);
+            maxspeed *= 1.25;
+        }
     }
+    
+    if(playerabilitypower &lt;= 0)
+    {
+        ability = false;
+        maxspeed = 2.4;
+    }
+    
+    /*
+    if(alarm[3] &lt; 60 * 15)
+    {
+        if(ability == true)
+        {
+            ability = false;
+            maxspeed = 2.4;
+            jumpspeed = 9.001;
+        }
+    }
+    */
 }
 
 //(2) Laser
@@ -1271,6 +1327,29 @@ if(powerup == 3)
         bullet.fadein = false;
         bullet.damage = 35;
         
+    }
+    
+    //Shadow Ability
+    if(keyboard_check_pressed(ord('G')))
+    {
+        if(ability == false &amp;&amp; playerabilitypower == 8)
+        {
+            ability = true;
+            audio_play_sound(SummonerStealth,0,false);
+            maxspeed = 1.8;
+        }
+    }
+    
+    if(ability == true)
+    {
+        image_alpha =  lerp(image_alpha, 0.25, 0.06);
+    }
+    
+    if(playerabilitypower &lt;= 0)
+    {
+        ability = false;
+        maxspeed = 2.4 + (0.3 * 1);
+        image_alpha = 1;
     }
 }
 
@@ -3720,8 +3799,6 @@ if(room == rm_lobby)
     
     
     
-    
-    
     else
     {
         playermaxhp = 100;
@@ -3780,6 +3857,26 @@ if(room == rm_lobby)
     }
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -3944,6 +4041,52 @@ var touchingblock = instance_place(x,y-10,obj_block);
 if(touchingblock != noone)
 {
     planetnumber = touchingblock.planetnumber;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ability power stuff
+if(ability == true)
+{
+    if(alarm[3] == -1)
+    {
+        if(powerup == 1)
+        {
+            alarm[3] = 30;
+        }
+        else if (powerup == 3)
+        {
+            alarm[3] = 45;
+        }
+        else
+        {
+            alarm[3] = 30;
+        }
+    }
+}
+else
+{
+    if(alarm[3] == -1)
+    {
+        alarm[3] = 120;
+    }
 }
 </string>
           </argument>
@@ -4168,7 +4311,14 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
             <string>///Do damage and other...
 if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
 {
-    playerhp -= other.damage;
+    if(powerup == 1 &amp;&amp; ability == true)
+    {
+        playerhp -= other.damage * 0.3;
+    }
+    else
+    { 
+        playerhp -= other.damage;
+    }
     hit = true
     alarm[10] = other.damage;
 }
@@ -4726,9 +4876,15 @@ if(room == rm_lobby)
             <string>///Draw player
 if(hit == true)
 {
-   shader_set(shader_hit);
-   draw_self();
-   shader_reset();
+    shader_set(shader_hit);
+    draw_self();
+    shader_reset();
+}
+else if(ability == true)
+{
+    shader_set(shader_grey);
+    draw_self();
+    shader_reset();
 }
 else
 {
@@ -5010,6 +5166,100 @@ if(room != rm_lobby &amp;&amp; playerhp &gt; 0)
                 break;
             }
         }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw Timer
+if(room != rm_lobby &amp;&amp; playerhp &gt; 0)
+{
+    percentage = playerabilitypower / 8
+    xpos = x
+    ypos = y
+    hpgap = 34;
+    
+    for (i = 0; i &lt; 8; i += 1)
+    {
+        temp = (0.125 * i)
+        temp2 = (0.125 * i+1)
+        
+        if(percentage == 1)
+        {
+            if(dir == "up")
+            {
+                draw_sprite_ext( spr_PlayerAbility,0, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+            }
+            else if(dir == "right")
+            {
+                draw_sprite_ext( spr_PlayerAbility,0, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+            }
+            else if(dir == "left")
+            {
+                draw_sprite_ext( spr_PlayerAbility,0, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+            }
+            else if(dir == "down")
+            {
+                draw_sprite_ext( spr_PlayerAbility,0, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+            }
+        }
+    
+        else if(percentage &gt;= temp &amp;&amp; percentage &lt;= temp2 &amp;&amp; percentage &gt; 0)
+        {
+            if(dir == "up")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8-i, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+            }
+            else if(dir == "right")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8-i, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+            }
+            else if(dir == "left")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8-i, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+            }
+            else if(dir == "down")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8-i, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+            }
+        }
+        else if(percentage &lt;= 0)
+        {
+            if(dir == "up")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8, xpos, ypos - hpgap, 1, 1, 0, c_white, 1);
+            }
+            else if(dir == "right")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8, xpos + hpgap, ypos, 1, 1, -90, c_white, 1);
+            }
+            else if(dir == "left")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8, xpos - hpgap, ypos, 1, 1, 90, c_white, 1);
+            }
+            else if(dir == "down")
+            {
+                draw_sprite_ext( spr_PlayerAbility,8, xpos, ypos + hpgap, 1, 1, 180, c_white, 1);
+            }
+        }
+
     }
 }
 </string>

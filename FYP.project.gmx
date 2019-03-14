@@ -25,9 +25,11 @@
     <sound>sound\Slash_1</sound>
     <sound>sound\Gen2SurfTheme</sound>
     <sound>sound\GravitySound1</sound>
+    <sound>sound\SummonerStealth</sound>
     <sound>sound\LightningZap1</sound>
     <sound>sound\LightningZap2</sound>
     <sound>sound\LightningZap3</sound>
+    <sound>sound\SwordShieldAbility</sound>
     <sound>sound\SwordShield2</sound>
     <sound>sound\SwordShield1</sound>
     <sound>sound\Jetpack</sound>
@@ -200,7 +202,9 @@
       <sprite>sprites\spr_PlayerRedHP</sprite>
       <sprite>sprites\spr_PlayerGreenHP</sprite>
       <sprite>sprites\spr_PlayerBlueHP</sprite>
+      <sprite>sprites\spr_PlayerAbility</sprite>
       <sprite>sprites\spr_PlayerEnergy</sprite>
+      <sprite>sprites\spr_PlayerEnergyAbility</sprite>
       <sprite>sprites\spr_PlayerBlueHP_OLD_</sprite>
       <sprite>sprites\spr_Heart</sprite>
     </sprites>
@@ -368,6 +372,7 @@
     <script>scripts\get_computer_ip_http_event.gml</script>
   </scripts>
   <shaders name="shaders">
+    <shader type="GLSLES">shaders\shader_grey.shader</shader>
     <shader type="GLSLES">shaders\shader_hit.shader</shader>
   </shaders>
   <fonts name="fonts">

@@ -515,6 +515,10 @@ if(remotePlayerHit == true)
     draw_self();
     shader_reset();
 }
+else if(remote_imagealpha &lt; 0.31)
+{
+    
+}
 else
 { 
 
@@ -524,8 +528,7 @@ else
 
 draw_set_font(font1);
 draw_set_colour(c_red);
-//draw_text(x, y-75, string(remotePlayerHP));
-//draw_text(x, y-50, string(remotePlayerName))
+
 
 </string>
           </argument>
@@ -584,7 +587,7 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar
-if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerHP &gt; 0)
+if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerHP &gt; 0 &amp;&amp; remote_imagealpha &gt; 0.11)
 {
     percentage = self.remotePlayerHP / self.remotePlayerMaxHP;
     xpos = x
