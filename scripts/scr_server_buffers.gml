@@ -360,6 +360,7 @@ switch (msgId)
         var hp = buffer_read(buffer, buffer_u8);
         var maxhp = buffer_read(buffer, buffer_u8);
         var playerscore = buffer_read(buffer, buffer_u8);
+        var ability = buffer_read(buffer, buffer_bool);
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
@@ -404,6 +405,7 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_u8, hp);
                         buffer_write(global.buffer, buffer_u8, maxhp);
                         buffer_write(global.buffer, buffer_u8, playerscore);
+                        buffer_write(global.buffer, buffer_bool, ability);
                         buffer_write(global.buffer, buffer_bool, attacking);
                         buffer_write(global.buffer, buffer_bool, hit);
                         buffer_write(global.buffer, buffer_bool, readytoproceed);

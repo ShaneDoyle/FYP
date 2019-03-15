@@ -203,7 +203,7 @@ if(powerup == 4)
             <kind>1</kind>
             <string>///Play Sound
 
-if (powerup == 4)
+if (powerup == 4 &amp;&amp; sprite_index = spr_BombExplosion)
 {
     var audio = audio_play_sound(BombExplosion,0,false);
     pitch = irandom_range(1,5)
@@ -216,6 +216,19 @@ if (powerup == 4)
         case 5: audio_sound_pitch(audio,1.2); break;
     }
     
+}
+else if(powerup == 4 &amp;&amp; sprite_index == spr_BigBombExplosion)
+{
+    var audio = audio_play_sound(BombExplosion,0,false);
+    pitch = irandom_range(1,5)
+    switch(pitch)
+    {
+        case 1: audio_sound_pitch(audio,0.6); break;
+        case 2: audio_sound_pitch(audio,0.65); break;
+        case 3: audio_sound_pitch(audio,0.7); break;
+        case 4: audio_sound_pitch(audio,0.65); break;
+        case 5: audio_sound_pitch(audio,0.6); break;
+    }
 }
 if (powerup == 5)
 {
@@ -516,27 +529,36 @@ if(powerup == 4)
     }
     
 
-    
-    if(life &lt; 30)
+    if(sprite_index != spr_BigBombExplosion)
     {
-        damage = backupdamage * 0.75;
-        sprite_index = spr_BombExplosion;
-        rotate = 20;
-       // image_xscale = lerp(image_xscale, 0, 0.1);
-        //image_yscale = lerp(image_yscale, 0, 0.1);
+        if(life &lt; 30)
+        {
+            damage = backupdamage * 0.75;
+            sprite_index = spr_BombExplosion;
+            rotate = 20;
+        }
+        else if(life &lt; 60)
+        {
+            damage = backupdamage;
+            sprite_index = spr_BombExplosion;
+            rotate = 40;
+            if(playsound == true)
+            {
+                playsound = false;
+                alarm[1] = 1;
+            }
+        }
     }
-    else if(life &lt; 60)
+    
+    else if (sprite_index == spr_BigBombExplosion)
     {
-        damage = backupdamage;
-        sprite_index = spr_BombExplosion;
-        rotate = 40;
+        sprite_index = spr_BigBombExplosion;
+        rotate = 30;
         if(playsound == true)
         {
             playsound = false;
             alarm[1] = 1;
         }
-       // image_xscale = lerp(image_xscale, 2, 0.2);
-        //image_yscale = lerp(image_yscale, 2, 0.2);
     }
     
     

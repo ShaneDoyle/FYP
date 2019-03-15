@@ -33,6 +33,7 @@ remotePlayerLatency = 0;
 remotePlayerHP = 100;
 remotePlayerMaxHP = 100;
 remotePlayerScore = 10;
+remotePlayerAbility = false;
 remotePlayerAttacking = false;
 remotePlayerHit = false;
 remotePlayerId = 0;
@@ -515,6 +516,12 @@ if(remotePlayerHit == true)
     draw_self();
     shader_reset();
 }
+else if(remotePlayerMaxHP == 140 &amp;&amp; remotePlayerAbility == true)
+{
+    shader_set(shader_grey);
+    draw_self();
+    shader_reset();
+}
 else if(remote_imagealpha &lt; 0.31)
 {
     
@@ -587,7 +594,7 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw HP bar
-if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerHP &gt; 0 &amp;&amp; remote_imagealpha &gt; 0.11)
+if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerHP &gt; 0 &amp;&amp; remote_imagealpha &gt; 0.31)
 {
     percentage = self.remotePlayerHP / self.remotePlayerMaxHP;
     xpos = x

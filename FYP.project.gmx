@@ -11,6 +11,7 @@
     <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
     <sound>sound\BombToss</sound>
+    <sound>sound\BombTick</sound>
     <sound>sound\BombExplosion</sound>
     <sound>sound\music_2</sound>
     <sound>sound\music_1</sound>
@@ -70,6 +71,7 @@
             <sprite>sprites\spr_PlayerBlueMove_Bomb</sprite>
             <sprite>sprites\spr_PlayerBlueAttack_Bomb</sprite>
             <sprite>sprites\spr_PlayerBlueJump_Bomb</sprite>
+            <sprite>sprites\spr_PlayerBlueExplode_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerBlueIdle_Ice</sprite>
@@ -269,6 +271,7 @@
         </sprites>
         <sprites name="4. Bomb">
           <sprite>sprites\spr_BombExplosion</sprite>
+          <sprite>sprites\spr_BigBombExplosion</sprite>
           <sprite>sprites\spr_Bomb</sprite>
         </sprites>
         <sprites name="3. Summoning">
@@ -373,6 +376,7 @@
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_grey.shader</shader>
+    <shader type="GLSLES">shaders\shader_white.shader</shader>
     <shader type="GLSLES">shaders\shader_hit.shader</shader>
   </shaders>
   <fonts name="fonts">

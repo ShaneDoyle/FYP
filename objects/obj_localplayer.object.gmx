@@ -411,6 +411,32 @@ image_alpha = 1;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(playerabilitypower &lt; 8 &amp;&amp; ability == false)
+{
+    playerabilitypower += 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="3">
       <action>
         <libid>1</libid>
@@ -431,10 +457,6 @@ image_alpha = 1;
             <string>if(ability == true)
 {
     playerabilitypower -= 1;
-}
-else if(playerabilitypower &lt; 8)
-{
-    playerabilitypower += 1;
 }
 </string>
           </argument>
@@ -565,6 +587,7 @@ buffer_write(global.buffer, buffer_s16, image_index);
 buffer_write(global.buffer, buffer_u8, playerhp);
 buffer_write(global.buffer, buffer_u8, playermaxhp);
 buffer_write(global.buffer, buffer_u8, playerscore);
+buffer_write(global.buffer, buffer_bool, ability);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, hit);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
@@ -1096,17 +1119,6 @@ if(powerup == 1)
         maxspeed = 2.4;
     }
     
-    /*
-    if(alarm[3] &lt; 60 * 15)
-    {
-        if(ability == true)
-        {
-            ability = false;
-            maxspeed = 2.4;
-            jumpspeed = 9.001;
-        }
-    }
-    */
 }
 
 //(2) Laser
@@ -1400,9 +1412,42 @@ if(powerup == 4)
         bullet.backupdamage = 30;
         bullet.damage = 30;
         object_set_solid( bullet, solid );
-        
-        
     }
+    
+    //Explode Ability
+    if(keyboard_check_pressed(ord('G')))
+    {
+        if(ability == false &amp;&amp; playerabilitypower == 8)
+        {
+            ability = true;
+            audio_play_sound(BombTick,0,false);
+            image_speed = 0.03;
+        }
+    }
+    
+    //Create explosion.
+    if(playerabilitypower == 0 &amp;&amp; ability == true)
+    {
+        var bullet = instance_create(x , y , obj_projectile);
+        audio_stop_sound(BombTick);
+        bullet.sprite_index = spr_BigBombExplosion;
+        bullet.powerup = 4;
+        bullet.life = 60;
+        bullet.rotate = 30;
+        bullet.backupdamage = 80;
+        bullet.damage = 80;
+        ability = false;
+    }
+    
+    if(playerabilitypower &lt;= 0)
+    {
+        ability = false;
+        //maxspeed = 2.4;
+    }
+    
+    
+
+    
 }
 
 //(5) Ice
@@ -1696,6 +1741,17 @@ if(global.playerType == 0)
             if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerBlueJump_Bomb
+            }
+            
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerBlueExplode_Bomb;
+                image_speed += 0.003;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
             }
             
             else if(attacking == true)
@@ -4075,19 +4131,17 @@ if(ability == true)
         {
             alarm[3] = 45;
         }
-        else
+        else if(powerup == 4)
         {
-            alarm[3] = 30;
+            alarm[3] = 19;
         }
     }
 }
-else
+else if(alarm[4] == -1)
 {
-    if(alarm[3] == -1)
-    {
-        alarm[3] = 120;
-    }
+    alarm[4] = 120;
 }
+
 </string>
           </argument>
         </arguments>
@@ -4873,14 +4927,14 @@ if(room == rm_lobby)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw player
+            <string>///Draw Player
 if(hit == true)
 {
     shader_set(shader_hit);
     draw_self();
     shader_reset();
 }
-else if(ability == true)
+else if(powerup == 1 &amp;&amp; ability == true)
 {
     shader_set(shader_grey);
     draw_self();

@@ -143,6 +143,7 @@ switch(msgId)
         var hp = buffer_read(buffer, buffer_u8);
         var maxhp = buffer_read(buffer, buffer_u8);
         var playerscore = buffer_read(buffer, buffer_u8);
+        var ability = buffer_read(buffer, buffer_bool);
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
@@ -167,6 +168,7 @@ switch(msgId)
                 remotePlayerHP = hp;
                 remotePlayerMaxHP = maxhp;
                 remotePlayerScore = playerscore;
+                remotePlayerAbility = ability;
                 remotePlayerAttacking = attacking;
                 remotePlayerHit = hit;
                 remotePlayerxx = xx;
