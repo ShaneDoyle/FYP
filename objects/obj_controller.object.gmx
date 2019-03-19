@@ -238,26 +238,29 @@ buffer_delete(global.buffer);
           <argument>
             <kind>1</kind>
             <string>///Draw Latency
-draw_set_valign(fa_middle);
-draw_set_halign(fa_left);
-draw_set_font(font1);
-draw_set_colour(c_white);
-draw_text(500, 10, "Latency: " + string(global.latency));
-
-if (room == rm_gameWorld)
+if(global.latencydebug == true)
 {
-    draw_set_halign(fa_right);
+    draw_set_valign(fa_middle);
+    draw_set_halign(fa_left);
     draw_set_font(font1);
+    draw_set_colour(c_white);
+    draw_text(500, 10, "Latency: " + string(global.latency));
     
-    if (global.typing)
+    if (room == rm_gameWorld)
     {
-        if (!blink)
+        draw_set_halign(fa_right);
+        draw_set_font(font1);
+        
+        if (global.typing)
         {
-            draw_text(1550, 320, "You: " + text);
-        }
-        else
-        {
-            draw_text(1550, 320, "You: " + text + "|");
+            if (!blink)
+            {
+                draw_text(1550, 320, "You: " + text);
+            }
+            else
+            {
+                draw_text(1550, 320, "You: " + text + "|");
+            }
         }
     }
 }

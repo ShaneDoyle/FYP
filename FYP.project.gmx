@@ -112,6 +112,7 @@
             <sprite>sprites\spr_PlayerRedMove_Bomb</sprite>
             <sprite>sprites\spr_PlayerRedJump_Bomb</sprite>
             <sprite>sprites\spr_PlayerRedIdle_Bomb</sprite>
+            <sprite>sprites\spr_PlayerRedExplode_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerRedIdle_Ice</sprite>
@@ -151,6 +152,7 @@
             <sprite>sprites\spr_PlayerGreenAttack_Bomb</sprite>
             <sprite>sprites\spr_PlayerGreenJump_Bomb</sprite>
             <sprite>sprites\spr_PlayerGreenMove_Bomb</sprite>
+            <sprite>sprites\spr_PlayerGreenExplode_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerGreenIdle_Ice</sprite>
@@ -190,6 +192,7 @@
             <sprite>sprites\spr_PlayerYellowMove_Bomb</sprite>
             <sprite>sprites\spr_PlayerYellowAttack_Bomb</sprite>
             <sprite>sprites\spr_PlayerYellowJump_Bomb</sprite>
+            <sprite>sprites\spr_PlayerYellowExplode_Bomb</sprite>
           </sprites>
           <sprites name="5. Ice">
             <sprite>sprites\spr_PlayerYellowIdle_Ice</sprite>
@@ -226,7 +229,7 @@
         <sprite>sprites\spr_rightarrow</sprite>
         <sprite>sprites\spr_button1</sprite>
         <sprite>sprites\spr_button2</sprite>
-        <sprite>sprites\sprite133</sprite>
+        <sprite>sprites\spr_button4</sprite>
         <sprite>sprites\spr_button3</sprite>
       </sprites>
       <sprites name="Stats">
@@ -266,16 +269,16 @@
     <sprites name="Projectiles">
       <sprite>sprites\spr_projectile</sprite>
       <sprites name="Weapons">
-        <sprites name="1. Laser">
-          <sprite>sprites\spr_Laser</sprite>
+        <sprites name="3. Summoning">
+          <sprite>sprites\spr_DarkSphere</sprite>
         </sprites>
         <sprites name="4. Bomb">
           <sprite>sprites\spr_BombExplosion</sprite>
           <sprite>sprites\spr_BigBombExplosion</sprite>
           <sprite>sprites\spr_Bomb</sprite>
         </sprites>
-        <sprites name="3. Summoning">
-          <sprite>sprites\spr_DarkSphere</sprite>
+        <sprites name="1. Laser">
+          <sprite>sprites\spr_Laser</sprite>
         </sprites>
       </sprites>
     </sprites>

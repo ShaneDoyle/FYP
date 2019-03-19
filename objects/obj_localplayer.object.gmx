@@ -456,7 +456,14 @@ image_alpha = 1;
             <kind>1</kind>
             <string>if(ability == true)
 {
-    playerabilitypower -= 1;
+    if(powerup != 2)
+    {
+        playerabilitypower -= 1;
+    }
+    else
+    {
+        playerabilitypower -= 1;
+    }
 }
 </string>
           </argument>
@@ -1125,9 +1132,9 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 20 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 15 &amp;&amp; PlayerDeath == false)
     {
-        playerenergy -= 20;
+        playerenergy -= 15;
         slowmovement = true;
         alarm[0] = 16;
         if(dir == "up")
@@ -1171,7 +1178,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 12;
+        bullet.damage = 9;
         bullet.image_index = irandom_range(0,0);
         
         sound = choose(1,2,3)
@@ -1209,13 +1216,9 @@ if(powerup == 2)
     
 
     
-    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerenergy &gt;= 999 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerabilitypower &gt; 0 &amp;&amp; PlayerDeath == false)
     {
-        if(playerenergy &lt;= 10)
-        {
-            playerenergy = 0;
-        }
-        playerenergy -= 1;
+        ability = true;
         
         if(dir == "up")
         {
@@ -1265,6 +1268,7 @@ if(powerup == 2)
         jetpackanimation = false;
         audio_stop_sound(Jetpack);
         miscsound = true;
+        ability = false;
     }
     
     if(alarm[0] == -1)
@@ -1304,7 +1308,7 @@ if(powerup == 2)
 if(powerup == 3)
 {
     //Dark Sphere
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 60 )
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 60 &amp;&amp; ability == false )
     {
         playerenergy -= 60;
         image_index = 0;
@@ -1369,7 +1373,7 @@ if(powerup == 3)
 if(powerup == 4)
 {
     //Dark Sphere
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 40 )
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 40 &amp;&amp; ability == false)
     {
         playerenergy -= 40;
         image_index = 0;
@@ -1422,6 +1426,7 @@ if(powerup == 4)
             ability = true;
             audio_play_sound(BombTick,0,false);
             image_speed = 0.03;
+            maxspeed = 0;
         }
     }
     
@@ -1437,6 +1442,7 @@ if(powerup == 4)
         bullet.backupdamage = 80;
         bullet.damage = 80;
         ability = false;
+        maxspeed = 2.4;
     }
     
     if(playerabilitypower &lt;= 0)
@@ -1746,7 +1752,7 @@ if(global.playerType == 0)
             else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
             {
                 sprite_index = spr_PlayerBlueExplode_Bomb;
-                image_speed += 0.003;
+                image_speed += 0.005;
                 if(image_index &gt;= 34)
                 {
                     image_index = 31;
@@ -2014,6 +2020,17 @@ if(global.playerType == 0)
             if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerBlueJump_Bomb
+            }
+            
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerBlueExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
             }
             
             else if(attacking == true)
@@ -2299,6 +2316,17 @@ if(global.playerType == 1)
                 sprite_index = spr_PlayerRedJump_Bomb
             }
             
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerRedExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
+            }
+            
             else if(attacking == true)
             {            
                 sprite_index = spr_PlayerRedAttack_Bomb;
@@ -2559,6 +2587,17 @@ if(global.playerType == 1)
             if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerRedJump_Bomb
+            }
+            
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerRedExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
             }
             
             else if(attacking == true)
@@ -2844,6 +2883,17 @@ if(global.playerType == 2)
                 sprite_index = spr_PlayerGreenJump_Bomb
             }
             
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerGreenExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
+            }
+            
             else if(attacking == true)
             {            
                 sprite_index = spr_PlayerGreenAttack_Bomb;
@@ -3104,6 +3154,17 @@ if(global.playerType == 2)
             if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerGreenJump_Bomb
+            }
+            
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerGreenExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
             }
             
             else if(attacking == true)
@@ -3389,6 +3450,17 @@ if(global.playerType == 3)
                 sprite_index = spr_PlayerYellowJump_Bomb
             }
             
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerYellowExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
+            }
+            
             else if(attacking == true)
             {            
                 sprite_index = spr_PlayerYellowAttack_Bomb;
@@ -3649,6 +3721,17 @@ if(global.playerType == 3)
             if(movementtype == "cannon")
             {
                 sprite_index = spr_PlayerYellowJump_Bomb
+            }
+            
+            else if(playerabilitypower &gt; 0 &amp;&amp; ability == true)
+            {
+                sprite_index = spr_PlayerYellowExplode_Bomb;
+                image_speed += 0.005;
+                if(image_index &gt;= 34)
+                {
+                    image_index = 31;
+                }
+                
             }
             
             else if(attacking == true)
@@ -4078,25 +4161,28 @@ if(global.PlayerMove == true)
           <argument>
             <kind>1</kind>
             <string>///Check other blocks near to get planet number.
-var touchingblock = instance_place(x-10,y,obj_block);
-if(touchingblock != noone)
+if(powerup != 2 &amp;&amp; grounded != false)
 {
-    planetnumber = touchingblock.planetnumber;
-}
-var touchingblock = instance_place(x+10,y,obj_block);
-if(touchingblock != noone)
-{
-    planetnumber = touchingblock.planetnumber;
-}
-var touchingblock = instance_place(x,y+10,obj_block);
-if(touchingblock != noone)
-{
-    planetnumber = touchingblock.planetnumber;
-}
-var touchingblock = instance_place(x,y-10,obj_block);
-if(touchingblock != noone)
-{
-    planetnumber = touchingblock.planetnumber;
+    var touchingblock = instance_place(x-10,y,obj_block);
+    if(touchingblock != noone)
+    {
+        planetnumber = touchingblock.planetnumber;
+    }
+    var touchingblock = instance_place(x+10,y,obj_block);
+    if(touchingblock != noone)
+    {
+        planetnumber = touchingblock.planetnumber;
+    }
+    var touchingblock = instance_place(x,y+10,obj_block);
+    if(touchingblock != noone)
+    {
+        planetnumber = touchingblock.planetnumber;
+    }
+    var touchingblock = instance_place(x,y-10,obj_block);
+    if(touchingblock != noone)
+    {
+        planetnumber = touchingblock.planetnumber;
+    }
 }
 </string>
           </argument>
@@ -4125,7 +4211,11 @@ if(ability == true)
     {
         if(powerup == 1)
         {
-            alarm[3] = 30;
+            alarm[3] = 45;
+        }
+        else if (powerup == 2)
+        {
+            alarm[3] = 15;
         }
         else if (powerup == 3)
         {
@@ -4133,13 +4223,18 @@ if(ability == true)
         }
         else if(powerup == 4)
         {
-            alarm[3] = 19;
+            alarm[3] = 15;
         }
     }
 }
 else if(alarm[4] == -1)
 {
-    alarm[4] = 120;
+    alarm[4] = 240;
+}
+
+if(playerabilitypower &lt; 0)
+{
+    playerabilitypower = 0;
 }
 
 </string>
@@ -4365,16 +4460,32 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
             <string>///Do damage and other...
 if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
 {
-    if(powerup == 1 &amp;&amp; ability == true)
+    if(image_alpha == 1 || image_alpha == 0)
     {
-        playerhp -= other.damage * 0.3;
+        if(powerup == 1 &amp;&amp; ability == true)
+        {
+            playerhp -= other.damage * 0.3;
+        }
+        
+        else if(powerup == 2 &amp;&amp; ability == true)
+        {
+            playerhp -= other.damage * 0.3;
+        }
+        else
+        { 
+            playerhp -= other.damage;
+        }
+        
+        hit = true
+        if(other.damage &gt; 40)
+        {
+            alarm[10] = 40;
+        }
+        else
+        {
+            alarm[10] = other.damage;
+        }
     }
-    else
-    { 
-        playerhp -= other.damage;
-    }
-    hit = true
-    alarm[10] = other.damage;
 }
 </string>
           </argument>
