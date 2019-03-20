@@ -26,7 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
-Connect = false;
+socket = noone;
+send_to_client = false;
+alarm[0] = 30;
 </string>
           </argument>
         </arguments>
@@ -49,27 +51,13 @@ Connect = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Login attempt
-var playerUsername = global.playerName;
-var playerPassword = "NOTHING"
-var playerPasswordHash = sha1_string_unicode(playerPassword);
-
-global.name = playerUsername;
-
-buffer_seek(global.buffer, buffer_seek_start, 0);
-buffer_write(global.buffer, buffer_u8, 3);
-buffer_write(global.buffer, buffer_u32, global.playerId);
-buffer_write(global.buffer, buffer_string, playerUsername);
-buffer_write(global.buffer, buffer_string, playerPasswordHash);
-network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
-
-Connect = true;
+            <string>send_to_client = true;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="68">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -86,72 +74,11 @@ Connect = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Time out
-if(global.playerId != 0 &amp;&amp; Connect == false)
+            <string>if(send_to_client == true)
 {
-    if(alarm[0] == -1)
-    {
-        //show_message("Alarm ran!");
-        alarm[0] = 60;
-    }
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Login when click
-if (room == rm_login)
-{
-    obj_textbox_username.txt = "Player"
-    obj_textbox_password1.txt = "NOTHING"
-    if (obj_textbox_username.txt == "")
-    {
-        scr_showNotification("Please enter a username!");
-        exit;
-    }
-    
-    if (obj_textbox_password1.txt == "")
-    {
-        scr_showNotification("Please enter a password!");
-        exit;
-    }
-    
-    //Send the buffers to write to login
-    var playerUsername = obj_textbox_username.txt;
-    var playerPassword = obj_textbox_password1.txt;
-    var playerPasswordHash = sha1_string_unicode(playerPassword);
-    
-    global.name = playerUsername;
-    
-    buffer_seek(global.buffer, buffer_seek_start, 0);
-    buffer_write(global.buffer, buffer_u8, 3);
-    buffer_write(global.buffer, buffer_u32, global.playerId);
-    buffer_write(global.buffer, buffer_string, playerUsername);
-    buffer_write(global.buffer, buffer_string, playerPasswordHash);
-    network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
-}
-else
-{
-    room_goto(rm_login);
+    //show_message("SENT");
+    //network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+    //instance_destroy();
 }
 </string>
           </argument>

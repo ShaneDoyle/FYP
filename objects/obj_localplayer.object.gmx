@@ -1132,9 +1132,9 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 15 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 20 &amp;&amp; PlayerDeath == false)
     {
-        playerenergy -= 15;
+        playerenergy -= 20;
         slowmovement = true;
         alarm[0] = 16;
         if(dir == "up")
@@ -1178,7 +1178,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 9;
+        bullet.damage = 8;
         bullet.image_index = irandom_range(0,0);
         
         sound = choose(1,2,3)
@@ -1365,6 +1365,10 @@ if(powerup == 3)
     {
         ability = false;
         maxspeed = 2.4 + (0.3 * 1);
+    }
+    
+    if(playerabilitypower == 0 &amp;&amp; image_alpha != 1)
+    {
         image_alpha = 1;
     }
 }
@@ -4161,7 +4165,7 @@ if(global.PlayerMove == true)
           <argument>
             <kind>1</kind>
             <string>///Check other blocks near to get planet number.
-if(powerup != 2 &amp;&amp; grounded != false)
+if(powerup != 2 &amp;&amp; ability == false)
 {
     var touchingblock = instance_place(x-10,y,obj_block);
     if(touchingblock != noone)
@@ -4477,13 +4481,17 @@ if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
         }
         
         hit = true
-        if(other.damage &gt; 40)
+        if(other.damage &gt; 50)
         {
-            alarm[10] = 40;
+            alarm[10] = 50;
+        }
+        else if(other.damage &lt; 20)
+        {
+            alarm[10] = 20;
         }
         else
         {
-            alarm[10] = other.damage;
+            alarm[10] = other.damage * 1.3;
         }
     }
 }

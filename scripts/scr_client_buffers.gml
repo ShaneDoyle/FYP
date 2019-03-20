@@ -62,8 +62,8 @@ switch(msgId)
     
     //Player ID Response
     case 4:
+        //show_message(global.playerId);
         global.playerId = buffer_read(buffer, buffer_u32);
-        show_message(global.playerId);
     break;
     
     //Remote player disconnect response

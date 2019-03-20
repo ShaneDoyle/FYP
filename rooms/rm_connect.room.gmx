@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>0</colour>
+  <colour>263172</colour>
   <showcolour>-1</showcolour>
   <code>audio_stop_sound(music_2);</code>
   <enableViews>0</enableViews>
@@ -52,6 +52,7 @@
   </views>
   <instances>
     <instance objName="obj_controller" x="64" y="64" name="inst_AF492752" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_TEXT_Connecting" x="128" y="160" name="inst_BDF57C26" locked="0" code="" scaleX="0.699999988079071" scaleY="0.699999988079071" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

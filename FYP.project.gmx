@@ -317,6 +317,9 @@
       <sprite>sprites\spr_Tick</sprite>
       <sprite>sprites\spr_X</sprite>
     </sprites>
+    <sprites name="Texts">
+      <sprite>sprites\spr_Connecting</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Backgrounds">
@@ -343,6 +346,7 @@
     </scripts>
     <scripts name="Networking">
       <scripts name="Server">
+        <script>scripts\scr_reply_to_client_connect.gml</script>
         <script>scripts\scr_server_buffers.gml</script>
       </scripts>
       <scripts name="Client">
@@ -392,31 +396,6 @@
     <objects name="LaunchScreen">
       <object>objects\obj_Create</object>
       <object>objects\obj_Play</object>
-    </objects>
-    <objects name="MasterServer">
-      <object>objects\obj_master_server_controller</object>
-    </objects>
-    <objects name="Server">
-      <object>objects\obj_server_to_master</object>
-      <object>objects\obj_server_globals</object>
-      <object>objects\obj_server_lobby</object>
-      <object>objects\obj_server_controller</object>
-      <object>objects\obj_server_message</object>
-      <object>objects\obj_server_player</object>
-      <object>objects\obj_server_npc</object>
-      <object>objects\obj_server_generate_land</object>
-      <object>objects\obj_server_projectile</object>
-      <objects name="Objects">
-        <object>objects\obj_server_cannon</object>
-      </objects>
-      <objects name="Gem">
-        <object>objects\obj_server_gem</object>
-        <object>objects\obj_server_gem_creator</object>
-      </objects>
-      <object>objects\obj_server_camera</object>
-      <objects name="Enemys">
-        <object>objects\obj_Enemy1</object>
-      </objects>
     </objects>
     <objects name="Client">
       <objects name="Objects">
@@ -502,6 +481,35 @@
       <objects name="Unused">
         <object>objects\obj_PlayerBubble</object>
       </objects>
+    </objects>
+    <objects name="MasterServer">
+      <object>objects\obj_master_server_controller</object>
+    </objects>
+    <objects name="Server">
+      <object>objects\obj_server_socket_to_client</object>
+      <object>objects\obj_server_to_master</object>
+      <object>objects\obj_server_globals</object>
+      <object>objects\obj_server_lobby</object>
+      <object>objects\obj_server_controller</object>
+      <object>objects\obj_server_message</object>
+      <object>objects\obj_server_player</object>
+      <object>objects\obj_server_npc</object>
+      <object>objects\obj_server_generate_land</object>
+      <object>objects\obj_server_camera</object>
+      <object>objects\obj_server_projectile</object>
+      <objects name="Objects">
+        <object>objects\obj_server_cannon</object>
+      </objects>
+      <objects name="Gem">
+        <object>objects\obj_server_gem</object>
+        <object>objects\obj_server_gem_creator</object>
+      </objects>
+      <objects name="Enemys">
+        <object>objects\obj_Enemy1</object>
+      </objects>
+    </objects>
+    <objects name="Texts">
+      <object>objects\obj_TEXT_Connecting</object>
     </objects>
     <objects name="Level">
       <object>objects\obj_LeftPortal</object>
