@@ -259,6 +259,10 @@
       <sprites name="Lobby">
         <sprite>sprites\spr_PlayerBubble</sprite>
       </sprites>
+      <sprites name="Join">
+        <sprite>sprites\spr_Manual</sprite>
+        <sprite>sprites\spr_Auto</sprite>
+      </sprites>
     </sprites>
     <sprites name="Transitions">
       <sprite>sprites\spr_Transition1</sprite>
@@ -481,6 +485,12 @@
       <objects name="Unused">
         <object>objects\obj_PlayerBubble</object>
       </objects>
+      <objects name="Menu">
+        <objects name="Join">
+          <object>objects\obj_Auto</object>
+          <object>objects\obj_Manual</object>
+        </objects>
+      </objects>
     </objects>
     <objects name="MasterServer">
       <object>objects\obj_master_server_controller</object>
@@ -521,7 +531,6 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_launch</room>
-    <room>rooms\rm_TitleScreen</room>
     <rooms name="MasterServer">
       <room>rooms\rm_masterserver</room>
     </rooms>
@@ -529,6 +538,8 @@
       <room>rooms\rm_server</room>
     </rooms>
     <rooms name="Client">
+      <room>rooms\rm_TitleScreen</room>
+      <room>rooms\rm_joining</room>
       <room>rooms\rm_listofservers</room>
       <room>rooms\rm_connect</room>
       <room>rooms\rm_lobby</room>
