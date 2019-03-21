@@ -1054,7 +1054,7 @@ else if(dir == "left")
           <argument>
             <kind>1</kind>
             <string>///Attacking!
-if(room != rm_lobby)
+if(room != rm_lobby &amp;&amp; movementtype == "player")
 {
 
 
@@ -1107,6 +1107,7 @@ if(powerup == 1)
         }
         
         bullet.damage = 20;
+        bullet.powerup = 1;
     }
     
     //Shield Ability
@@ -1181,22 +1182,6 @@ if(powerup == 2)
         bullet.damage = 8;
         bullet.image_index = irandom_range(0,0);
         
-        sound = choose(1,2,3)
-        audio_stop_sound(LightningZap1);
-        audio_stop_sound(LightningZap2);
-        audio_stop_sound(LightningZap3);
-        if(sound == 1)
-        {
-            audio_play_sound(LightningZap1, 0, false);
-        }
-        else if(sound == 2)
-        {
-            audio_play_sound(LightningZap2, 0, false);
-        }
-        else if(sound == 3)
-        {
-            audio_play_sound(LightningZap3, 0, false);
-        }
     }
     
 
@@ -1257,7 +1242,7 @@ if(powerup == 2)
         if (miscsound == true)
         {
             audio_play_sound(Jetpack, 0, false);
-            playerenergy -= 10;
+           // playerenergy -= 10;
         }
         miscsound = false;
     }
@@ -1308,7 +1293,7 @@ if(powerup == 2)
 if(powerup == 3)
 {
     //Dark Sphere
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 60 &amp;&amp; ability == false )
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 60 &amp;&amp; ability == false &amp;&amp; movementtype == "player")
     {
         playerenergy -= 60;
         image_index = 0;
@@ -1438,6 +1423,7 @@ if(powerup == 4)
             ability = true;
             audio_play_sound(BombTick,0,false);
             image_speed = 0.03;
+            image_index = 0;
             maxspeed = 0;
         }
     }
@@ -1472,9 +1458,9 @@ if(powerup == 4)
 if(powerup == 5)
 {
     //Slash
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 35)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 30)
     {
-        playerenergy -= 35;
+        playerenergy -= 30;
         image_speed = 0.45;
         if(dir == "up")
         {
@@ -1512,7 +1498,7 @@ if(powerup == 5)
             attacking = true;
         }
         
-        bullet.damage = 20;
+        bullet.damage = 25;
         bullet.powerup = 5;
     }
 }
@@ -1636,27 +1622,9 @@ if(global.playerType == 0)
             {            
                 sprite_index = spr_PlayerBlueAttack_SwordShield
                 image_speed -= 0.025;
-                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
-                {
-                    var slash;
-                    attacksound = false;
-                    pick = choose(1,2)
-                    if(pick == 1)
-                    {
-                        slash = audio_play_sound(SwordShield1, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-                    else
-                    {
-                        slash = audio_play_sound(SwordShield2, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-    
-                }
                 if(image_index &gt;= 7)
                 {
                     attacking = false;
-                    attacksound = true;
                 }
             }
             
@@ -1890,27 +1858,10 @@ if(global.playerType == 0)
             {            
                 sprite_index = spr_PlayerBlueAttack_SwordShield
                 image_speed -= 0.025;
-                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
-                {
-                    var slash;
-                    attacksound = false;
-                    pick = choose(1,2)
-                    if(pick == 1)
-                    {
-                        slash = audio_play_sound(SwordShield1, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-                    else
-                    {
-                        slash = audio_play_sound(SwordShield2, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-    
-                }
+
                 if(image_index &gt;= 7)
                 {
                     attacking = false;
-                    attacksound = true;
                 }
             }
             
@@ -2203,27 +2154,10 @@ if(global.playerType == 1)
             {            
                 sprite_index = spr_PlayerRedAttack_SwordShield
                 image_speed -= 0.025;
-                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
-                {
-                    var slash;
-                    attacksound = false;
-                    pick = choose(1,2)
-                    if(pick == 1)
-                    {
-                        slash = audio_play_sound(SwordShield1, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-                    else
-                    {
-                        slash = audio_play_sound(SwordShield2, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-    
-                }
+
                 if(image_index &gt;= 7)
                 {
                     attacking = false;
-                    attacksound = true;
                 }
             }
             
@@ -2457,27 +2391,10 @@ if(global.playerType == 1)
             {            
                 sprite_index = spr_PlayerRedAttack_SwordShield
                 image_speed -= 0.025;
-                if(image_index &gt;= 2 &amp;&amp; attacksound == true)
-                {
-                    var slash;
-                    attacksound = false;
-                    pick = choose(1,2)
-                    if(pick == 1)
-                    {
-                        slash = audio_play_sound(SwordShield1, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-                    else
-                    {
-                        slash = audio_play_sound(SwordShield2, 10, false);
-                        audio_sound_pitch(slash, 0.9)
-                    }
-    
-                }
+
                 if(image_index &gt;= 7)
                 {
                     attacking = false;
-                    attacksound = true;
                 }
             }
             
@@ -4173,8 +4090,7 @@ if(global.PlayerMove == true)
           <argument>
             <kind>1</kind>
             <string>///Check other blocks near to get planet number.
-if(powerup != 2 &amp;&amp; ability == false)
-{
+
     var touchingblock = instance_place(x-10,y,obj_block);
     if(touchingblock != noone)
     {
@@ -4195,7 +4111,7 @@ if(powerup != 2 &amp;&amp; ability == false)
     {
         planetnumber = touchingblock.planetnumber;
     }
-}
+
 </string>
           </argument>
         </arguments>
@@ -4660,6 +4576,40 @@ if (state == "standing" &amp;&amp; !jumping &amp;&amp; !falling)
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ready up.
+if(room == rm_lobby)
+{
+    if(readytoproceed == false)
+    {
+        readytoproceed = true;
+    }
+    else
+    {
+        readytoproceed = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="0">
       <action>
         <libid>1</libid>
@@ -5019,6 +4969,7 @@ if(room == rm_lobby)
     draw_set_colour(c_yellow);
     draw_text(x + 30, y, global.playerName); //"Player" + " " + string(global.playerId));
     //draw_sprite(spr_Tick,0,x - 10, y);
+    draw_sprite_ext(spr_Box, 0, x - 40, y, 0.30, 0.30, 0, c_white, 1);
     
     //Show ready status.
     if(readytoproceed == true)
@@ -5029,7 +4980,7 @@ if(room == rm_lobby)
     {
         draw_sprite_ext(spr_X, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
     }
-    
+
 
     //draw_text(x + 130, y, global.ClientRoom); 
 }
@@ -5527,7 +5478,7 @@ if(playerhp &gt; 0)
 {
      //playerhp -= 1;
 }
-if(room == rm_lobby)// || 1 == 1)
+if(room != rm_lobby)// || 1 == 1)
 {
     if(alarm[0] == -1)
     {

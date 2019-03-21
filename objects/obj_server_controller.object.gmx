@@ -227,12 +227,12 @@ switch(eventType)
         }
         
         ds_list_add(global.players, socket);
-        show_message("Player " + string(pId) + " has joined.");
+        //show_message("Player " + string(pId) + " has joined.");
         buffer_seek(global.buffer, buffer_seek_start, 0);
         buffer_write(global.buffer, buffer_u8, 4);
         buffer_write(global.buffer, buffer_u32, pId); //playerIdCounter
         //Delay
-        repeat(100)
+        repeat(10000000)
         {
             i = 0;
         }

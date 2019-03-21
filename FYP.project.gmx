@@ -284,6 +284,9 @@
         <sprites name="1. Laser">
           <sprite>sprites\spr_Laser</sprite>
         </sprites>
+        <sprites name="5. Ice">
+          <sprite>sprites\spr_Ice</sprite>
+        </sprites>
       </sprites>
     </sprites>
     <sprites name="LaunchScreen">
@@ -320,6 +323,7 @@
     <sprites name="Lobby">
       <sprite>sprites\spr_Tick</sprite>
       <sprite>sprites\spr_X</sprite>
+      <sprite>sprites\spr_Box</sprite>
     </sprites>
     <sprites name="Texts">
       <sprite>sprites\spr_Connecting</sprite>

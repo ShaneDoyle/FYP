@@ -66,7 +66,7 @@ rotate = 0; //Spinning.
 fadein = false; //If true, will fade in.
 vspeeddrag = 0;
 hspeeddrag = 0;
-playsound = true;
+soundplayed = false;
 
 
 
@@ -266,8 +266,42 @@ if (powerup == 5)
           <argument>
             <kind>1</kind>
             <string>///Play Sound
-if (powerup == 3)
+//Sword &amp; Shield
+if(powerup == 1 &amp;&amp; soundplayed == false)
 {
+    soundplayed = true;
+    var audio = audio_play_sound(Slash_1,0,false);
+    pitch = irandom_range(1,5)
+    switch(pitch)
+    {
+        case 1: audio_sound_pitch(audio,0.8); break;
+        case 2: audio_sound_pitch(audio,0.9); break;
+        case 3: audio_sound_pitch(audio,1.0); break;
+        case 4: audio_sound_pitch(audio,1.1); break;
+        case 5: audio_sound_pitch(audio,1.2); break;
+    }
+}
+
+//Lightning
+if(powerup == 2 &amp;&amp; soundplayed == false)
+{
+    soundplayed = true;
+    var audio = audio_play_sound(LightningZap1,0,false);
+    pitch = irandom_range(1,5)
+    switch(pitch)
+    {
+        case 1: audio_sound_pitch(audio,0.8); break;
+        case 2: audio_sound_pitch(audio,0.9); break;
+        case 3: audio_sound_pitch(audio,1.0); break;
+        case 4: audio_sound_pitch(audio,1.1); break;
+        case 5: audio_sound_pitch(audio,1.2); break;
+    }
+}
+
+//Necro
+if (powerup == 3 &amp;&amp; soundplayed == false)
+{
+    soundplayed = true;
     var audio = audio_play_sound(DarkSphere,0,false);
     pitch = irandom_range(1,5)
     switch(pitch)
@@ -281,8 +315,10 @@ if (powerup == 3)
     
 }
 
-if (powerup == 4)
+//Bomb
+if (powerup == 4 &amp;&amp; soundplayed == false)
 {
+    soundplayed = true;
     var audio = audio_play_sound(BombToss,0,false);
     pitch = irandom_range(1,5)
     switch(pitch)
@@ -295,18 +331,22 @@ if (powerup == 4)
     }
     
 }
-if (powerup == 5)
+
+//Ice
+if (powerup == 5 &amp;&amp; soundplayed == false)
 {
+    soundplayed = true;
     var audio = audio_play_sound(IceHeadbutt,0,false);
     pitch = irandom_range(1,5)
     switch(pitch)
     {
-        case 1: audio_sound_pitch(audio,1.0); break;
-        case 2: audio_sound_pitch(audio,1.1); break;
-        case 3: audio_sound_pitch(audio,1.2); break;
-        case 4: audio_sound_pitch(audio,1.3); break;
-        case 5: audio_sound_pitch(audio,1.4); break;
+        case 1: audio_sound_pitch(audio,0.8); break;
+        case 2: audio_sound_pitch(audio,0.9); break;
+        case 3: audio_sound_pitch(audio,1.0); break;
+        case 4: audio_sound_pitch(audio,1.1); break;
+        case 5: audio_sound_pitch(audio,1.2); break;
     }
+    
 }
 </string>
           </argument>
@@ -522,9 +562,9 @@ if(powerup == 4)
         vspeed = 0;
         hspeed = 0;
         rotate = 0;
-        if(life &gt; 120)
+        if(life &gt; 90)
         {
-            life = 119;
+            life = 89;
         }
     }
     
@@ -542,9 +582,9 @@ if(powerup == 4)
             damage = backupdamage;
             sprite_index = spr_BombExplosion;
             rotate = 40;
-            if(playsound == true)
+            if(soundplayed == true)
             {
-                playsound = false;
+                soundplayed = false;
                 alarm[1] = 1;
             }
         }
@@ -554,9 +594,9 @@ if(powerup == 4)
     {
         sprite_index = spr_BigBombExplosion;
         rotate = 30;
-        if(playsound == true)
+        if(soundplayed == true)
         {
-            playsound = false;
+            soundplayed = false;
             alarm[1] = 1;
         }
     }

@@ -231,6 +231,7 @@ y = lerp(y, remotePlayeryy, 0.15);
           <argument>
             <kind>1</kind>
             <string>///Play sound once
+/*
 if(remotePlayerAttacking == true &amp;&amp; attacksound == true)
 {
     var slash = audio_play_sound(SwordShield1, 0, false);
@@ -562,6 +563,7 @@ if(room == rm_lobby)
 {
     draw_set_colour(c_white);
     draw_text(x + 30, y, string(self.remotePlayerName)); // + " " + string(remotePlayerId));
+    draw_sprite_ext(spr_Box, 0, x - 40, y, 0.30, 0.30, 0, c_white, 1);
     
     //Show remote player's ready status.
     if(remotePlayerReadyToProceed == true)
