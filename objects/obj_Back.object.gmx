@@ -109,7 +109,11 @@ if(room == rm_listofservers)
           <argument>
             <kind>1</kind>
             <string>///Go back to menu
-if(room != rm_TitleScreen)
+if(room == rm_listofservers)
+{
+    room_goto(rm_joining);
+}
+else if(room != rm_TitleScreen)
 {
     room_goto(rm_TitleScreen);
 }
@@ -138,6 +142,52 @@ if(room != rm_TitleScreen)
           <argument>
             <kind>3</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Save Function
+if(room == rm_Settings)
+{
+    if (file_exists("Save.sav"))
+    {
+        file_delete("Save.sav");
+    }
+    
+    //Open File.
+    var SaveFile = file_text_open_write("Save.sav");
+
+    //Create DS list.
+    var SaveDetails = ds_map_create()
+    ds_map_add(SaveDetails, "Name", global.playerName);
+    ds_map_add(SaveDetails, "Colour", global.playerType);
+    ds_map_add(SaveDetails, "Powerup", global.powerup);
+    
+    //Convert to JSON.
+    var JsonInstance = json_encode(SaveDetails);
+    
+    //Write file.
+    file_text_write_string(SaveFile, JsonInstance);
+    
+    //Close Save File.
+    file_text_close(SaveFile);
+}
+</string>
           </argument>
         </arguments>
       </action>

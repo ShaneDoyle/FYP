@@ -26,17 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>///Set Position
-x =  640 + 250;
-
-//Acceleration
-acc = 30;
-
-//Timer
-go = false;
-alarm[0] = 40;
+x = 322;
+image_speed = 0;
+image_index = 0;
 
 //Sound
-playsound = false;
+playsound = true;
+
+//Move
+move = false;
+
 depth = -1000;
 </string>
           </argument>
@@ -60,48 +59,8 @@ depth = -1000;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Activate go
-go = true;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Speed
-if(go = true)
-{
-    if(x &gt; 324)
-    {
-        acc -= (acc * 0.035);
-        x -= acc;
-    }
-    else
-    {
-        if(playsound = false)
-        {
-            playsound = true
-            audio_play_sound(Pop_1,0,false);
-        }
-        x = 324;
-    }
-}
+            <string>///Goto settings room
+room_goto(rm_Settings);
 </string>
           </argument>
         </arguments>
@@ -125,7 +84,11 @@ if(go = true)
           <argument>
             <kind>1</kind>
             <string>///Goto settings room
-room_goto(rm_Settings);
+image_speed = 0.6;
+if(alarm[0] == -1)
+{
+    alarm[0] = 20;
+}
 </string>
           </argument>
         </arguments>

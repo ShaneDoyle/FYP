@@ -30,6 +30,10 @@ if(room == rm_Settings)
 {
     instance_destroy();
 }
+else if(room == rm_lobby)
+{
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

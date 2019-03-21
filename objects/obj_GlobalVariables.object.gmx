@@ -56,6 +56,91 @@ global.planetnumber = 0;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Call load save function.
+alarm[0] = 3;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Load Save.
+if file_exists("Save.sav")
+{
+    //Open file.
+    var LoadFile = file_text_open_read("Save.sav");
+    var PlayerJson = file_text_read_string(LoadFile);
+    var PlayerMap = json_decode(PlayerJson);
+    
+    //Get values.
+    var Name = ds_map_find_value(PlayerMap, "Name");
+    var Colour = ds_map_find_value(PlayerMap, "Colour");
+    var Powerup = ds_map_find_value(PlayerMap, "Powerup");
+    
+    //Do error checking and apply values.
+    if(string_length(Name) &gt; 9)
+    {
+        global.playerName = "Player";
+    }
+    else
+    {
+        global.playerName = Name;
+    }
+    
+    if(Colour &gt;= 0 &amp;&amp; Colour &lt;= 3)
+    {
+        global.playerType = Colour;
+    }
+    else
+    {
+        global.playerType = 0;
+    }
+    
+    if(Powerup &gt;= 1 &amp;&amp; Powerup &lt;= 5)
+    {
+        global.powerup = Powerup;
+    }
+    else
+    {
+        global.powerup = 1;
+    } 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
