@@ -28,6 +28,7 @@
             <string>///Variables
 fade = 0;
 alarm[0] = 20;
+depth = -2000;
 </string>
           </argument>
         </arguments>

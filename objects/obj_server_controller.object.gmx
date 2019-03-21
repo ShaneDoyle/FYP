@@ -38,7 +38,6 @@ server = network_create_server(networkType, port, maxPlayers);
 global.buffer = buffer_create(bufferSize, bufferType, bufferAlignment);
 
 global.players = ds_list_create();
-playerIdCounter = 0;
 
 //Create NPC's
 npcIdCounter = 0;
@@ -78,8 +77,35 @@ npcIdCounter++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///TEST
+            <string>///Socket create.
 socket = network_create_socket(network_socket_tcp);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Player Counter
+var i = 0;
+repeat(8)
+{
+    playerIdCounter[i] = 0;
+    i++;
+}
 </string>
           </argument>
         </arguments>
@@ -140,6 +166,26 @@ if(!instance_exists(obj_server_player) &amp;&amp; ResetId == true)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="7" enumb="68">
       <action>
@@ -166,10 +212,20 @@ switch(eventType)
     case network_type_connect:
         var socket = ds_map_find_value(async_load, "socket");
         
-        playerIdCounter++;
         ResetId = true;
         
-        var pId = playerIdCounter;
+        var i = 0;
+        var pId = 0;
+        repeat(8)
+        {
+            if(playerIdCounter[i] == 0)
+            {
+                var pId = i + 1;
+                playerIdCounter[i] = 1;
+                break;
+            }
+            i++;
+        }
         
         //Create a player!
         with (instance_create(0, 0, obj_server_player))
@@ -180,12 +236,17 @@ switch(eventType)
             playerSocket = socket;
         }
         
+        //var pId = socket - 1;
         ds_list_add(global.players, socket);
         show_message("Player " + string(playerIdCounter) + " has joined.");
         buffer_seek(global.buffer, buffer_seek_start, 0);
         buffer_write(global.buffer, buffer_u8, 4);
-        buffer_write(global.buffer, buffer_u32, playerIdCounter); //playerIdCounter
-        //alarm[0] = 30;
+        buffer_write(global.buffer, buffer_u32, pId); //playerIdCounter
+        //Delay
+        repeat(100)
+        {
+            i = 0;
+        }
         network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         
         //Send ID of the Player.
@@ -200,6 +261,10 @@ switch(eventType)
     case network_type_disconnect:
         var socket = ds_map_find_value(async_load, "socket");
         var index = ds_list_find_index(global.players, socket);
+        
+        //Remove player from counter array.
+        playerIdCounter[socket - 2] = 0;
+        show_message(string(playerIdCounter))
         
         if (index != -1)
         {
