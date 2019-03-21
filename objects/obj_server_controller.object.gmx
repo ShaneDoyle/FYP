@@ -215,18 +215,8 @@ switch(eventType)
         ResetId = true;
         
         var i = 0;
-        var pId = 0;
-        repeat(8)
-        {
-            if(playerIdCounter[i] == 0)
-            {
-                var pId = i + 1;
-                playerIdCounter[i] = 1;
-                break;
-            }
-            i++;
-        }
-        
+        var pId = socket - 1;
+
         //Create a player!
         with (instance_create(0, 0, obj_server_player))
         {
@@ -236,9 +226,8 @@ switch(eventType)
             playerSocket = socket;
         }
         
-        //var pId = socket - 1;
         ds_list_add(global.players, socket);
-        show_message("Player " + string(playerIdCounter) + " has joined.");
+        show_message("Player " + string(pId) + " has joined.");
         buffer_seek(global.buffer, buffer_seek_start, 0);
         buffer_write(global.buffer, buffer_u8, 4);
         buffer_write(global.buffer, buffer_u32, pId); //playerIdCounter
@@ -262,17 +251,12 @@ switch(eventType)
         var socket = ds_map_find_value(async_load, "socket");
         var index = ds_list_find_index(global.players, socket);
         
-        //Remove player from counter array.
-        playerIdCounter[socket - 2] = 0;
-        show_message(string(playerIdCounter))
+        var playerLeavingId = 0;
         
         if (index != -1)
         {
             ds_list_delete(global.players, index);
         }
-        
-        //Get information about the player leaving
-        var playerLeavingId = 0;
         
         with (obj_server_player)
         {

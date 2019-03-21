@@ -1319,29 +1319,37 @@ if(powerup == 3)
         {
             var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
             bullet.hspeed = 2.25 * image_xscale;
+            bullet.image_xscale = image_xscale;
         }
         else if(dir == "down")
         {
             var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
             bullet.hspeed = -2.25 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = -180;
         }
         else if (dir == "right")
         {
             var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
             bullet.vspeed = 2.25 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = -90;
         }
         else if (dir == "left")
         {
             var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
             bullet.vspeed = -2.25 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = 90;
         }
         
         bullet.sprite_index = spr_DarkSphere;
         bullet.powerup = 3;
         bullet.life = 140;
-        bullet.rotate = 25;
+        //bullet.rotate = 25;
         bullet.fadein = false;
         bullet.damage = 35;
+        bullet.image_speed = 0.4;
         
     }
     
