@@ -333,7 +333,7 @@ if (powerup == 4 &amp;&amp; soundplayed == false)
 }
 
 //Ice
-if (powerup == 5 &amp;&amp; soundplayed == false)
+if (powerup == 5 &amp;&amp; soundplayed == false &amp;&amp; sprite_index != spr_Ice)
 {
     soundplayed = true;
     var audio = audio_play_sound(IceHeadbutt,0,false);
@@ -346,7 +346,22 @@ if (powerup == 5 &amp;&amp; soundplayed == false)
         case 4: audio_sound_pitch(audio,1.1); break;
         case 5: audio_sound_pitch(audio,1.2); break;
     }
-    
+}
+
+//Ice
+if (powerup == 5 &amp;&amp; soundplayed == false &amp;&amp; sprite_index == spr_Ice)
+{
+    soundplayed = true;
+    var audio = audio_play_sound(GravitySound1,0,false);
+    pitch = irandom_range(1,5)
+    switch(pitch)
+    {
+        case 1: audio_sound_pitch(audio,0.8); break;
+        case 2: audio_sound_pitch(audio,0.9); break;
+        case 3: audio_sound_pitch(audio,1.0); break;
+        case 4: audio_sound_pitch(audio,1.1); break;
+        case 5: audio_sound_pitch(audio,1.2); break;
+    }
 }
 </string>
           </argument>

@@ -147,6 +147,7 @@ switch(msgId)
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
+        var movementtype = buffer_read(buffer, buffer_string);
         
         with (obj_remoteplayer)
         {
@@ -176,6 +177,7 @@ switch(msgId)
                 remotePlayersprite = sprite_number;
                 remotePlayerimageindex = image_frame;
                 remotePlayerReadyToProceed = readytoproceed;
+                remotePlayerMovementtype = movementtype;
              
             }
         }

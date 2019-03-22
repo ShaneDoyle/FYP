@@ -411,6 +411,33 @@ image_alpha = 1;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unfreeze
+if(movementtype == "ice")
+{
+    movementtype = "player";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="4">
       <action>
         <libid>1</libid>
@@ -598,6 +625,7 @@ buffer_write(global.buffer, buffer_bool, ability);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, hit);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
+buffer_write(global.buffer, buffer_string, movementtype);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 </string>
@@ -1498,8 +1526,57 @@ if(powerup == 5)
             attacking = true;
         }
         
-        bullet.damage = 25;
+        bullet.damage = 20;
         bullet.powerup = 5;
+    }
+    
+    
+    //Snowball
+    if(keyboard_check_pressed(ord('G')))
+    {
+        if(ability == false &amp;&amp; playerabilitypower == 8)
+        {
+        playerabilitypower = 0;
+        image_index = 0;
+        image_speed = 0.50;
+        attacking = true;
+        alarm[0] = 20;
+        if(dir == "up")
+        {
+            var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = 4 * image_xscale;
+            bullet.image_xscale = image_xscale;
+        }
+        else if(dir == "down")
+        {
+            var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
+            bullet.hspeed = -4 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = -180;
+        }
+        else if (dir == "right")
+        {
+            var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
+            bullet.vspeed = 4 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = -90;
+        }
+        else if (dir == "left")
+        {
+            var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
+            bullet.vspeed = -4 * image_xscale;
+            bullet.image_xscale = image_xscale;
+            bullet.image_angle = 90;
+        }
+        
+        bullet.sprite_index = spr_IceBolt;
+        bullet.powerup = 5;
+        bullet.life = 100;
+        //bullet.rotate = 45;
+        bullet.fadein = false;
+        bullet.damage = 0;
+        bullet.image_speed = 0.4;
+        }
     }
 }
 
@@ -1533,7 +1610,10 @@ if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
 
 if(place_meeting(x,y+25,obj_block) &amp;&amp; removecannon == true)
 {
-    movementtype = "player";
+    if(movementtype == "cannon")
+    {
+        movementtype = "player";
+    }
     vspeed = 0;
     hspeed = 0;
     if (cannon_hspeed &gt; 0)
@@ -4010,41 +4090,6 @@ if(playerscore &lt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Death Manager
-if(PlayerDeath == true)
-{
-    if(image_alpha == 1)
-    {
-        audio_play_sound(DeathSoundVulf,0,false);
-        audio_stop_sound(SMB2Theme);
-        image_alpha -= 0.01;
-    }
-    else if(image_alpha &gt; 0)
-    {
-        image_alpha -= 0.01;
-        image_speed = 0;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Check for winning conditions
 if(global.PlayerMove == true)
 {
@@ -4132,6 +4177,41 @@ if(global.PlayerMove == true)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Death Manager
+if(PlayerDeath == true)
+{
+    if(image_alpha == 1)
+    {
+        audio_play_sound(DeathSoundVulf,0,false);
+        audio_stop_sound(SMB2Theme);
+        image_alpha -= 0.01;
+    }
+    else if(image_alpha &gt; 0)
+    {
+        image_alpha -= 0.01;
+        image_speed = 0;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Ability power stuff
 if(ability == true)
 {
@@ -4157,7 +4237,7 @@ if(ability == true)
 }
 else if(alarm[4] == -1)
 {
-    alarm[4] = 240;
+    alarm[4] = 5; //240;
 }
 
 if(playerabilitypower &lt; 0)
@@ -4165,6 +4245,31 @@ if(playerabilitypower &lt; 0)
     playerabilitypower = 0;
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If Frozen
+if(movementtype == "ice")
+{
+    image_speed = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -4206,6 +4311,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     if(dir != "down")
     {
         pushplayer = 3;
+        scr_gravitysnapsound();
         //view_angle = 270;
         //image_angle = 270;
     }
@@ -4254,6 +4360,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     if(dir != "up")
     {
         pushplayer = 3;
+        scr_gravitysnapsound();
     }
     else
     {
@@ -4310,6 +4417,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     if(dir != "right")
     {
         pushplayer = 3;
+        scr_gravitysnapsound();
     }
     else
     {
@@ -4354,6 +4462,7 @@ if(other.planetnumber == obj_localplayer.planetnumber &amp;&amp; obj_localplayer
     if(dir != "left")
     {
         pushplayer = 3;
+        scr_gravitysnapsound();
     }
     else
     {
@@ -4416,6 +4525,39 @@ if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
         else
         {
             alarm[10] = other.damage * 1.3;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Freeze
+if(other.sprite_index == spr_IceBolt)
+{
+    if(movementtype != "ice")
+    {
+        audio_play_sound(Freeze,0,false);
+        movementtype = "ice";
+        if(alarm[5] == -1)
+        {
+            alarm[5] = 180;
         }
     }
 }
@@ -5006,7 +5148,14 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw Player
-if(hit == true)
+
+if(movementtype == "ice")
+{
+    shader_set(shader_frozen);
+    draw_self();
+    shader_reset();
+}
+else if(hit == true)
 {
     shader_set(shader_hit);
     draw_self();
@@ -5398,6 +5547,31 @@ if(room != rm_lobby &amp;&amp; playerhp &gt; 0)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If frozen.
+if(movementtype == "ice")
+{
+    draw_sprite_ext(spr_Frozen,0,x,y,1,1,image_angle,c_white,1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="9" enumb="84">
       <action>
@@ -5478,7 +5652,7 @@ if(playerhp &gt; 0)
 {
      //playerhp -= 1;
 }
-if(room != rm_lobby)// || 1 == 1)
+if(room == rm_lobby)// || 1 == 1)
 {
     if(alarm[0] == -1)
     {

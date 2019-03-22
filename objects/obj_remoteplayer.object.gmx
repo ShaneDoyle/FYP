@@ -40,6 +40,7 @@ remotePlayerId = 0;
 remotePlayersprite = 0;
 remotePlayerimageindex = 0;
 remotePlayerReadyToProceed = false;
+remotePlayerMovementtype = "lobby";
 
 //Movement
 remote_direction = 1;
@@ -511,7 +512,13 @@ if(remotePlayerHit == false &amp;&amp; obj_projectile.damage &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw player
-if(remotePlayerHit == true)
+if(remotePlayerMovementtype == "ice") //CHANGE THIS TO REMOTEMOVEMENT TYPE!
+{
+    shader_set(shader_frozen);
+    draw_self();
+    shader_reset();
+}
+else if(remotePlayerHit == true)
 {
     shader_set(shader_hit);
     draw_self();
@@ -779,6 +786,31 @@ if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerH
             }
         }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If frozen.
+if(remotePlayerMovementtype == "ice")
+{
+    draw_sprite_ext(spr_Frozen,0,x,y,1,1,image_angle,c_white,1);
 }
 </string>
           </argument>

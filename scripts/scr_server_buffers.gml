@@ -364,6 +364,7 @@ switch (msgId)
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
+        var movementtype = buffer_read(buffer, buffer_string);
         var roomId = buffer_read(buffer, buffer_u8);
     
         
@@ -409,6 +410,7 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_bool, attacking);
                         buffer_write(global.buffer, buffer_bool, hit);
                         buffer_write(global.buffer, buffer_bool, readytoproceed);
+                        buffer_write(global.buffer, buffer_string, movementtype);
                         network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
                     }
                 }

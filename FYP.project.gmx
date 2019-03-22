@@ -26,6 +26,8 @@
     <sound>sound\Slash_1</sound>
     <sound>sound\Gen2SurfTheme</sound>
     <sound>sound\GravitySound1</sound>
+    <sound>sound\GravitySound2</sound>
+    <sound>sound\GravitySound3</sound>
     <sound>sound\SummonerStealth</sound>
     <sound>sound\LightningZap1</sound>
     <sound>sound\LightningZap2</sound>
@@ -38,6 +40,7 @@
     <sound>sound\SMB2Theme</sound>
     <sound>sound\Lobby_Music</sound>
     <sound>sound\ClaimGem</sound>
+    <sound>sound\Freeze</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Player">
@@ -275,6 +278,7 @@
       <sprites name="Weapons">
         <sprites name="3. Summoning">
           <sprite>sprites\spr_DarkSphere</sprite>
+          <sprite>sprites\spr_IceBolt</sprite>
         </sprites>
         <sprites name="4. Bomb">
           <sprite>sprites\spr_BombExplosion</sprite>
@@ -286,6 +290,7 @@
         </sprites>
         <sprites name="5. Ice">
           <sprite>sprites\spr_Ice</sprite>
+          <sprite>sprites\spr_Frozen</sprite>
         </sprites>
       </sprites>
     </sprites>
@@ -384,6 +389,7 @@
       <script>scripts\scr_knockback.gml</script>
       <script>scripts\scr_reset.gml</script>
       <script>scripts\scr_respawn.gml</script>
+      <script>scripts\scr_gravitysnapsound.gml</script>
       <script>scripts\scr_angle_player.gml</script>
     </scripts>
     <script>scripts\get_computer_ip_create.gml</script>
@@ -393,6 +399,7 @@
     <shader type="GLSLES">shaders\shader_grey.shader</shader>
     <shader type="GLSLES">shaders\shader_white.shader</shader>
     <shader type="GLSLES">shaders\shader_hit.shader</shader>
+    <shader type="GLSLES">shaders\shader_frozen.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\font1</font>
