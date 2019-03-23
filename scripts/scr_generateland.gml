@@ -44,6 +44,15 @@ instance_create(startingx - 96, startingy + 16, obj_LeftPortal);
 //Up 
 for(i=0; i<blocksize; i++)
 {
+    //Spawn points.
+    if(i == blocksize/2)
+    {
+        var spawn = instance_create(currentx, currenty - 64, obj_server_spawn_point);
+        spawn.planetdirection = "up";
+        spawn.planetnumber = global.planetnumber;
+        spawn.playerimageangle = 0;
+    }
+    
     //Spawn Cannons
     if(i == 2)
     {
@@ -185,6 +194,7 @@ spawngrass = true
 
 for(i=0; i<blocksize; i++)
 {
+    
     altitudecheck++;
     bush++;
     pitfall++;
@@ -192,6 +202,15 @@ for(i=0; i<blocksize; i++)
     
     var block = instance_create(currentx, currenty, obj_block);
     block.image_index = 7;
+    
+    //Spawn points.
+    if(i == blocksize/2)
+    {
+        var spawn = instance_create(currentx + 64, currenty, obj_server_spawn_point);
+        spawn.planetdirection = "right";
+        spawn.planetnumber = global.planetnumber;
+        spawn.playerimageangle = -90;
+    }
     
     //Spawn bush
     if(bush == bushchance)
@@ -269,6 +288,7 @@ left_loop = left_loop / 32;
 
 for(i=0; i<left_loop; i++)
 {
+
     altitudecheck++;
     bush++;
     pitfall++;
@@ -277,6 +297,15 @@ for(i=0; i<left_loop; i++)
 
     var block = instance_create(currentx, currenty, obj_block);
     block.image_index = 6;
+    
+    //Spawn points.
+    if(i == blocksize/2)
+    {
+        var spawn = instance_create(currentx - 64, currenty, obj_server_spawn_point);
+        spawn.planetdirection = "left";
+        spawn.planetnumber = global.planetnumber;
+        spawn.playerimageangle = 90;
+    }
     
      //Spawn bush
     if(bush == bushchance)
@@ -366,6 +395,15 @@ for(i=0; i< down_loop * 2; i++)
     
     var block = instance_create(currentx, currenty, obj_block);
     block.image_index = 8;
+    
+    //Spawn points.
+    if(i == blocksize/2)
+    {
+        var spawn = instance_create(currentx, currenty + 64, obj_server_spawn_point);
+        spawn.planetdirection = "down";
+        spawn.planetnumber = global.planetnumber;
+        spawn.playerimageangle = 180;
+    }
     
     //Bottom Left Corner
     if(i == 0)

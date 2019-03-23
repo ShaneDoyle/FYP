@@ -429,4 +429,18 @@ switch(msgId)
         var cannon = instance_create(xx, yy, obj_client_cannon);
         cannon.cannondirection = cannondirection;
     break;
+    
+    //Spawn creation
+    case 25:
+        var xx = buffer_read(buffer, buffer_s32);
+        var yy = buffer_read(buffer, buffer_s32);
+        var planetdirection = buffer_read(buffer, buffer_string);
+        var planetnumber = buffer_read(buffer, buffer_u8);
+        var playerimageangle = buffer_read(buffer, buffer_s16);
+        
+        var spawn = instance_create(xx, yy, obj_client_spawn_point);
+        spawn.planetdirection = planetdirection;
+        spawn.planetnumber = planetnumber;
+        spawn.playerimageangle = playerimageangle;
+    break;
 }

@@ -323,14 +323,30 @@ switch (msgId)
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
+            //Tell this player about existing spawn points!
+            for (var i = 0; i < instance_number(obj_server_spawn_point); i++)
+            {
+                var spawn = instance_find(obj_server_spawn_point, i);
+                
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 25);
+                buffer_write(global.buffer, buffer_s32, spawn.x);
+                buffer_write(global.buffer, buffer_s32, spawn.y);
+                buffer_write(global.buffer, buffer_string, spawn.planetdirection);
+                buffer_write(global.buffer, buffer_u8, spawn.planetnumber);
+                buffer_write(global.buffer, buffer_s16, spawn.playerimageangle);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            }
             
             
             //Save this room change
+            /*
             ini_open(pName + ".ini");
             ini_write_real("position", "room", roomId);
             ini_write_real("position", "x", pX);
             ini_write_real("position", "y", pY);
             ini_close();
+            */
         }
         else
         {

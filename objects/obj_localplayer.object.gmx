@@ -38,7 +38,7 @@ xinverted = 0; //X
 pushplayer = 0;
 
 //Movement
-grav = 9.0;
+grav = 0;
 hspd = 0;
 vspd = 0;
 acc = 0.3;
@@ -4237,7 +4237,7 @@ if(ability == true)
 }
 else if(alarm[4] == -1)
 {
-    alarm[4] = 5; //240;
+    alarm[4] = 240; //240;
 }
 
 if(playerabilitypower &lt; 0)
@@ -5591,9 +5591,17 @@ if(movementtype == "ice")
           <argument>
             <kind>1</kind>
             <string>///Invert character
-//instance_create(x, y - 30, obj_localBeast);
-//PlayerDeath = true;
-//playerhp -= 20;
+//Tell the server we're joining the game
+buffer_seek(global.buffer, buffer_seek_start, 0);
+buffer_write(global.buffer, buffer_u8, 6);
+buffer_write(global.buffer, buffer_u32, global.playerId);
+buffer_write(global.buffer, buffer_u8, global.playerType);
+buffer_write(global.buffer, buffer_u32, global.playerX);
+buffer_write(global.buffer, buffer_u32, 340);
+buffer_write(global.buffer, buffer_u8, global.playerRoom);
+network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
+
+
 </string>
           </argument>
         </arguments>

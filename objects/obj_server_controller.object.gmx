@@ -391,7 +391,12 @@ with (obj_server_player)
           <argument>
             <kind>1</kind>
             <string>///Restart Room
-room_restart();
+with(obj_block)
+{
+    instance_destroy();
+}
+scr_delete_land();
+instance_create(0,0,obj_server_generate_land);
 </string>
           </argument>
         </arguments>

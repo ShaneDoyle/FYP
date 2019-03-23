@@ -29,6 +29,7 @@
 drawnum = 3;
 image_index = 2;
 image_speed = 0;
+obj_localplayer.readytoproceed = false;
 </string>
           </argument>
         </arguments>
@@ -76,6 +77,7 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>///Start game function
+obj_localplayer.readytoproceed = false;
 scr_startGameWorld();
 </string>
           </argument>

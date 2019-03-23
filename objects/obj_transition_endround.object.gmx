@@ -31,6 +31,7 @@ image_alpha = 0;
 //alarm[0] = 20;
 depth = -1000;
 fade = false;
+
 alarm[0] = 240;
 </string>
           </argument>
@@ -57,6 +58,29 @@ if(obj_localplayer.playerhp &gt; 0)
 {
     obj_localplayer.playerscore++;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Refresh player in world.
 </string>
           </argument>
         </arguments>
@@ -128,11 +152,59 @@ if(fade == true)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Follow player.
+x = obj_Camera.x;
+y = obj_Camera.y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Delete
 if(image_alpha &gt;= 1)
 {
-    instance_destroy();
-    scr_newRound();
+    with(obj_block)
+    {
+        instance_destroy();
+    }
+    
+    //Ensure all other players are ready to proceed. Syncing.
+    obj_localplayer.readytoproceed = true;
+    
+    numberofplayers = instance_number(obj_remoteplayer);
+    var startnextround = 0;
+    
+    //Check other remote players.
+    with(obj_remoteplayer)
+    {
+        remoteReady = remotePlayerReadyToProceed;
+        if(remoteReady == true)
+        {
+            startnextround++;
+        }
+    }
+    
+    if(startnextround == numberofplayers)
+    {
+        instance_destroy();
+        scr_refresh_player();
+        scr_newRound();
+    }
 }
 </string>
           </argument>
