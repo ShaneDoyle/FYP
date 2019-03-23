@@ -1207,7 +1207,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 8;
+        bullet.damage = 11;
         bullet.image_index = irandom_range(0,0);
         
     }
@@ -4584,9 +4584,12 @@ if(other.sprite_index == spr_IceBolt)
           <argument>
             <kind>1</kind>
             <string>///Request to server to delete the gem, and gain points!
-if(instance_number(obj_client_claim_gem) &lt; 1)
+if(global.PlayerMove == true)
 {
-    instance_create(x,y,obj_client_claim_gem);
+    if(instance_number(obj_client_claim_gem) &lt; 1)
+    {
+        instance_create(x,y,obj_client_claim_gem);
+    }
 }
 </string>
           </argument>
@@ -5625,13 +5628,16 @@ network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
           <argument>
             <kind>1</kind>
             <string>///Ready up!
-if(obj_localplayer.readytoproceed == false)
+if(room == rm_lobby &amp;&amp; instance_number(obj_transition2) == 0)
 {
-    obj_localplayer.readytoproceed = true;
-}
-else
-{
-    obj_localplayer.readytoproceed = false;
+    if(obj_localplayer.readytoproceed == false)
+    {
+        obj_localplayer.readytoproceed = true;
+    }
+    else
+    {
+        obj_localplayer.readytoproceed = false;
+    }
 }
 </string>
           </argument>

@@ -175,7 +175,7 @@ y = obj_Camera.y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Delete
+            <string>///Refresh stuff! (IMPORANTANT)
 if(image_alpha &gt;= 1)
 {
     with(obj_block)
@@ -203,6 +203,7 @@ if(image_alpha &gt;= 1)
     {
         instance_destroy();
         scr_refresh_player();
+        scr_delete_land();
         scr_newRound();
     }
 }

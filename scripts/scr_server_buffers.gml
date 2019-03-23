@@ -361,7 +361,7 @@ switch (msgId)
     
     //PROBABLY MOST IMPORTANT CASE!
     //Player information requests
-    case 7:
+    case 7:        
         var pId = buffer_read(buffer, buffer_u32);
         var xx = buffer_read(buffer, buffer_f32);
         var yy = buffer_read(buffer, buffer_f32);
@@ -382,7 +382,7 @@ switch (msgId)
         var readytoproceed = buffer_read(buffer, buffer_bool);
         var movementtype = buffer_read(buffer, buffer_string);
         var roomId = buffer_read(buffer, buffer_u8);
-    
+
         
         //Tell other players about this change
         for (var i = 0; i < ds_list_size(global.players);i++)
@@ -460,6 +460,45 @@ switch (msgId)
             buffer_write(global.buffer, buffer_string, gem.status);
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
+        
+        //Regen Land.
+        if(readytoproceed == false)
+        {
+            if(global.regenerateland >= 0)
+            {
+                global.regenerateland++;
+            }
+        }
+        else
+        {
+            global.regenerateland = 0;
+        }
+
+        if(global.regenerateland > 20)
+        {
+            scr_delete_land();
+            instance_create(0,0,obj_server_generate_land);
+            global.regenerateland = -1;
+        }
+        
+        //Regen Land cooldown.
+        if(readytoproceed == true && global.regenerateland == -1)
+        {
+            if(global.regeneratelandcooldown >= 0)
+            {
+                global.regeneratelandcooldown++;
+            }
+        }
+        else
+        {
+            global.regeneratelandcooldown = 0;
+        }
+        
+        if(global.regeneratelandcooldown > 120)
+        {
+            global.regenerateland = 0;
+        }
+        
     break;
     
     //Chat request (unused)

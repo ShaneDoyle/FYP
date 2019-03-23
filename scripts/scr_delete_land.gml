@@ -38,7 +38,22 @@ with(obj_server_cannon)
     instance_destroy();
 }
 
+with(obj_client_cannon)
+{
+    instance_destroy();
+}
+
 with(obj_server_spawn_point)
+{
+    instance_destroy();
+}
+
+with(obj_client_spawn_point)
+{
+    instance_destroy();
+}
+
+with(obj_server_gem)
 {
     instance_destroy();
 }
