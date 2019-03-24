@@ -43,8 +43,14 @@ with(obj_client_cannon)
     instance_destroy();
 }
 
+with(obj_old_spawn_point)
+{
+    instance_destroy();
+}
+
 with(obj_server_spawn_point)
 {
+    instance_create(x,y,obj_old_spawn_point);
     instance_destroy();
 }
 
@@ -55,7 +61,7 @@ with(obj_client_spawn_point)
 
 with(obj_server_gem)
 {
-    instance_destroy();
+    status = "death";
 }
 
 global.planetnumber = 1;

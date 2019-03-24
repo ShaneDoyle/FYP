@@ -40,7 +40,7 @@ global.down_currenty = 0;
 global.gemnumber = 1;
 global.planetnumber = 1;
 global.regenland = false;
-global.regenerateland = 0;
+global.regenerateland = -1;
 global.regeneratelandcooldown = 0;
 </string>
           </argument>

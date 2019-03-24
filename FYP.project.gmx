@@ -242,6 +242,9 @@
         <sprite>sprites\spr_GemCounter</sprite>
         <sprite>sprites\spr_StatIcon</sprite>
       </sprites>
+      <sprites name="Connection">
+        <sprite>sprites\spr_Connection</sprite>
+      </sprites>
     </sprites>
     <sprites name="Menu">
       <sprites name="Settings">
@@ -524,6 +527,7 @@
       <objects name="Objects">
         <object>objects\obj_server_crate</object>
         <object>objects\obj_server_spawn_point</object>
+        <object>objects\obj_old_spawn_point</object>
         <object>objects\obj_server_cannon</object>
       </objects>
       <objects name="Gem">

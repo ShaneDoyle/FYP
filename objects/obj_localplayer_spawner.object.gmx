@@ -68,25 +68,26 @@ if(instance_number(obj_client_spawn_point) &gt; 0)
     obj_localplayer.dir = inst.planetdirection;
     obj_localplayer.image_angle = inst.playerimageangle;
     obj_localplayer.grav = 0.2;
+    randomrange = 128;
     
     if(obj_localplayer.dir == "up")
     {
-        obj_localplayer.x += random_range(-200,-200)
+        obj_localplayer.x += random_range(-randomrange,randomrange)
         obj_localplayer.y -= 100;
     }
     else if(obj_localplayer.dir == "right")
     {
         obj_localplayer.x += 100
-        obj_localplayer.y += random_range(-200,-200)
+        obj_localplayer.y += random_range(-randomrange,randomrange)
     }
     else if(obj_localplayer.dir == "left")
     {
         obj_localplayer.x -= 100
-        obj_localplayer.y += random_range(-200,-200)
+        obj_localplayer.y += random_range(-randomrange,randomrange)
     }
     else if(obj_localplayer.dir == "down")
     {
-        obj_localplayer.x += random_range(-200,-200)
+        obj_localplayer.x += random_range(-randomrange,randomrange)
         obj_localplayer.y += 100;
     }
     

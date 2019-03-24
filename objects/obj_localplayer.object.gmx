@@ -5117,7 +5117,7 @@ if(room == rm_lobby)
     draw_sprite_ext(spr_Box, 0, x - 40, y, 0.30, 0.30, 0, c_white, 1);
     
     //Show ready status.
-    if(readytoproceed == true)
+    if(readytoproceed == true || instance_number(obj_transition2) &gt; 0)
     {
         draw_sprite_ext(spr_Tick, 0, x - 40, y, 0.20, 0.20, 0, c_white, 1);
     }

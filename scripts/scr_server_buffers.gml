@@ -462,7 +462,7 @@ switch (msgId)
         }
         
         //Regen Land.
-        if(readytoproceed == false)
+        if(readytoproceed == false && obj_server_lobby.ServerRoom == "GameWorld")
         {
             if(global.regenerateland >= 0)
             {
@@ -474,7 +474,7 @@ switch (msgId)
             global.regenerateland = 0;
         }
 
-        if(global.regenerateland > 20)
+        if(global.regenerateland > 20 && obj_server_lobby.ServerRoom == "GameWorld")
         {
             scr_delete_land();
             instance_create(0,0,obj_server_generate_land);
