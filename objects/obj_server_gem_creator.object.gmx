@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Initialisation
+itemtype = 0;
 if(instance_number(obj_old_spawn_point) &gt; 0)
 {
     var inst = instance_find(obj_old_spawn_point, irandom(instance_number(obj_old_spawn_point) - 1));
@@ -63,7 +64,14 @@ else if (instance_number(obj_server_spawn_point) &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Create gem, destroy creator.
-instance_create(x,y,obj_server_HP_gem);
+if(itemtype == 1)
+{
+    instance_create(x,y,obj_server_HP_gem);
+}
+else if (itemtype == 2)
+{
+    instance_create(x,y,obj_server_ability_gem);
+}
 instance_destroy();
 </string>
           </argument>

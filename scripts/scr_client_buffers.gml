@@ -413,9 +413,17 @@ switch(msgId)
     //Claim gem reward.
     case 23:
         var playerclaimed = buffer_read(buffer, buffer_u32);
+        var typeofitem = buffer_read(buffer, buffer_u32);
         if(playerclaimed == global.playerId)
         {
-            scr_getStar();
+            if(typeofitem == 1)
+            {
+                scr_getStar();
+            }
+            else if(typeofitem == 2)
+            {
+                show_message("ABILITY STAR");
+            }
         }
         audio_play_sound(ClaimGem,0,false);
     break;
@@ -442,5 +450,31 @@ switch(msgId)
         spawn.planetdirection = planetdirection;
         spawn.planetnumber = planetnumber;
         spawn.playerimageangle = playerimageangle;
+    break;
+    
+    //Get Server Ability Gem Settings
+    case 26:
+        var gemID = buffer_read(buffer, buffer_u32);
+        var xx = buffer_read(buffer, buffer_f32);
+        var yy = buffer_read(buffer, buffer_f32);
+        var status = buffer_read(buffer, buffer_string);
+        
+        if(status == "active")
+        {
+            if(instance_number(obj_client_ability_gem) < 1)
+            {
+                var gem = instance_create(xx, yy, obj_client_ability_gem);
+            }
+        }
+        else
+        {
+            with(obj_client_ability_gem)
+            {
+                if(status == "death")
+                {
+                    instance_destroy();
+                }
+            }
+        }
     break;
 }

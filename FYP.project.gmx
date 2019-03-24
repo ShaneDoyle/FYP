@@ -359,6 +359,7 @@
   <scripts name="scripts">
     <scripts name="LevelStuff">
       <script>scripts\scr_resumemusic.gml</script>
+      <script>scripts\scr_delete_items.gml</script>
       <script>scripts\scr_delete_land.gml</script>
       <script>scripts\scr_generateland.gml</script>
     </scripts>
@@ -480,6 +481,7 @@
       <object>objects\obj_npc</object>
       <object>objects\obj_playerList</object>
       <object>objects\obj_client_HP_gem</object>
+      <object>objects\obj_client_ability_gem</object>
       <object>objects\obj_client_claim_gem</object>
       <object>objects\obj_remoteProjectile</object>
       <object>objects\obj_projectile</object>

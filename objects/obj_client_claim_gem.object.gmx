@@ -72,7 +72,7 @@ gemID = 0;
 buffer_seek(global.buffer, buffer_seek_start, 0);
 buffer_write(global.buffer, buffer_u8, 23);
 buffer_write(global.buffer, buffer_u32, global.playerId);
-buffer_write(global.buffer, buffer_u32, gemID);
+buffer_write(global.buffer, buffer_u32, 1);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 </string>
           </argument>

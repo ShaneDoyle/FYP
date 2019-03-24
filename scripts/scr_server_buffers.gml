@@ -452,14 +452,28 @@ switch (msgId)
         {
             var gem = instance_find(obj_server_HP_gem, i);
 
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 22);
+            buffer_write(global.buffer, buffer_u32, gem.gemID);
+            buffer_write(global.buffer, buffer_f32, gem.x);
+            buffer_write(global.buffer, buffer_f32, gem.y);
+            buffer_write(global.buffer, buffer_string, gem.status);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            
+        }
+        
+        //Tell the player about existing HP gems.
+        for (var i = 0; i < instance_number(obj_server_ability_gem); i++)
+        {
+            var gem = instance_find(obj_server_ability_gem, i);
+
                 buffer_seek(global.buffer, buffer_seek_start, 0);
-                buffer_write(global.buffer, buffer_u8, 22);
+                buffer_write(global.buffer, buffer_u8, 26);
                 buffer_write(global.buffer, buffer_u32, gem.gemID);
                 buffer_write(global.buffer, buffer_f32, gem.x);
                 buffer_write(global.buffer, buffer_f32, gem.y);
                 buffer_write(global.buffer, buffer_string, gem.status);
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
-            
         }
         
         //Regen Land.
@@ -479,6 +493,7 @@ switch (msgId)
         {
             if(obj_server_generate_land.alarm[2] == -1)
             {
+                scr_delete_items();
                 obj_server_generate_land.alarm[2] = 300;
             }
             global.regenerateland = -1;
@@ -714,15 +729,18 @@ switch (msgId)
         var pId = buffer_read(buffer, buffer_u32);
         var recievedgemID = buffer_read(buffer, buffer_u32);
         
-        with(obj_server_HP_gem)
+        if(recievedgemID == 1)
         {
-
-            status = "death";
-            buffer_seek(global.buffer, buffer_seek_start, 0);
-            buffer_write(global.buffer, buffer_u8, 23);
-            buffer_write(global.buffer, buffer_u32, pId);
-            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
-            
+            with(obj_server_HP_gem)
+            {
+                status = "death";
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 23);
+                buffer_write(global.buffer, buffer_u32, pId);
+                buffer_write(global.buffer, buffer_u32, recievedgemID);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+                
+            }
         }
     break;
 }

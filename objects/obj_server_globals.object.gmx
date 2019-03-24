@@ -48,6 +48,31 @@ global.spawnitems = false;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create server gem.
+var createitem = instance_create(800,600,obj_server_gem_creator);
+createitem.itemtype = 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -66,7 +91,8 @@ global.spawnitems = false;
           <argument>
             <kind>1</kind>
             <string>///Create server gem.
-instance_create(800,600,obj_server_gem_creator);
+var createitem = instance_create(800,600,obj_server_gem_creator);
+createitem.itemtype = 1;
 </string>
           </argument>
         </arguments>
@@ -97,6 +123,16 @@ if(HPGems &lt;  1 &amp;&amp; instance_number(obj_server_gem_creator) &lt; 1) //&
     if(alarm[0] == -1 &amp;&amp; global.spawnitems = true)
     {
         alarm[0] = 420;
+    }
+}
+
+AbilityGems = instance_number(obj_server_ability_gem);
+
+if(AbilityGems &lt;  1 &amp;&amp; instance_number(obj_server_gem_creator) &lt; 1) //&amp;&amp; obj_server_lobby.ServerRoom = "GameWorld")
+{
+    if(alarm[0] == -1 &amp;&amp; global.spawnitems = true)
+    {
+        alarm[1] = 420;
     }
 }
 </string>

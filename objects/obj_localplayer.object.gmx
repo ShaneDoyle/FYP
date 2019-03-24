@@ -3917,15 +3917,15 @@ if(room == rm_lobby)
         playermaxhp = 110;
         playerhp = 110;
         maxspeed = 2.4 + (0.3 * 1);
-        jumpspeed = 9.0 + (0.25 * 1);
+        jumpspeed = 9.001 + (0.25 * 1);
     }
     //Summoner
     else if(powerup == 3)
     {
-        playermaxhp = 100;
-        playerhp = 100;
-        maxspeed = 2.4 + (0.3 * 1);
-        jumpspeed = 9.0 + (0.25 * 1);
+        playermaxhp = 110;
+        playerhp = 110;
+        maxspeed = 2.4// + (0.3 * 1);
+        jumpspeed = 9.001;// + (0.25 * 1);
     }
     //(4) Demolitioner
     else if(powerup == 4)
@@ -3952,7 +3952,7 @@ if(room == rm_lobby)
         playermaxhp = 100;
         playerhp = 100;
         maxspeed = 2.4;
-        jumpspeed = 9.0;
+        jumpspeed = 9.001;
     }
     
 }
@@ -4275,6 +4275,37 @@ if(movementtype == "ice")
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_client_ability_gem">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Request to server to delete the gem, and gain points!
+if(global.PlayerMove == true)
+{
+    if(instance_number(obj_client_claim_gem) &lt; 1)
+    {
+        var claim = instance_create(x,y,obj_client_claim_gem);
+        claim = 2;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_DownPortal">
       <action>
         <libid>1</libid>
@@ -4589,7 +4620,7 @@ if(global.PlayerMove == true)
     if(instance_number(obj_client_claim_gem) &lt; 1)
     {
         var claim = instance_create(x,y,obj_client_claim_gem);
-        claim = other.gemID;
+        claim = 1;
     }
 }
 </string>
