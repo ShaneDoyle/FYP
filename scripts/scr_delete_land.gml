@@ -59,7 +59,7 @@ with(obj_client_spawn_point)
     instance_destroy();
 }
 
-with(obj_server_gem)
+with(obj_server_HP_gem)
 {
     status = "death";
 }

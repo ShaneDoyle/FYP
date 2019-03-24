@@ -447,18 +447,19 @@ switch (msgId)
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
-        //Tell the player about existing gems.
-        for (var i = 0; i < instance_number(obj_server_gem); i++)
+        //Tell the player about existing HP gems.
+        for (var i = 0; i < instance_number(obj_server_HP_gem); i++)
         {
-            var gem = instance_find(obj_server_gem, i);
+            var gem = instance_find(obj_server_HP_gem, i);
+
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 22);
+                buffer_write(global.buffer, buffer_u32, gem.gemID);
+                buffer_write(global.buffer, buffer_f32, gem.x);
+                buffer_write(global.buffer, buffer_f32, gem.y);
+                buffer_write(global.buffer, buffer_string, gem.status);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             
-            buffer_seek(global.buffer, buffer_seek_start, 0);
-            buffer_write(global.buffer, buffer_u8, 22);
-            buffer_write(global.buffer, buffer_u32, gem.gemID);
-            buffer_write(global.buffer, buffer_f32, gem.x);
-            buffer_write(global.buffer, buffer_f32, gem.y);
-            buffer_write(global.buffer, buffer_string, gem.status);
-            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
         //Regen Land.
@@ -476,8 +477,10 @@ switch (msgId)
 
         if(global.regenerateland > 20 && obj_server_lobby.ServerRoom == "GameWorld")
         {
-            scr_delete_land();
-            instance_create(0,0,obj_server_generate_land);
+            if(obj_server_generate_land.alarm[2] == -1)
+            {
+                obj_server_generate_land.alarm[2] = 300;
+            }
             global.regenerateland = -1;
         }
         
@@ -709,16 +712,17 @@ switch (msgId)
     //Read in gem claim request. 
     case 23:
         var pId = buffer_read(buffer, buffer_u32);
-        var gemID = buffer_read(buffer, buffer_u32);
+        var recievedgemID = buffer_read(buffer, buffer_u32);
         
-        with(obj_server_gem)
+        with(obj_server_HP_gem)
         {
+
             status = "death";
-            
             buffer_seek(global.buffer, buffer_seek_start, 0);
             buffer_write(global.buffer, buffer_u8, 23);
             buffer_write(global.buffer, buffer_u32, pId);
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            
         }
     break;
 }

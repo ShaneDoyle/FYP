@@ -63,7 +63,7 @@ else if (instance_number(obj_server_spawn_point) &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Create gem, destroy creator.
-instance_create(x,y,obj_server_gem);
+instance_create(x,y,obj_server_HP_gem);
 instance_destroy();
 </string>
           </argument>

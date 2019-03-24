@@ -4566,7 +4566,7 @@ if(other.sprite_index == spr_IceBolt)
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_client_gem">
+    <event eventtype="4" ename="obj_client_HP_gem">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -4588,7 +4588,8 @@ if(global.PlayerMove == true)
 {
     if(instance_number(obj_client_claim_gem) &lt; 1)
     {
-        instance_create(x,y,obj_client_claim_gem);
+        var claim = instance_create(x,y,obj_client_claim_gem);
+        claim = other.gemID;
     }
 }
 </string>

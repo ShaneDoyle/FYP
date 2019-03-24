@@ -384,7 +384,7 @@ switch(msgId)
         clientrequest.RequestInfo = RequestInfo;
     break;
     
-    //Get Server Gem Settings
+    //Get Server HP Gem Settings
     case 22:
         var gemID = buffer_read(buffer, buffer_u32);
         var xx = buffer_read(buffer, buffer_f32);
@@ -393,14 +393,14 @@ switch(msgId)
         
         if(status == "active")
         {
-            if(instance_number(obj_client_gem) < 1)
+            if(instance_number(obj_client_HP_gem) < 1)
             {
-                var gem = instance_create(xx, yy, obj_client_gem);
+                var gem = instance_create(xx, yy, obj_client_HP_gem);
             }
         }
         else
         {
-            with(obj_client_gem)
+            with(obj_client_HP_gem)
             {
                 if(status == "death")
                 {
