@@ -33,7 +33,7 @@ depth = -1000;
 
 
 //Set player ready shit.
-obj_localplayer.readytoproceed = false;
+//obj_localplayer.readytoproceed = false;
 </string>
           </argument>
         </arguments>

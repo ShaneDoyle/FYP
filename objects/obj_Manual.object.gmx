@@ -56,8 +56,15 @@ playsound = true;
             <kind>1</kind>
             <string>///Go to connect room
 IP = get_string("IP Address: ", "109.255.126.138"); //109.255.126.138
-global.ConnectToIP = IP;
-room_goto(rm_connect);
+if(IP == "")
+{
+    room_goto(rm_TitleScreen);
+}
+else
+{
+    global.ConnectToIP = IP;
+    room_goto(rm_connect);
+}
 </string>
           </argument>
         </arguments>

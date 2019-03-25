@@ -101,6 +101,14 @@ socket = network_create_socket(network_socket_tcp);
             <kind>1</kind>
             <string>///Player Counter
 var i = 0;
+
+player1 = false;
+player2 = false;
+player3 = false;
+player4 = false;
+player5 = false;
+player6 = false;
+
 repeat(8)
 {
     playerIdCounter[i] = 0;
@@ -215,7 +223,43 @@ switch(eventType)
         ResetId = true;
         
         var i = 0;
-        var pId = socket - 1;
+        var pId = 0;
+        
+        if(player1 == false)
+        {
+            pId = 1;
+            player1 = true;
+        }
+        else if(player2 == false)
+        {
+            pId = 2;
+            player2 = true;
+        }
+        else if(player3 == false)
+        {
+            pId = 3;
+            player3 = true;
+        }
+        else if(player4 == false)
+        {
+            pId = 4;
+            player4 = true;
+        }
+        else if(player5 == false)
+        {
+            pId = 5;
+            player5 = true;
+        }
+        else if(player6 == false)
+        {
+            pId = 6;
+            player5 = true;
+        }
+        else
+        {
+            pId = 0;
+        }
+
 
         //Create a player!
         with (instance_create(0, 0, obj_server_player))
@@ -250,6 +294,32 @@ switch(eventType)
     case network_type_disconnect:
         var socket = ds_map_find_value(async_load, "socket");
         var index = ds_list_find_index(global.players, socket);
+        
+        var playerid = (socket - 1);
+        if(playerid == 1)
+        {
+            player1 = false;
+        }
+        else if(playerid == 2)
+        {
+            player2 = false;
+        }
+        else if(playerid == 3)
+        {
+            player3 = false;
+        }
+        else if(playerid == 4)
+        {
+            player4 = false;
+        }
+        else if(playerid == 5)
+        {
+            player5 = false;
+        }
+        else if(playerid == 6)
+        {
+            player6 = false;
+        }
         
         var playerLeavingId = 0;
         
@@ -357,6 +427,10 @@ var yy = 10;
 draw_text(10, yy, "ID");
 draw_text(110, yy, "Name");
 draw_text(210, yy, "In Game?");
+draw_text(310, yy, "HP");
+draw_text(380, yy, "R1");
+draw_text(440, yy, "ReadyStart");
+draw_text(540, yy, "ReadyEnd");
 
 yy += 20;
 
@@ -365,6 +439,10 @@ with (obj_server_player)
     draw_text(10, yy, playerIdentifier);
     draw_text(110, yy, playerName);
     draw_text(210, yy, playerInGame);
+    draw_text(310, yy, playerHP);
+    draw_text(380, yy, playerreadynextround);
+    draw_text(440, yy, playerstartround);
+    draw_text(540, yy, playerendround);
     
     yy += 20;
 }

@@ -89,6 +89,8 @@ jetpack = false; //Powerup 1
 jetpackanimation = false;
 miscsound = true;
 readytoproceed = false;
+readyendround = false;
+readystartround = false;
 
 //Controls
 key_right = noone;
@@ -625,6 +627,8 @@ buffer_write(global.buffer, buffer_bool, ability);
 buffer_write(global.buffer, buffer_bool, attacking);
 buffer_write(global.buffer, buffer_bool, hit);
 buffer_write(global.buffer, buffer_bool, readytoproceed);
+buffer_write(global.buffer, buffer_bool, readystartround);
+buffer_write(global.buffer, buffer_bool, readyendround);
 buffer_write(global.buffer, buffer_string, movementtype);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
@@ -1082,7 +1086,7 @@ else if(dir == "left")
           <argument>
             <kind>1</kind>
             <string>///Attacking!
-if(room != rm_lobby &amp;&amp; movementtype == "player")
+if(room != rm_lobby &amp;&amp; movementtype == "player" &amp;&amp; global.PlayerMove == true &amp;&amp; PlayerDeath == false)
 {
 
 
@@ -1408,29 +1412,29 @@ if(powerup == 4)
         if(dir == "up")
         {
             var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = 3 * image_xscale;
-            bullet.vspeed = -3;
+            bullet.hspeed = 5 * image_xscale;
+            bullet.vspeed = -2;
             bullet.vspeeddrag = 0.25;
         }
         else if(dir == "down")
         {
             var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = -3 * image_xscale;
-            bullet.vspeed = 3;
+            bullet.hspeed = -5 * image_xscale;
+            bullet.vspeed = 2;
             bullet.vspeeddrag = -0.25;
         }
         else if (dir == "right")
         {
             var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
-            bullet.vspeed = 3 * image_xscale;
-            bullet.hspeed = 3;
+            bullet.vspeed = 5 * image_xscale;
+            bullet.hspeed = 2;
             bullet.hspeeddrag = -0.25;
         }
         else if (dir == "left")
         {
             var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
-            bullet.vspeed = -3 * image_xscale;
-            bullet.hspeed = -3;
+            bullet.vspeed = -5 * image_xscale;
+            bullet.hspeed = -2;
             bullet.hspeeddrag = 0.25;
         }
         
@@ -3916,8 +3920,8 @@ if(room == rm_lobby)
     {
         playermaxhp = 110;
         playerhp = 110;
-        maxspeed = 2.4 + (0.3 * 1);
-        jumpspeed = 9.001 + (0.25 * 1);
+        maxspeed = 2.1// + (0.3 * 1);
+        jumpspeed = 9.001 //+ (0.25 * 1);
     }
     //Summoner
     else if(powerup == 3)
@@ -4108,7 +4112,7 @@ if(global.PlayerMove == true)
         }
     }
     
-    if(startnextround == instance_number(obj_remoteplayer) &amp;&amp; instance_number(obj_remoteplayer) &gt; 0)
+    if(startnextround == instance_number(obj_remoteplayer) &amp;&amp; instance_number(obj_remoteplayer) &gt; 10)
     {
         global.PlayerMove = false;
         instance_create(obj_Camera.x, obj_Camera.y, obj_transition_endround);
@@ -4185,11 +4189,57 @@ if(PlayerDeath == true)
         audio_play_sound(DeathSoundVulf,0,false);
         audio_stop_sound(SMB2Theme);
         image_alpha -= 0.01;
+        abilitypower = 0;
+        ability = false;
+        
+        
+        //Sword &amp; Shield
+        if(powerup == 1)
+        {
+            //playermaxhp = 140;
+            //playerhp = 140;
+            maxspeed = 2.4;
+            jumpspeed = 9.001;
+        }
+        //Shock Blaster
+        else if(powerup == 2)
+        {
+            //playermaxhp = 110;
+           // playerhp = 110;
+            maxspeed = 2.1// + (0.3 * 1);
+            jumpspeed = 9.001 //+ (0.25 * 1);
+        }
+        //Summoner
+        else if(powerup == 3)
+        {
+            //playermaxhp = 110;
+           // playerhp = 110;
+            maxspeed = 2.4// + (0.3 * 1);
+            jumpspeed = 9.001;// + (0.25 * 1);
+        }
+        //(4) Demolitioner
+        else if(powerup == 4)
+        {
+            //playermaxhp = 100;
+           // playerhp = 100;
+            maxspeed = 2.4;
+            jumpspeed = 9.001;
+        }
+        
+        //(5) Ice
+        else if(powerup == 5)
+        {
+            //playermaxhp = 130;
+           // playerhp = 130;
+            maxspeed = 2.4;
+            jumpspeed = 9.001;
+        }
     }
     else if(image_alpha &gt; 0)
     {
         image_alpha -= 0.01;
         image_speed = 0;
+        
     }
 }
 </string>
@@ -4269,37 +4319,6 @@ if(playerabilitypower &lt; 0)
 if(movementtype == "ice")
 {
     image_speed = 0;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_client_ability_gem">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Request to server to delete the gem, and gain points!
-if(global.PlayerMove == true)
-{
-    if(instance_number(obj_client_claim_gem) &lt; 1)
-    {
-        var claim = instance_create(x,y,obj_client_claim_gem);
-        claim = 2;
-    }
 }
 </string>
           </argument>
@@ -4590,6 +4609,37 @@ if(other.sprite_index == spr_IceBolt)
         {
             alarm[5] = 180;
         }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_ability_gem">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Request to server to delete the gem, and gain points!
+if(global.PlayerMove == true)
+{
+    if(instance_number(obj_client_claim_gem) &lt; 1)
+    {
+        var claim = instance_create(x,y,obj_client_claim_gem);
+        claim = 2;
     }
 }
 </string>
@@ -5627,6 +5677,7 @@ if(movementtype == "ice")
             <kind>1</kind>
             <string>///Invert character
 //Tell the server we're joining the game
+/*
 buffer_seek(global.buffer, buffer_seek_start, 0);
 buffer_write(global.buffer, buffer_u8, 6);
 buffer_write(global.buffer, buffer_u32, global.playerId);
@@ -5635,6 +5686,7 @@ buffer_write(global.buffer, buffer_u32, global.playerX);
 buffer_write(global.buffer, buffer_u32, 340);
 buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
+*/
 
 
 </string>

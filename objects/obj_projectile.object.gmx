@@ -579,7 +579,7 @@ if(powerup == 4)
         rotate = 0;
         if(life &gt; 90)
         {
-            life = 89;
+            life = 60;
         }
     }
     

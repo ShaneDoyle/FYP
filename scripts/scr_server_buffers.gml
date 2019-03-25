@@ -380,6 +380,8 @@ switch (msgId)
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
+        var readystartround = buffer_read(buffer, buffer_bool);
+        var readyendround = buffer_read(buffer, buffer_bool);
         var movementtype = buffer_read(buffer, buffer_string);
         var roomId = buffer_read(buffer, buffer_u8);
 
@@ -400,6 +402,10 @@ switch (msgId)
                         player = id;
                         playerX = xx;
                         playerY = yy;
+                        playerHP = hp;
+                        playerreadynextround = readytoproceed;
+                        playerstartround = readystartround;
+                        playerendround = readyendround;
                     }
                 }
                 
@@ -426,6 +432,8 @@ switch (msgId)
                         buffer_write(global.buffer, buffer_bool, attacking);
                         buffer_write(global.buffer, buffer_bool, hit);
                         buffer_write(global.buffer, buffer_bool, readytoproceed);
+                        buffer_write(global.buffer, buffer_bool, readystartround);
+                        buffer_write(global.buffer, buffer_bool, readyendround);
                         buffer_write(global.buffer, buffer_string, movementtype);
                         network_send_packet(storedPlayerSocket, global.buffer, buffer_tell(global.buffer));
                     }
@@ -444,6 +452,9 @@ switch (msgId)
             buffer_write(global.buffer, buffer_u8, 20);
             buffer_write(global.buffer, buffer_bool, serverlobby.ArePlayersReady);
             buffer_write(global.buffer, buffer_string, serverlobby.ServerRoom);
+            buffer_write(global.buffer, buffer_bool, serverlobby.RoundReady);
+            buffer_write(global.buffer, buffer_bool, serverlobby.RoundStart);
+            buffer_write(global.buffer, buffer_bool, serverlobby.RoundEnd);
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
@@ -494,7 +505,7 @@ switch (msgId)
             if(obj_server_generate_land.alarm[2] == -1)
             {
                 scr_delete_items();
-                obj_server_generate_land.alarm[2] = 300;
+                obj_server_generate_land.alarm[2] = 900;
             }
             global.regenerateland = -1;
         }

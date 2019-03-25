@@ -80,50 +80,55 @@ switch(msgId)
     
     //Change player room response
     case 6:
-        var pId = buffer_read(buffer, buffer_u32);
-        var pType = buffer_read(buffer, buffer_u8);
-        var pName = buffer_read(buffer, buffer_string);
-        var pX = buffer_read(buffer, buffer_u32);
-        var pY = buffer_read(buffer, buffer_u32);
-        var roomId = buffer_read(buffer, buffer_u8);
-        
-        var instance = noone;
 
-        with (obj_remoteplayer)
-        {
-            if (remotePlayerId == pId)
+            var pId = buffer_read(buffer, buffer_u32);
+            var pType = buffer_read(buffer, buffer_u8);
+            var pName = buffer_read(buffer, buffer_string);
+            var pX = buffer_read(buffer, buffer_u32);
+            var pY = buffer_read(buffer, buffer_u32);
+            var roomId = buffer_read(buffer, buffer_u8);
+            
+            var instance = noone;
+    
+            with (obj_remoteplayer)
             {
-                instance = id;
+                if (remotePlayerId == pId)
+                {
+                    instance = id;
+                }
             }
-        }
+            
+            //If this player doesn't yet exist
+            if (instance == noone)
+            {
+                //Only if we exist in the gameworld or in the lobby
+                if (instance_exists(obj_localplayer))
+                {
+                    //if (global.playerRoom == roomId)
+                    //{
+                        //Create a remote player
+                        var remotePlayer = instance_create(pX, pY, obj_remoteplayer);
+                        remotePlayer.remotePlayerId = pId;
+                        remotePlayer.remotePlayerType = pType;
+                        remotePlayer.remotePlayerName = pName;
+                        remotePlayer.remotePlayerHP = 0;
+                        remotePlayer.remotePlayerMaxHP = 0;
+                        
+                   // }  
+                }
+            }
+            //Otherwise destroy this player as they are leaving
+            else
+            {
+                with (instance)
+                {
+                    if(room == rm_lobby)
+                    {
+                        instance_destroy();
+                    }
+                }
+            }
         
-        //If this player doesn't yet exist
-        if (instance == noone)
-        {
-            //Only if we exist in the gameworld or in the lobby
-            if (instance_exists(obj_localplayer))
-            {
-                //if (global.playerRoom == roomId)
-                //{
-                    //Create a remote player
-                    var remotePlayer = instance_create(pX, pY, obj_remoteplayer);
-                    remotePlayer.remotePlayerId = pId;
-                    remotePlayer.remotePlayerType = pType;
-                    remotePlayer.remotePlayerName = pName;
-                    remotePlayer.remotePlayerHP = 0;
-                    remotePlayer.remotePlayerMaxHP = 0;
-                    
-               // }  
-            }
-        }
-        //Otherwise destroy this player as they are leaving
-        else
-        {
-            with (instance)
-            {
-                instance_destroy();
-            }
-        }
     break;
     
     //PROBABLY MOST IMPORTANT CASE!
@@ -147,6 +152,8 @@ switch(msgId)
         var attacking = buffer_read(buffer, buffer_bool);
         var hit = buffer_read(buffer, buffer_bool);
         var readytoproceed = buffer_read(buffer, buffer_bool);
+        var readystartround= buffer_read(buffer, buffer_bool);
+        var readyendround = buffer_read(buffer, buffer_bool);
         var movementtype = buffer_read(buffer, buffer_string);
         
         with (obj_remoteplayer)
@@ -367,8 +374,14 @@ switch(msgId)
     case 20:
         var ready = buffer_read(buffer, buffer_bool);
         var serverroom = buffer_read(buffer, buffer_string);
+        var roundready = buffer_read(buffer, buffer_bool);
+        var roundstart = buffer_read(buffer, buffer_bool);
+        var roundend = buffer_read(buffer, buffer_bool);
         
         global.ClientRoom = serverroom;
+        global.RoundReady = roundready;
+        global.RoundStart = roundstart;
+        global.RoundEnd = roundend;
         /*
         var serverlobby = instance_create(0,0,obj_remote_server_lobby);
         serverlobby.ArePlayersReady = ready;

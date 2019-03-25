@@ -44,10 +44,16 @@ global.PlayerMove = false;
 global.ConnectToIP = "127.0.0.1";
 global.MyIP = "";
 
+//Game variables
+global.Round = 1;
+
+
+
+
 //Debug
 global.musicset = 0;
 global.hideportals = 0;
-global.controldebug = true;
+global.controldebug = false;
 global.latencydebug = true;
 
 //World Settings.

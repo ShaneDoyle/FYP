@@ -32,9 +32,13 @@ playerInGame = false;
 playerSocket = 0;
 playerType = 0;
 playerLatency = 0;
+playerHP = 100;
 playerX = 0;
 playerY = 0;
 playerRoom = 0;
+playerreadynextround = false;
+playerstartround = false;
+playerendround = false;
 
 //Other variables
 image_speed = 0;

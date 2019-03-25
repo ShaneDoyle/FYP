@@ -29,6 +29,36 @@
 ArePlayersReady = false;
 ServerRoom = "rm_test!";
 MapSize = 0;
+RoundReady = false;
+RoundStart = false;
+RoundEnd = false;
+
+
+//Workings
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Counter for round ready at lobby.
+roundover = 0;
+roundstartcount = 0;
+roundend = 0;
 </string>
           </argument>
         </arguments>
@@ -58,9 +88,113 @@ if(room == rm_server)
     buffer_write(global.buffer, buffer_u8, 20);
     buffer_write(global.buffer, buffer_bool, ArePlayersReady);
     buffer_write(global.buffer, buffer_string, ServerRoom);
+    buffer_write(global.buffer, buffer_bool, RoundReady);
+    buffer_write(global.buffer, buffer_bool, RoundStart);
+    buffer_write(global.buffer, buffer_bool, RoundEnd);
     network_send_packet(obj_server_controller.socket, global.buffer, scr_getBufferSize());
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check players to leave lobby.
+if(roundover &gt;= 10 + instance_number(obj_server_player) * 20)
+{
+    RoundReady = true;
+    ServerRoom = "GameWorld";
+}
+
+with(obj_server_player)
+{
+    if(playerreadynextround == true)
+    {
+        obj_server_lobby.roundover++;
+    }
+    else
+    {
+        obj_server_lobby.roundover = 0;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check players to start new round.
+with(obj_server_player)
+{
+    if(playerHP == 0)
+    {
+        obj_server_lobby.roundstartcount++;
+    }
+    else
+    {
+        //obj_server_lobby.roundover = 0;
+    }
+}
+
+numberofplayers = instance_number(obj_server_player)
+if(roundstartcount &gt;= (numberofplayers - 1) &amp;&amp; numberofplayers &gt; 1)
+{
+    show_message("START NEW ROUND");
+}
+
+obj_server_lobby.roundstartcount = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_text(100,100,roundover);
 </string>
           </argument>
         </arguments>
