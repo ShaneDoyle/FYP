@@ -378,14 +378,14 @@ switch(msgId)
         var roundstart = buffer_read(buffer, buffer_bool);
         var roundend = buffer_read(buffer, buffer_bool);
         
-        global.ClientRoom = serverroom;
-        global.RoundReady = roundready;
-        global.RoundStart = roundstart;
-        global.RoundEnd = roundend;
         /*
         var serverlobby = instance_create(0,0,obj_remote_server_lobby);
         serverlobby.ArePlayersReady = ready;
         serverlobby.ServerLobby = serverroom;*/
+        global.ClientRoom = serverroom;
+        global.RoundReady = roundready;
+        global.RoundStart = roundstart;
+        global.RoundEnd = roundend;
         
     break;
     

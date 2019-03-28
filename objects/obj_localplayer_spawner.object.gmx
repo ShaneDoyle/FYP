@@ -67,7 +67,6 @@ if(instance_number(obj_client_spawn_point) &gt; 0)
     obj_localplayer.y = inst.y;
     obj_localplayer.dir = inst.planetdirection;
     obj_localplayer.image_angle = inst.playerimageangle;
-    obj_localplayer.grav = 0.2;
     randomrange = 128;
     
     if(obj_localplayer.dir == "up")

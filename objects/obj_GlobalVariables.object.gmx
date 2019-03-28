@@ -37,12 +37,15 @@ global.playerHP = 0;
 global.playerDamage = 0;
 global.playerSpeed = 0;
 global.projectilenumber = 0;
+global.PlayerMove = false;
 
 //Lobby variables
 global.ClientRoom = "rm_lobby";
-global.PlayerMove = false;
 global.ConnectToIP = "127.0.0.1";
 global.MyIP = "";
+global.RoundReady = false;
+global.RoundStart = false;
+global.RoundEnd = false;
 
 //Game variables
 global.Round = 1;

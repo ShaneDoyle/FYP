@@ -50,7 +50,10 @@ with(obj_old_spawn_point)
 
 with(obj_server_spawn_point)
 {
-    instance_create(x,y,obj_old_spawn_point);
+    if(room == rm_server)
+    {
+        instance_create(x,y,obj_old_spawn_point);
+    }
     instance_destroy();
 }
 
@@ -60,4 +63,9 @@ with(obj_client_spawn_point)
 }
 
 
-global.planetnumber = 1;
+
+//Reset for server only.
+if(room == rm_server)
+{
+    global.planetnumber = 1;
+}

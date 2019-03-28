@@ -38,7 +38,7 @@ xinverted = 0; //X
 pushplayer = 0;
 
 //Movement
-grav = 0;
+grav = 0.6;
 hspd = 0;
 vspd = 0;
 acc = 0.3;
@@ -1443,7 +1443,7 @@ if(powerup == 4)
         bullet.life = 1000;
         bullet.rotate = 30;
         bullet.backupdamage = 30;
-        bullet.damage = 30;
+        bullet.damage = 40;
         object_set_solid( bullet, solid );
     }
     
@@ -4028,26 +4028,6 @@ if(room == rm_lobby)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///HP, Energy &amp; Score Caps
 if(playerhp &lt;= 0)
 {
@@ -4097,27 +4077,17 @@ if(playerscore &lt; 0)
             <string>///Check for winning conditions
 if(global.PlayerMove == true)
 {
-    var startnextround = 0;
-    if(playerhp == 0)
-    {
-        startnextround++;
-    }
-    
-    with(obj_remoteplayer)
-    {
-        remotehp = remotePlayerHP;
-        if(remotehp == 0)
-        {
-            startnextround++;
-        }
-    }
-    
-    if(startnextround == instance_number(obj_remoteplayer) &amp;&amp; instance_number(obj_remoteplayer) &gt; 10)
+    if(global.RoundEnd == true &amp;&amp; instance_number(obj_transition_endround) &lt; 1)
     {
         global.PlayerMove = false;
         instance_create(obj_Camera.x, obj_Camera.y, obj_transition_endround);
     }
+    else
+    {
+        //global.RoundEnd = false;
+    }
 }
+
 </string>
           </argument>
         </arguments>
@@ -4207,7 +4177,7 @@ if(PlayerDeath == true)
             //playermaxhp = 110;
            // playerhp = 110;
             maxspeed = 2.1// + (0.3 * 1);
-            jumpspeed = 9.001 //+ (0.25 * 1);
+            jumpspeed = 8.501 //+ (0.25 * 1);
         }
         //Summoner
         else if(powerup == 3)

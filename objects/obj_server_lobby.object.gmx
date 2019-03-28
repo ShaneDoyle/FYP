@@ -168,7 +168,11 @@ with(obj_server_player)
 numberofplayers = instance_number(obj_server_player)
 if(roundstartcount &gt;= (numberofplayers - 1) &amp;&amp; numberofplayers &gt; 1)
 {
-    show_message("START NEW ROUND");
+    obj_server_lobby.RoundEnd = true;
+}
+else
+{
+    obj_server_lobby.RoundEnd = false;
 }
 
 obj_server_lobby.roundstartcount = 0;
