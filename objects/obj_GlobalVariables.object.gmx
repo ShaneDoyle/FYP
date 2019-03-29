@@ -48,8 +48,7 @@ global.RoundStart = false;
 global.RoundEnd = false;
 
 //Game variables
-global.Round = 1;
-
+global.GameVersion = "v1.01";
 
 
 

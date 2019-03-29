@@ -81,6 +81,7 @@ switch (msgId)
         buffer_write(global.buffer, buffer_u32, positionX);
         buffer_write(global.buffer, buffer_u32, positionY);
         buffer_write(global.buffer, buffer_u8, currentRoom);
+        buffer_write(global.buffer, buffer_string, global.ServerGameVersion);
         network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
     break;
     

@@ -43,6 +43,8 @@ global.regenland = false;
 global.regenerateland = -1;
 global.regeneratelandcooldown = 0;
 global.spawnitems = false;
+
+global.ServerGameVersion = "v1.00";
 </string>
           </argument>
         </arguments>

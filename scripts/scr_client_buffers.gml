@@ -38,8 +38,17 @@ switch(msgId)
         global.playerX = buffer_read(buffer, buffer_u32);
         global.playerY = buffer_read(buffer, buffer_u32);
         global.playerRoom = buffer_read(buffer, buffer_u8);
-                
-        room_goto(rm_lobby);
+        var ServerGameVersion = buffer_read(buffer, buffer_string);
+        
+        if(ServerGameVersion != global.GameVersion)
+        {
+            show_message("Game version error. Make sure the server and client are the same version.");
+            room_goto(rm_TitleScreen);
+        }
+        else
+        { 
+            room_goto(rm_lobby);
+        }       
         /*
         switch(response)
         {
