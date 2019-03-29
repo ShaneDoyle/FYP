@@ -3855,6 +3855,10 @@ if(PlayerDeath == false)
 {
     view_angle = lerp(view_angle, image_angle * -1, 0.15);
 }
+else if(instance_number(obj_client_star) &gt; 0)
+{
+    view_angle = lerp(view_angle, 90, 0.05);
+}
 else
 {
     view_angle = lerp(view_angle, 0 , 0.05);
@@ -3907,58 +3911,7 @@ if (alarm[9] == -1)
             <string>///Change stats per class (Lobby).
 if(room == rm_lobby)
 {
-    //Sword &amp; Shield
-    if(powerup == 1)
-    {
-        playermaxhp = 140;
-        playerhp = 140;
-        maxspeed = 2.4;
-        jumpspeed = 9.001;
-    }
-    //Shock Blaster
-    else if(powerup == 2)
-    {
-        playermaxhp = 110;
-        playerhp = 110;
-        maxspeed = 2.1// + (0.3 * 1);
-        jumpspeed = 9.001 //+ (0.25 * 1);
-    }
-    //Summoner
-    else if(powerup == 3)
-    {
-        playermaxhp = 110;
-        playerhp = 110;
-        maxspeed = 2.4// + (0.3 * 1);
-        jumpspeed = 9.001;// + (0.25 * 1);
-    }
-    //(4) Demolitioner
-    else if(powerup == 4)
-    {
-        playermaxhp = 100;
-        playerhp = 100;
-        maxspeed = 2.4;
-        jumpspeed = 9.001;
-    }
-    
-    //(5) Ice
-    else if(powerup == 5)
-    {
-        playermaxhp = 130;
-        playerhp = 130;
-        maxspeed = 2.4;
-        jumpspeed = 9.001;
-    }
-    
-    
-    
-    else
-    {
-        playermaxhp = 100;
-        playerhp = 100;
-        maxspeed = 2.4;
-        jumpspeed = 9.001;
-    }
-    
+    scr_set_player_attributes();
 }
 </string>
           </argument>
@@ -4077,6 +4030,7 @@ if(playerscore &lt; 0)
             <string>///Check for winning conditions
 if(global.PlayerMove == true)
 {
+    readyendround = false;
     if(global.RoundEnd == true &amp;&amp; instance_number(obj_transition_endround) &lt; 1)
     {
         global.PlayerMove = false;
@@ -4086,6 +4040,10 @@ if(global.PlayerMove == true)
     {
         //global.RoundEnd = false;
     }
+}
+else
+{
+    
 }
 
 </string>
@@ -4158,6 +4116,7 @@ if(PlayerDeath == true)
     {
         audio_play_sound(DeathSoundVulf,0,false);
         audio_stop_sound(SMB2Theme);
+        audio_stop_sound(SuddenD);
         image_alpha -= 0.01;
         abilitypower = 0;
         ability = false;
@@ -4289,6 +4248,35 @@ if(playerabilitypower &lt; 0)
 if(movementtype == "ice")
 {
     image_speed = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_star">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Do damage
+if(playerhp &gt; 0)
+{
+    hit = true;
+    playerhp -= 2;
+    alarm[10] = 5;
 }
 </string>
           </argument>
@@ -4547,6 +4535,19 @@ if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
             alarm[10] = other.damage * 1.3;
         }
     }
+    
+    if(other.sprite_index == spr_IceBolt)
+    {
+        if(movementtype != "ice")
+        {
+            audio_play_sound(Freeze,0,false);
+            movementtype = "ice";
+            if(alarm[5] == -1)
+            {
+                alarm[5] = 180;
+            }
+        }
+    }
 }
 </string>
           </argument>
@@ -4569,6 +4570,7 @@ if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Freeze
+/*
 if(other.sprite_index == spr_IceBolt)
 {
     if(movementtype != "ice")
@@ -4687,7 +4689,7 @@ if(global.PlayerMove == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player" &amp;&amp; PlayerDeath == false)
+            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player" &amp;&amp; PlayerDeath == false &amp;&amp; global.PlayerMove == true)
 {
     cannon_hspeed = other.cannon_hspeed;
     x = other.x;
@@ -5658,7 +5660,7 @@ buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 */
 
-
+instance_create(0-1000,0,obj_Star);
 </string>
           </argument>
         </arguments>

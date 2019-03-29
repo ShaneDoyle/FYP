@@ -63,17 +63,17 @@ if(global.powerup == 1)
 else if(global.powerup == 2)
 {
     image_index = 1;
-    global.playerHP = 2;
+    global.playerHP = 3;
     global.playerDamage = 2;
-    global.playerSpeed = 1;
+    global.playerSpeed = 0;
 }
 //(3) Summoner
 else if(global.powerup == 3)
 {
     image_index = 2;
-    global.playerHP = 1;
+    global.playerHP = 0;
     global.playerDamage = 4;
-    global.playerSpeed = 0;
+    global.playerSpeed = 1;
 }
 //(4) Demolitioner
 else if(global.powerup == 4)
@@ -87,9 +87,9 @@ else if(global.powerup == 4)
 else if(global.powerup == 5)
 {
     image_index = 4;
-    global.playerHP = 3;
+    global.playerHP = 1;
     global.playerDamage = 2;
-    global.playerSpeed = 0;
+    global.playerSpeed = 2;
 }
 </string>
           </argument>

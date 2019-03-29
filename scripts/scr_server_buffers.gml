@@ -338,6 +338,8 @@ switch (msgId)
                 network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
             }
             
+
+            
             
             //Save this room change
             /*
@@ -478,54 +480,25 @@ switch (msgId)
         {
             var gem = instance_find(obj_server_ability_gem, i);
 
-                buffer_seek(global.buffer, buffer_seek_start, 0);
-                buffer_write(global.buffer, buffer_u8, 26);
-                buffer_write(global.buffer, buffer_u32, gem.gemID);
-                buffer_write(global.buffer, buffer_f32, gem.x);
-                buffer_write(global.buffer, buffer_f32, gem.y);
-                buffer_write(global.buffer, buffer_string, gem.status);
-                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 26);
+            buffer_write(global.buffer, buffer_u32, gem.gemID);
+            buffer_write(global.buffer, buffer_f32, gem.x);
+            buffer_write(global.buffer, buffer_f32, gem.y);
+            buffer_write(global.buffer, buffer_string, gem.status);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
-        //Regen Land.
-        if(readytoproceed == false && obj_server_lobby.ServerRoom == "GameWorld")
+        //Tell the player about the star (sudden death).
+        for (var i = 0; i < instance_number(obj_server_star); i++)
         {
-            if(global.regenerateland >= 0)
-            {
-                global.regenerateland++;
-            }
-        }
-        else
-        {
-            global.regenerateland = 0;
-        }
+            var star = instance_find(obj_server_star, i);
 
-        if(global.regenerateland > 20 && obj_server_lobby.ServerRoom == "GameWorld")
-        {
-            if(obj_server_generate_land.alarm[2] == -1)
-            {
-                scr_delete_items();
-                obj_server_generate_land.alarm[2] = 900;
-            }
-            global.regenerateland = -1;
-        }
-        
-        //Regen Land cooldown.
-        if(readytoproceed == true && global.regenerateland == -1)
-        {
-            if(global.regeneratelandcooldown >= 0)
-            {
-                global.regeneratelandcooldown++;
-            }
-        }
-        else
-        {
-            global.regeneratelandcooldown = 0;
-        }
-        
-        if(global.regeneratelandcooldown > 120)
-        {
-            global.regenerateland = 0;
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 27);
+            buffer_write(global.buffer, buffer_f32, star.x);
+            buffer_write(global.buffer, buffer_f32, star.y);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
     break;

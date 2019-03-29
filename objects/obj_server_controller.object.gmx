@@ -429,8 +429,8 @@ draw_text(110, yy, "Name");
 draw_text(210, yy, "In Game?");
 draw_text(310, yy, "HP");
 draw_text(380, yy, "R1");
-draw_text(440, yy, "ReadyStart");
-draw_text(540, yy, "ReadyEnd");
+draw_text(440, yy, "R-End");
+draw_text(540, yy, "R-Start");
 
 yy += 20;
 
@@ -441,8 +441,8 @@ with (obj_server_player)
     draw_text(210, yy, playerInGame);
     draw_text(310, yy, playerHP);
     draw_text(380, yy, playerreadynextround);
-    draw_text(440, yy, playerstartround);
-    draw_text(540, yy, playerendround);
+    draw_text(440, yy, playerendround);
+    draw_text(540, yy, playerstartround);
     
     yy += 20;
 }

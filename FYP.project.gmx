@@ -7,7 +7,9 @@
     <extension index="0">extensions\Get Computer IP</extension>
   </NewExtensions>
   <sounds name="sound">
+    <sound>sound\SuddenDeathStart</sound>
     <sound>sound\IceHeadbutt</sound>
+    <sound>sound\SuddenD</sound>
     <sound>sound\DarkSphere</sound>
     <sound>sound\FatBee</sound>
     <sound>sound\BombToss</sound>
@@ -272,8 +274,7 @@
     </sprites>
     <sprites name="Transitions">
       <sprite>sprites\spr_Transition1</sprite>
-      <sprite>sprites\spr_Go</sprite>
-      <sprite>sprites\spr_Numbers</sprite>
+      <sprite>sprites\spr_SuddenDeath</sprite>
       <sprite>sprites\spr_Transition2</sprite>
     </sprites>
     <sprites name="Projectiles">
@@ -320,6 +321,7 @@
       <sprite>sprites\spr_Cannon_Down_Right</sprite>
       <sprite>sprites\spr_Cannon_Down_Left</sprite>
       <sprite>sprites\spr_WarpPortal</sprite>
+      <sprite>sprites\spr_Star</sprite>
     </sprites>
     <sprites name="Settings">
       <sprite>sprites\spr_DisplayName</sprite>
@@ -336,6 +338,8 @@
     </sprites>
     <sprites name="Texts">
       <sprite>sprites\spr_Connecting</sprite>
+      <sprite>sprites\spr_Go</sprite>
+      <sprite>sprites\spr_Numbers</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -350,6 +354,7 @@
       <background>background\EveningSky</background>
       <background>background\Test</background>
       <background>background\LobbySky</background>
+      <background>background\SuddenDeath</background>
     </backgrounds>
     <backgrounds name="Tilesets">
       <background>background\Grasslands</background>
@@ -397,6 +402,7 @@
       <script>scripts\scr_reset.gml</script>
       <script>scripts\scr_respawn.gml</script>
       <script>scripts\scr_gravitysnapsound.gml</script>
+      <script>scripts\scr_set_player_attributes.gml</script>
       <script>scripts\scr_angle_player.gml</script>
     </scripts>
     <script>scripts\get_computer_ip_create.gml</script>
@@ -422,6 +428,8 @@
     <objects name="Client">
       <objects name="Objects">
         <object>objects\obj_client_spawn_point</object>
+        <object>objects\obj_stop_star</object>
+        <object>objects\obj_client_star</object>
         <object>objects\obj_client_cannon</object>
       </objects>
       <objects name="Tilesets">
@@ -528,6 +536,7 @@
       <object>objects\obj_server_camera</object>
       <object>objects\obj_server_projectile</object>
       <objects name="Objects">
+        <object>objects\obj_server_star</object>
         <object>objects\obj_server_crate</object>
         <object>objects\obj_server_spawn_point</object>
         <object>objects\obj_old_spawn_point</object>

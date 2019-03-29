@@ -184,21 +184,30 @@ if(image_alpha &gt;= 1)
 {
     
     //Delete Land.
+    //1
     if(deleteland == false)
     {
         scr_delete_land();
         deleteland = true;
     }
+    //2
     else if(refreshplayer == false)
     {
         scr_refresh_player();
         refreshplayer = true;
     }
-    else if(newround == false &amp;&amp; instance_number(obj_client_spawn_point) &gt; 0)
+
+    //4
+    else if(newround == false &amp;&amp; global.RoundStart == true &amp;&amp; instance_number(obj_client_spawn_point) &gt; 0)
     {
-        scr_newRound();
         newround = true;
+        scr_newRound();
         instance_destroy();
+    }
+    
+    //3
+    else if(instance_number(obj_client_spawn_point) &gt; 0)
+    {
         obj_localplayer.readyendround = true;
     }
 }

@@ -490,4 +490,25 @@ switch(msgId)
             }
         }
     break;
+    
+    //Get Star (client)
+    case 27:
+        var xx = buffer_read(buffer, buffer_f32);
+        var yy = buffer_read(buffer, buffer_f32);
+        
+        if(instance_number(obj_client_star) < 1)
+        {
+            var star = instance_create(xx, yy, obj_client_star);
+        }
+        else
+        {
+            with(obj_client_star)
+            {
+                obj_client_star.x = xx;
+                obj_client_star.y = yy;
+            }
+        }
+
+
+    break;
 }

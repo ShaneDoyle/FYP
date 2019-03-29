@@ -62,6 +62,15 @@ with(obj_client_spawn_point)
     instance_destroy();
 }
 
+with(obj_client_star)
+{
+    instance_destroy();
+}
+
+with(obj_server_star)
+{
+    instance_destroy();
+}
 
 
 //Reset for server only.

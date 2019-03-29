@@ -192,6 +192,12 @@ altitudecheck = 0;
 altitude = choose(4);
 spawngrass = true
 
+//Hard coded planet stoper. This should be changed eventually!
+if(global.planetnumber == 2)
+{
+    var starstop = instance_create(currentx, currenty, obj_stop_star);
+}
+
 for(i=0; i<blocksize; i++)
 {
     
