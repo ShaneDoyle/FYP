@@ -1165,9 +1165,9 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 20 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 22 &amp;&amp; PlayerDeath == false)
     {
-        playerenergy -= 20;
+        playerenergy -= 22;
         slowmovement = true;
         alarm[0] = 16;
         if(dir == "up")
@@ -1211,7 +1211,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 11;
+        bullet.damage = 13;
         bullet.image_index = irandom_range(0,0);
         
     }
@@ -4254,35 +4254,6 @@ if(movementtype == "ice")
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_client_star">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Do damage
-if(playerhp &gt; 0)
-{
-    hit = true;
-    playerhp -= 2;
-    alarm[10] = 5;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="obj_DownPortal">
       <action>
         <libid>1</libid>
@@ -4535,16 +4506,23 @@ if(hit == false &amp;&amp; other.damage &gt; 0 &amp;&amp; playerhp &gt; 0)
             alarm[10] = other.damage * 1.3;
         }
     }
-    
-    if(other.sprite_index == spr_IceBolt)
+}
+
+//Abilities that do not damage.
+if(hit == false &amp;&amp; playerhp &gt; 0)
+{
+    if(image_alpha == 1 || image_alpha == 0)
     {
-        if(movementtype != "ice")
+        if(other.sprite_index == spr_IceBolt)
         {
-            audio_play_sound(Freeze,0,false);
-            movementtype = "ice";
-            if(alarm[5] == -1)
+            if(movementtype != "ice")
             {
-                alarm[5] = 180;
+                audio_play_sound(Freeze,0,false);
+                movementtype = "ice";
+                if(alarm[5] == -1)
+                {
+                    alarm[5] = 180;
+                }
             }
         }
     }
@@ -4708,6 +4686,35 @@ if(global.PlayerMove == true)
         removecannon = false;
         alarm[1] = 90;
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_star">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Do damage
+if(playerhp &gt; 0)
+{
+    hit = true;
+    playerhp -= 2;
+    alarm[10] = 5;
 }
 </string>
           </argument>
@@ -5205,24 +5212,30 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Draw Player
-
-if(movementtype == "ice")
+if (shader_is_compiled(shader_hit))
 {
-    shader_set(shader_frozen);
-    draw_self();
-    shader_reset();
-}
-else if(hit == true)
-{
-    shader_set(shader_hit);
-    draw_self();
-    shader_reset();
-}
-else if(powerup == 1 &amp;&amp; ability == true)
-{
-    shader_set(shader_grey);
-    draw_self();
-    shader_reset();
+    if(movementtype == "ice")
+    {
+        shader_set(shader_frozen);
+        draw_self();
+        shader_reset();
+    }
+    else if(hit == true)
+    {
+        shader_set(shader_hit);
+        draw_self();
+        shader_reset();
+    }
+    else if(powerup == 1 &amp;&amp; ability == true)
+    {
+        shader_set(shader_grey);
+        draw_self();
+        shader_reset();
+    }
+    else
+    {
+        draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+    }
 }
 else
 {
@@ -5660,7 +5673,7 @@ buffer_write(global.buffer, buffer_u8, global.playerRoom);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 */
 
-instance_create(0-1000,0,obj_Star);
+//instance_create(0-1000,0,obj_Star);
 </string>
           </argument>
         </arguments>
@@ -5718,6 +5731,7 @@ if(room == rm_lobby &amp;&amp; instance_number(obj_transition2) == 0)
           <argument>
             <kind>1</kind>
             <string>///Kill Self
+/*
 if(playerhp &gt; 0)
 {
      //playerhp -= 1;
@@ -5762,6 +5776,7 @@ if(room == rm_lobby)// || 1 == 1)
           <argument>
             <kind>1</kind>
             <string>///Change colour
+/*
 if(room == rm_lobby)
 {
     if(alarm[0] == -1)

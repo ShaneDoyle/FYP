@@ -65,7 +65,7 @@ background_color = col;
 audio_stop_all();
 
 audio_play_sound(SuddenDeathStart, 0, false);
-alarm[0] = 120;
+alarm[0] = 150;
 </string>
           </argument>
         </arguments>
@@ -170,7 +170,7 @@ else if(image_index &lt;= 1)
           <argument>
             <kind>1</kind>
             <string>///GUI Stuff
-if(fade &gt; 0.95)
+if(fade &gt;= 0.98)
 {
     fadeout = true;
 }

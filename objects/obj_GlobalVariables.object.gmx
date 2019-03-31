@@ -48,7 +48,7 @@ global.RoundStart = false;
 global.RoundEnd = false;
 
 //Game variables
-global.GameVersion = "v1.01";
+global.GameVersion = "v1.00";
 
 
 

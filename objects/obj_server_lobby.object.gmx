@@ -32,6 +32,7 @@ MapSize = 0;
 RoundReady = false;
 RoundStart = false;
 RoundEnd = false;
+RoundEndCounter = 0;
 
 
 //Workings
@@ -198,17 +199,22 @@ if(roundstartcount &gt;= (numberofplayers - 1) &amp;&amp; numberofplayers &gt; 1
 {
     if(obj_server_lobby.RoundEnd == false)
     {
-        if(obj_server_generate_land.alarm[2] == -1)
+        RoundEndCounter++;
+        if(RoundEndCounter &gt;= 30)
         {
-            scr_delete_items();
-            obj_server_generate_land.alarm[2] = 5;
-            obj_server_lobby.RoundEnd = true;
+            if(obj_server_generate_land.alarm[2] == -1)
+            {
+                scr_delete_items();
+                obj_server_generate_land.alarm[2] = 5;
+                obj_server_lobby.RoundEnd = true;
+            }
         }
     }
 }
 else
 {
     obj_server_lobby.RoundEnd = false;
+    RoundEndCounter = 0;
 }
 
 obj_server_lobby.roundstartcount = 0;
@@ -281,12 +287,41 @@ if(ServerRoom == "GameWorld")
 {
     if(alarm[0] == -1 &amp;&amp; instance_number(obj_server_star) &lt; 1 &amp;&amp; RoundEnd == false)
     {
-        alarm[0] = 13500;
+        alarm[0] = 5000;
     }
     else if(RoundEnd == true)
     {
-        alarm[0] = 13500;
+        alarm[0] = 5000;
     }
+}
+else
+{
+    alarm[0] = 5000;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If no players, reset shit.
+if(instance_number(obj_server_player) &lt; 1)
+{
+    ServerRoom = "rm_test!";
 }
 </string>
           </argument>

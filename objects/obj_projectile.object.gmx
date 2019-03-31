@@ -332,6 +332,7 @@ if (powerup == 4 &amp;&amp; soundplayed == false)
     
 }
 
+
 //Ice
 if (powerup == 5 &amp;&amp; soundplayed == false &amp;&amp; sprite_index != spr_Ice)
 {

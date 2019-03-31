@@ -172,7 +172,20 @@ if (powerup == 3 &amp;&amp; soundplayed == false)
 }
 
 //Bomb
-if (powerup == 4 &amp;&amp; soundplayed == false)
+if(powerup == 4 &amp;&amp; sprite_index == spr_BigBombExplosion)
+{
+    var audio = audio_play_sound(BombExplosion,0,false);
+    pitch = irandom_range(1,5)
+    switch(pitch)
+    {
+        case 1: audio_sound_pitch(audio,0.6); break;
+        case 2: audio_sound_pitch(audio,0.65); break;
+        case 3: audio_sound_pitch(audio,0.7); break;
+        case 4: audio_sound_pitch(audio,0.65); break;
+        case 5: audio_sound_pitch(audio,0.6); break;
+    }
+}
+else if (powerup == 4 &amp;&amp; soundplayed == false)
 {
     soundplayed = true;
     var audio = audio_play_sound(BombToss,0,false);

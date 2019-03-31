@@ -512,33 +512,40 @@ if(remotePlayerHit == false &amp;&amp; obj_projectile.damage &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw player
-if(remotePlayerMovementtype == "ice") //CHANGE THIS TO REMOTEMOVEMENT TYPE!
+if (shader_is_compiled(shader_hit))
 {
-    shader_set(shader_frozen);
-    draw_self();
-    shader_reset();
-}
-else if(remotePlayerHit == true)
-{
-    shader_set(shader_hit);
-    draw_self();
-    shader_reset();
-}
-else if(remotePlayerMaxHP == 140 &amp;&amp; remotePlayerAbility == true)
-{
-    shader_set(shader_grey);
-    draw_self();
-    shader_reset();
-}
-else if(remote_imagealpha &lt; 0.31)
-{
+    if(remotePlayerMovementtype == "ice") //CHANGE THIS TO REMOTEMOVEMENT TYPE!
+    {
+        shader_set(shader_frozen);
+        draw_self();
+        shader_reset();
+    }
+    else if(remotePlayerHit == true)
+    {
+        shader_set(shader_hit);
+        draw_self();
+        shader_reset();
+    }
+    else if(remotePlayerMaxHP == 140 &amp;&amp; remotePlayerAbility == true)
+    {
+        shader_set(shader_grey);
+        draw_self();
+        shader_reset();
+    }
+    else if(remote_imagealpha &lt; 0.31)
+    {
+        
+    }
+    else
+    { 
     
+        draw_self();
+        //draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+    }
 }
 else
-{ 
-
+{
     draw_self();
-    //draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
 }
 
 draw_set_font(font1);

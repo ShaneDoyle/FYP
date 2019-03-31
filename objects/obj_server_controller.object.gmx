@@ -469,6 +469,7 @@ with (obj_server_player)
           <argument>
             <kind>1</kind>
             <string>///Restart Room
+/*
 with(obj_block)
 {
     instance_destroy();
