@@ -1412,28 +1412,56 @@ if(powerup == 4)
         if(dir == "up")
         {
             var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = 5 * image_xscale;
+            if(grounded == true)
+            {
+                bullet.hspeed = 2 * image_xscale;
+            }
+            else
+            {
+                bullet.hspeed = 4 * image_xscale;
+            }
             bullet.vspeed = -2;
             bullet.vspeeddrag = 0.25;
         }
         else if(dir == "down")
         {
             var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
-            bullet.hspeed = -5 * image_xscale;
+            if(grounded == true)
+            {
+                bullet.hspeed = -2 * image_xscale;
+            }
+            else
+            {
+                bullet.hspeed = -4 * image_xscale;
+            }
             bullet.vspeed = 2;
             bullet.vspeeddrag = -0.25;
         }
         else if (dir == "right")
         {
             var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
-            bullet.vspeed = 5 * image_xscale;
+            if(grounded == true)
+            {
+                bullet.vspeed = 2 * image_xscale;
+            }
+            else
+            {
+                bullet.vspeed = 4 * image_xscale;
+            }
             bullet.hspeed = 2;
             bullet.hspeeddrag = -0.25;
         }
         else if (dir == "left")
         {
             var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
-            bullet.vspeed = -5 * image_xscale;
+            if(grounded == true)
+            {
+                bullet.vspeed = -2 * image_xscale;
+            }
+            else
+            {
+                bullet.vspeed = -4 * image_xscale;
+            }
             bullet.hspeed = -2;
             bullet.hspeeddrag = 0.25;
         }
@@ -4030,7 +4058,6 @@ if(playerscore &lt; 0)
             <string>///Check for winning conditions
 if(global.PlayerMove == true)
 {
-    readyendround = false;
     if(global.RoundEnd == true &amp;&amp; instance_number(obj_transition_endround) &lt; 1)
     {
         global.PlayerMove = false;
@@ -4112,6 +4139,7 @@ else
             <string>///Death Manager
 if(PlayerDeath == true)
 {
+    playerhp = 0;
     if(image_alpha == 1)
     {
         audio_play_sound(DeathSoundVulf,0,false);
@@ -5115,32 +5143,32 @@ if(room == rm_gameWorld)
             draw_sprite(spr_StatIcon, 3, 10, 8 + (i * 15))
         }
     
-        namelength = string_length(ds_grid_get(statsgrid,0,i)) * 1.35;
+        namelength = string_length(ds_grid_get(statsgrid,0,i)) * 3; //1.35;
         
         
         //Draw Name
-        draw_text(62 + namelength,  13 + (i * 15), ds_grid_get(statsgrid,0,i));
+        draw_text(62 + namelength ,  13 + (i * 15), ds_grid_get(statsgrid,0,i));
         
         //Draw Score counter
         if(ds_grid_get(statsgrid,1,i) == 1)
         {
-            draw_sprite(spr_GemCounter, 0, 94, 13 + (i * 15))
+            draw_sprite(spr_GemCounter, 0, 114, 13 + (i * 15))
         }
         else if(ds_grid_get(statsgrid,1,i) == 2)
         {
-            draw_sprite(spr_GemCounter, 1, 94, 13 + (i * 15))
+            draw_sprite(spr_GemCounter, 1, 114, 13 + (i * 15))
         }
         else if(ds_grid_get(statsgrid,1,i) == 3)
         {
-            draw_sprite(spr_GemCounter, 2, 94, 13 + (i * 15))
+            draw_sprite(spr_GemCounter, 2, 114, 13 + (i * 15))
         }
         else if(ds_grid_get(statsgrid,1,i) == 4)
         {
-            draw_sprite(spr_GemCounter, 3, 94, 13 + (i * 15))
+            draw_sprite(spr_GemCounter, 3, 114, 13 + (i * 15))
         }
         else if(ds_grid_get(statsgrid,1,i) == 5)
         {
-            draw_sprite(spr_GemCounter, 4, 94, 13 + (i * 15))
+            draw_sprite(spr_GemCounter, 4, 114, 13 + (i * 15))
         }
  
     }
@@ -5674,6 +5702,35 @@ network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 */
 
 //instance_create(0-1000,0,obj_Star);
+with(obj_block)
+{
+    sprite_index = spr_snow_block;
+}
+with(obj_bush1)
+{
+    sprite_index = spr_snow_bush1;
+}
+with(obj_grass1)
+{
+    if(sprite_index == spr_grass1)
+    {
+        sprite_index = spr_snow_grass_1;
+    }
+    else if(sprite_index == spr_grass2)
+    {
+        sprite_index = spr_snow_grass_2;
+    }
+    else if(sprite_index == spr_grass3)
+    {
+        sprite_index = spr_snow_grass_3;
+    }
+    else if(sprite_index == spr_grass4)
+    {
+        sprite_index = spr_snow_grass_4;
+    }
+}
+
+background_index[1] = SnowMountains;
 </string>
           </argument>
         </arguments>
@@ -5815,7 +5872,9 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Restart Game
+/*
 game_restart();
+/*
 </string>
           </argument>
         </arguments>

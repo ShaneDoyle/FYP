@@ -1,6 +1,10 @@
-var buffer = argument[0];
-var socket = argument[1];
-var msgId = buffer_read(buffer, buffer_u8); //This will be used in the following cases below
+var buffer = 0
+var socket = 0
+var msgId = 0
+
+buffer = argument[0];
+socket = argument[1];
+msgId = buffer_read(buffer, buffer_u8); //This will be used in the following cases below
 
 switch (msgId)
 {

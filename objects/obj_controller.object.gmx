@@ -294,11 +294,11 @@ if(global.latencydebug == true)
     draw_set_font(font1);
     draw_set_colour(c_white);
     //draw_text(500, 10, "Latency: " + string(global.latency));
-    if(global.latency &gt; 120)
+    if(global.latency &gt; 180)
     {
         draw_sprite_ext(spr_Connection,3,615,0,0.5,0.5,0,c_white,1);
     }
-    else if (global.latency &gt; 90)
+    else if (global.latency &gt; 120)
     {
         draw_sprite_ext(spr_Connection,2,615,0,0.5,0.5,0,c_white,1);
     }

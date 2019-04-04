@@ -76,7 +76,15 @@ alarm[0] = 1;
           <argument>
             <kind>1</kind>
             <string>global.planetnumber++;
-scr_generateland(32*(18*global.planetnumber), 32*18, 10, global.planetnumber);
+latestx = 0;
+with(obj_block)
+{
+    if(x &gt; obj_server_generate_land.latestx)
+    {
+        obj_server_generate_land.latestx = x;
+    }
+}
+scr_generateland(latestx + 32*7, 32*18, 10, global.planetnumber);
 if(alarm[1] == -1)
 {
     alarm[1] = 60;

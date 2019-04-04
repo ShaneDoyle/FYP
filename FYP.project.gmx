@@ -220,13 +220,21 @@
     </sprites>
     <sprites name="Tilesets">
       <sprites name="Grasslands">
+        <sprite>sprites\spr_block</sprite>
         <sprite>sprites\spr_bush1</sprite>
         <sprite>sprites\spr_grass1</sprite>
+        <sprite>sprites\spr_snow_grass_1</sprite>
         <sprite>sprites\spr_grass2</sprite>
+        <sprite>sprites\spr_snow_grass_2</sprite>
         <sprite>sprites\spr_grass3</sprite>
+        <sprite>sprites\spr_snow_grass_3</sprite>
         <sprite>sprites\spr_grass4</sprite>
+        <sprite>sprites\spr_snow_grass_4</sprite>
       </sprites>
-      <sprite>sprites\spr_block</sprite>
+      <sprites name="Snowlands">
+        <sprite>sprites\spr_snow_bush1</sprite>
+        <sprite>sprites\spr_snow_block</sprite>
+      </sprites>
     </sprites>
     <sprites name="GUI">
       <sprites name="Controls">
@@ -355,6 +363,7 @@
       <background>background\Test</background>
       <background>background\LobbySky</background>
       <background>background\SuddenDeath</background>
+      <background>background\SnowMountains</background>
     </backgrounds>
     <backgrounds name="Tilesets">
       <background>background\Grasslands</background>
@@ -564,6 +573,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_launch</room>
+    <room>rooms\rm_TitleScreen</room>
     <rooms name="MasterServer">
       <room>rooms\rm_masterserver</room>
     </rooms>
@@ -571,7 +581,6 @@
       <room>rooms\rm_server</room>
     </rooms>
     <rooms name="Client">
-      <room>rooms\rm_TitleScreen</room>
       <room>rooms\rm_joining</room>
       <room>rooms\rm_listofservers</room>
       <room>rooms\rm_connect</room>

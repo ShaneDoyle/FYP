@@ -1,7 +1,7 @@
 //Generation Variables
 var startingx = argument[0];
 var startingy = argument[1];
-var blocksize = argument[2];
+var blocksize = choose(6,8,8,10,12); //argument[2];
 
 
 randomize();
@@ -16,21 +16,21 @@ currenty = startingy; //Adjusted throughout generation
 
 altitude1 = 2  //How often we want the game to try switch a height
 altitude2 = 4;
-altitude3 = 4;
+altitude3 = 4; //4
 altitude = choose(4);
-altitudechance = 80 //% chance of the height changing. Lower would be more flat lands.
+altitudechance = 100; //% chance of the height changing. Lower would be more flat lands.
 
 //Flora objects
 bush = 0;
 bushchance = choose(10,12,12,14,8);
 
-grasschance = 75; //Percentage of a block having grass
+grasschance = 80; //Percentage of a block having grass
 spawngrass = true; //If true, will ALWAYS spawn grass, regardless of percentage
 
 //Size of world.
 obj_server_lobby.MapSize = blocksize;
 
-//Pitfalls
+//Pitfalls (Unused)
 pitfall = 0;
 pitfallchance = choose(46,50,54);
 

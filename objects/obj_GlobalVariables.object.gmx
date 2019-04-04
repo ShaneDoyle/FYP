@@ -55,7 +55,7 @@ global.GameVersion = "v1.00";
 //Debug
 global.musicset = 0;
 global.hideportals = 0;
-global.controldebug = false;
+global.controldebug = true;
 global.latencydebug = true;
 
 //World Settings.

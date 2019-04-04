@@ -95,8 +95,11 @@ if(instance_number(obj_client_spawn_point) &gt; 0)
 }
 else
 {
-    obj_localplayer.x = 10;
-    obj_localplayer.y = 10;
+    if(alarm[0] == -1)
+    {
+        alarm[0] = 120;
+        //scr_refresh_player();
+    }
 }
 </string>
           </argument>

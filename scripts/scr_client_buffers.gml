@@ -1,5 +1,8 @@
-var buffer = argument[0];
-var msgId = buffer_read(buffer, buffer_u8);// find the tag
+var buffer = 0;
+var msgId = 0;
+
+buffer = argument[0];
+msgId = buffer_read(buffer, buffer_u8);// find the tag
 
 switch(msgId)
 {

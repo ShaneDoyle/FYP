@@ -67,6 +67,56 @@ if(obj_localplayer.playerhp &gt; 0)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Refresh land
+scr_refresh_player();
+refreshplayer = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Delete land
+deleteland = true;
+scr_delete_land();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -134,7 +184,7 @@ fade = true;
             <string>///Apply fading
 if(fade == true)
 {
-    image_alpha += 0.020;
+    image_alpha += 0.0125;
 }
 </string>
           </argument>
@@ -187,28 +237,32 @@ if(image_alpha &gt;= 1)
     //1
     if(deleteland == false)
     {
-        scr_delete_land();
-        deleteland = true;
+        if(alarm[2] == -1)
+        {
+            alarm[2] = 20;
+        }
     }
     //2
     else if(refreshplayer == false)
     {
-        scr_refresh_player();
-        refreshplayer = true;
+        if(alarm[3] == -1)
+        {
+            alarm[3] = 20;
+        }
     }
-
+    
+    //3
+    else if(obj_localplayer.readyendround == false)
+    {
+        obj_localplayer.readyendround = true;
+    }
+    
     //4
-    else if(newround == false &amp;&amp; global.RoundStart == true &amp;&amp; instance_number(obj_client_spawn_point) &gt; 0)
+    else if(newround == false &amp;&amp; global.RoundStart == true)
     {
         newround = true;
         scr_newRound();
         instance_destroy();
-    }
-    
-    //3
-    else if(instance_number(obj_client_spawn_point) &gt; 0)
-    {
-        obj_localplayer.readyendround = true;
     }
 }
 </string>
