@@ -391,6 +391,7 @@
         <script>scripts\scr_startClientPlay.gml</script>
         <script>scripts\scr_createServerList.gml</script>
         <script>scripts\scr_newRound.gml</script>
+        <script>scripts\scr_getAbilityStar.gml</script>
         <script>scripts\scr_getStar.gml</script>
         <script>scripts\scr_startGameWorld.gml</script>
         <script>scripts\scr_refresh_player.gml</script>

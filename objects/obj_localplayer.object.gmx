@@ -4244,7 +4244,18 @@ if(ability == true)
 }
 else if(alarm[4] == -1)
 {
-    alarm[4] = 240; //240;
+    if(powerup == 3)
+    {
+        alarm[3] = 360;
+    }
+    else if(powerup == 4)
+    {
+        alarm[3] = 300;
+    }
+    else
+    {
+        alarm[4] = 240; //240;
+    }
 }
 
 if(playerabilitypower &lt; 0)
@@ -4616,8 +4627,8 @@ if(global.PlayerMove == true)
 {
     if(instance_number(obj_client_claim_gem) &lt; 1)
     {
-        var claim = instance_create(x,y,obj_client_claim_gem);
-        claim = 2;
+        var gem = instance_create(x,y,obj_client_claim_gem);
+        gem.claim = 2;
     }
 }
 </string>
@@ -4647,8 +4658,8 @@ if(global.PlayerMove == true)
 {
     if(instance_number(obj_client_claim_gem) &lt; 1)
     {
-        var claim = instance_create(x,y,obj_client_claim_gem);
-        claim = 1;
+        var gem = instance_create(x,y,obj_client_claim_gem);
+        gem.claim = 1;
     }
 }
 </string>

@@ -295,32 +295,6 @@ switch(eventType)
         var socket = ds_map_find_value(async_load, "socket");
         var index = ds_list_find_index(global.players, socket);
         
-        var playerid = (socket - 1);
-        if(playerid == 1)
-        {
-            player1 = false;
-        }
-        else if(playerid == 2)
-        {
-            player2 = false;
-        }
-        else if(playerid == 3)
-        {
-            player3 = false;
-        }
-        else if(playerid == 4)
-        {
-            player4 = false;
-        }
-        else if(playerid == 5)
-        {
-            player5 = false;
-        }
-        else if(playerid == 6)
-        {
-            player6 = false;
-        }
-        
         var playerLeavingId = 0;
         
         if (index != -1)
@@ -334,6 +308,31 @@ switch(eventType)
             {
                 playerLeavingId = playerIdentifier;
             }
+        }
+        
+        if(playerLeavingId == 1)
+        {
+            player1 = false;
+        }
+        else if(playerLeavingId == 2)
+        {
+            player2 = false;
+        }
+        else if(playerLeavingId == 3)
+        {
+            player3 = false;
+        }
+        else if(playerLeavingId == 4)
+        {
+            player4 = false;
+        }
+        else if(playerLeavingId == 5)
+        {
+            player5 = false;
+        }
+        else if(playerLeavingId == 6)
+        {
+            player6 = false;
         }
         
         //Notify all the connected clients

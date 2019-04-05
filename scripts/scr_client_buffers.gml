@@ -447,7 +447,7 @@ switch(msgId)
             }
             else if(typeofitem == 2)
             {
-                show_message("ABILITY STAR");
+                scr_getAbilityStar();
             }
         }
         audio_play_sound(ClaimGem,0,false);

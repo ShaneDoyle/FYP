@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///Variables.
 gemID = 0;
+claim = 0; //Depending on this value, the item being claimed.
 </string>
           </argument>
         </arguments>
@@ -68,11 +69,35 @@ gemID = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Send the ID of the player who will get the star.
+            <string>///Send Buffers
+alarm[1] = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Send Buffers
 buffer_seek(global.buffer, buffer_seek_start, 0);
 buffer_write(global.buffer, buffer_u8, 23);
 buffer_write(global.buffer, buffer_u32, global.playerId);
-buffer_write(global.buffer, buffer_u32, 1);
+buffer_write(global.buffer, buffer_u32, claim);
 network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 </string>
           </argument>

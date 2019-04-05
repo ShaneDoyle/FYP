@@ -731,5 +731,19 @@ switch (msgId)
                 
             }
         }
+        else if(recievedgemID == 2)
+        {
+            with(obj_server_ability_gem)
+            {
+                status = "death";
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 23);
+                buffer_write(global.buffer, buffer_u32, pId);
+                buffer_write(global.buffer, buffer_u32, recievedgemID);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+                
+            }
+        }
+        
     break;
 }

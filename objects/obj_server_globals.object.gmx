@@ -42,7 +42,7 @@ global.planetnumber = 1;
 global.regenland = false;
 global.regenerateland = -1;
 global.regeneratelandcooldown = 0;
-global.spawnitems = false;
+global.spawnitems = true;
 
 global.ServerGameVersion = "v1.00";
 </string>
@@ -134,7 +134,7 @@ if(AbilityGems &lt;  1 &amp;&amp; instance_number(obj_server_gem_creator) &lt; 1
 {
     if(alarm[1] == -1 &amp;&amp; global.spawnitems = true)
     {
-        //alarm[1] = 420;
+        alarm[1] = 420;
     }
 }
 </string>
