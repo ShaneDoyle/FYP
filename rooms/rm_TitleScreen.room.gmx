@@ -16,7 +16,17 @@
 }
 
 //instance_create(0,0,obj_RoomShade);
-display_set_gui_size(640, 360);</code>
+display_set_gui_size(640, 360);
+
+//Create Arrow
+if(instance_exists(obj_gamepad_arrow))
+{
+
+}
+else
+{
+    instance_create(0,0,obj_gamepad_arrow);
+}</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

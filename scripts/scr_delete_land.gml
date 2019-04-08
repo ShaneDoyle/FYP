@@ -72,6 +72,11 @@ with(obj_server_star)
     instance_destroy();
 }
 
+with(obj_stop_star)
+{
+    instance_destroy();
+}
+
 
 //Reset for server only.
 if(room == rm_server)

@@ -1,7 +1,8 @@
 //Generation Variables
 var startingx = argument[0];
 var startingy = argument[1];
-var blocksize = choose(6,8,8,10,12); //argument[2];
+randomize();
+var blocksize = choose(8,10,12,14); //argument[2];
 
 
 randomize();
@@ -45,7 +46,7 @@ instance_create(startingx - 96, startingy + 16, obj_LeftPortal);
 for(i=0; i<blocksize; i++)
 {
     //Spawn points.
-    if(i == blocksize/2)
+    if(i%2 == 0)
     {
         var spawn = instance_create(currentx, currenty - 64, obj_server_spawn_point);
         spawn.planetdirection = "up";
@@ -210,7 +211,7 @@ for(i=0; i<blocksize; i++)
     block.image_index = 7;
     
     //Spawn points.
-    if(i == blocksize/2)
+    if(i%2 == 0)
     {
         var spawn = instance_create(currentx + 64, currenty, obj_server_spawn_point);
         spawn.planetdirection = "right";
@@ -305,7 +306,7 @@ for(i=0; i<left_loop; i++)
     block.image_index = 6;
     
     //Spawn points.
-    if(i == blocksize/2)
+    if(i%2 == 0)
     {
         var spawn = instance_create(currentx - 64, currenty, obj_server_spawn_point);
         spawn.planetdirection = "left";
@@ -403,7 +404,7 @@ for(i=0; i< down_loop * 2; i++)
     block.image_index = 8;
     
     //Spawn points.
-    if(i == blocksize/2)
+    if(i%2 == 0 && i<blocksize)
     {
         var spawn = instance_create(currentx, currenty + 64, obj_server_spawn_point);
         spawn.planetdirection = "down";

@@ -1,0 +1,1 @@
+obj_localplayer.speedgem = 60 * 10; //5.00001;

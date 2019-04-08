@@ -44,7 +44,7 @@ vspd = 0;
 acc = 0.3;
 dacc = 0.15;
 jumpspeed = 5.0;
-maxspeed = 2.5;
+maxspeed = 2.4;
 grounded = false;
 slowmovement = false;
 reverse_image_speed = 1;
@@ -92,14 +92,22 @@ readytoproceed = false;
 readyendround = false;
 readystartround = false;
 
+//Powerups
+speedgem = 0;
+resetstats = false;
+
 //Controls
 key_right = noone;
 key_left = noone;
 key_up = noone;
 key_down = noone;
+key_start = keyboard_check_pressed(vk_enter) || (gamepad_button_check_pressed(0,gp_start));
 key_jump = noone;
+key_jump2 = noone;
 key_attack = noone;
 key_interact = noone;
+key_ability = noone;
+gamepad_set_axis_deadzone(0,0.5);
 
 
 switch(global.playerType)
@@ -457,7 +465,8 @@ if(movementtype == "ice")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(playerabilitypower &lt; 8 &amp;&amp; ability == false)
+            <string>///Ability Power.
+if(playerabilitypower &lt; 8 &amp;&amp; ability == false)
 {
     playerabilitypower += 1;
 }
@@ -657,13 +666,15 @@ if(movementtype == "player")
 {
     if(global.PlayerMove == true &amp;&amp; PlayerDeath == false)
     {
-        key_right = keyboard_check(vk_right);
-        key_left = keyboard_check(vk_left);
-        key_up = keyboard_check(vk_up);
+        key_right = keyboard_check(vk_right) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
+        key_left = keyboard_check(vk_left) || (gamepad_axis_value(0,gp_axislh) &lt; 0);
+        key_up = keyboard_check(vk_up)
         key_down = keyboard_check(vk_down);
-        key_jump = keyboard_check_pressed(vk_space);
-        key_attack = keyboard_check_pressed(ord('F'));
-        key_interact = keyboard_check_pressed(ord('Y'));
+        key_jump = keyboard_check_pressed(vk_space) || (gamepad_button_check_pressed(0,gp_face1));
+        key_jump2 = keyboard_check(vk_space) || (gamepad_button_check(0,gp_face1));
+        key_attack = keyboard_check_pressed(ord('F')) || (gamepad_button_check(0,gp_shoulderrb));
+        key_interact = keyboard_check_pressed(ord('Y')) || (gamepad_button_check_pressed(0,gp_face4));
+        key_ability = keyboard_check_pressed(ord('G')) || (gamepad_button_check_pressed(0,gp_shoulderlb));
     }
     else
     {
@@ -674,6 +685,7 @@ if(movementtype == "player")
         key_jump = noone; 
         key_attack = noone;
         key_interact = noone;
+        key_ability = noone;
     }
 
 //Up
@@ -1095,9 +1107,9 @@ if(room != rm_lobby &amp;&amp; movementtype == "player" &amp;&amp; global.Player
 if(powerup == 1)
 {
     //Slash
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 30)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 28)
     {
-        playerenergy -= 30;
+        playerenergy -= 28;
         if(dir == "up")
         {
             var bullet = instance_create(x + (50 * image_xscale), y + 10, obj_projectile);
@@ -1138,12 +1150,12 @@ if(powerup == 1)
             attacking = true;
         }
         
-        bullet.damage = 20;
+        bullet.damage = 19;
         bullet.powerup = 1;
     }
     
     //Shield Ability
-    if(keyboard_check_pressed(ord('G')))
+    if(key_ability)
     {
         if(ability == false &amp;&amp; playerabilitypower == 8)
         {
@@ -1165,7 +1177,7 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(keyboard_check(ord('F'))&amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 22 &amp;&amp; PlayerDeath == false)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 22 &amp;&amp; PlayerDeath == false)
     {
         playerenergy -= 22;
         slowmovement = true;
@@ -1211,7 +1223,7 @@ if(powerup == 2)
         bullet.image_xscale = image_xscale;
         bullet.image_speed = 0.5;
         bullet.life = 16;
-        bullet.damage = 13;
+        bullet.damage = 15;
         bullet.image_index = irandom_range(0,0);
         
     }
@@ -1233,7 +1245,7 @@ if(powerup == 2)
     
 
     
-    if(keyboard_check(vk_space) &amp;&amp; jetpack == true &amp;&amp; playerabilitypower &gt; 0 &amp;&amp; PlayerDeath == false)
+    if(key_jump2 &amp;&amp; jetpack == true &amp;&amp; playerabilitypower &gt; 0 &amp;&amp; PlayerDeath == false)
     {
         ability = true;
         
@@ -1371,7 +1383,7 @@ if(powerup == 3)
     }
     
     //Shadow Ability
-    if(keyboard_check_pressed(ord('G')))
+    if(key_ability)
     {
         if(ability == false &amp;&amp; playerabilitypower == 8)
         {
@@ -1414,7 +1426,7 @@ if(powerup == 4)
             var bullet = instance_create(x + (10 * image_xscale), y, obj_projectile);
             if(grounded == true)
             {
-                bullet.hspeed = 2 * image_xscale;
+                bullet.hspeed = 0.5 * image_xscale;
             }
             else
             {
@@ -1428,7 +1440,7 @@ if(powerup == 4)
             var bullet = instance_create(x - (10 * image_xscale), y, obj_projectile);
             if(grounded == true)
             {
-                bullet.hspeed = -2 * image_xscale;
+                bullet.hspeed = -0.5 * image_xscale;
             }
             else
             {
@@ -1442,7 +1454,7 @@ if(powerup == 4)
             var bullet = instance_create(x , y + (10 * image_xscale), obj_projectile);
             if(grounded == true)
             {
-                bullet.vspeed = 2 * image_xscale;
+                bullet.vspeed = 0.5 * image_xscale;
             }
             else
             {
@@ -1456,7 +1468,7 @@ if(powerup == 4)
             var bullet = instance_create(x , y - (10 * image_xscale), obj_projectile);
             if(grounded == true)
             {
-                bullet.vspeed = -2 * image_xscale;
+                bullet.vspeed = -0.5 * image_xscale;
             }
             else
             {
@@ -1470,13 +1482,13 @@ if(powerup == 4)
         bullet.powerup = 4;
         bullet.life = 1000;
         bullet.rotate = 30;
-        bullet.backupdamage = 30;
+        bullet.backupdamage = 40;
         bullet.damage = 40;
         object_set_solid( bullet, solid );
     }
     
     //Explode Ability
-    if(keyboard_check_pressed(ord('G')))
+    if(key_ability)
     {
         if(ability == false &amp;&amp; playerabilitypower == 8)
         {
@@ -1491,11 +1503,12 @@ if(powerup == 4)
     //Create explosion.
     if(playerabilitypower == 0 &amp;&amp; ability == true)
     {
+        playerhp -= 25;
         var bullet = instance_create(x , y , obj_projectile);
         audio_stop_sound(BombTick);
         bullet.sprite_index = spr_BigBombExplosion;
         bullet.powerup = 4;
-        bullet.life = 60;
+        bullet.life = 40;
         bullet.rotate = 30;
         bullet.backupdamage = 80;
         bullet.damage = 80;
@@ -1518,9 +1531,9 @@ if(powerup == 4)
 if(powerup == 5)
 {
     //Slash
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 30)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 45)
     {
-        playerenergy -= 30;
+        playerenergy -= 45;
         image_speed = 0.45;
         if(dir == "up")
         {
@@ -1558,13 +1571,13 @@ if(powerup == 5)
             attacking = true;
         }
         
-        bullet.damage = 20;
+        bullet.damage = 22;
         bullet.powerup = 5;
     }
     
     
     //Snowball
-    if(keyboard_check_pressed(ord('G')))
+    if(key_ability)
     {
         if(ability == false &amp;&amp; playerabilitypower == 8)
         {
@@ -1640,7 +1653,7 @@ if(movementtype == "cannon" &amp;&amp; !place_meeting(x,y,obj_client_cannon))
     vspeed += 0.3;
 }
 
-if(place_meeting(x,y+25,obj_block) &amp;&amp; removecannon == true)
+if(place_meeting(x,y+35,obj_block) &amp;&amp; removecannon == true)
 {
     if(movementtype == "cannon")
     {
@@ -4094,27 +4107,26 @@ else
           <argument>
             <kind>1</kind>
             <string>///Check other blocks near to get planet number.
-
-    var touchingblock = instance_place(x-10,y,obj_block);
-    if(touchingblock != noone)
-    {
-        planetnumber = touchingblock.planetnumber;
-    }
-    var touchingblock = instance_place(x+10,y,obj_block);
-    if(touchingblock != noone)
-    {
-        planetnumber = touchingblock.planetnumber;
-    }
-    var touchingblock = instance_place(x,y+10,obj_block);
-    if(touchingblock != noone)
-    {
-        planetnumber = touchingblock.planetnumber;
-    }
-    var touchingblock = instance_place(x,y-10,obj_block);
-    if(touchingblock != noone)
-    {
-        planetnumber = touchingblock.planetnumber;
-    }
+var touchingblock = instance_place(x-10,y,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x+10,y,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x,y+10,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
+var touchingblock = instance_place(x,y-10,obj_block);
+if(touchingblock != noone)
+{
+    planetnumber = touchingblock.planetnumber;
+}
 
 </string>
           </argument>
@@ -4149,48 +4161,7 @@ if(PlayerDeath == true)
         abilitypower = 0;
         ability = false;
         
-        
-        //Sword &amp; Shield
-        if(powerup == 1)
-        {
-            //playermaxhp = 140;
-            //playerhp = 140;
-            maxspeed = 2.4;
-            jumpspeed = 9.001;
-        }
-        //Shock Blaster
-        else if(powerup == 2)
-        {
-            //playermaxhp = 110;
-           // playerhp = 110;
-            maxspeed = 2.1// + (0.3 * 1);
-            jumpspeed = 8.501 //+ (0.25 * 1);
-        }
-        //Summoner
-        else if(powerup == 3)
-        {
-            //playermaxhp = 110;
-           // playerhp = 110;
-            maxspeed = 2.4// + (0.3 * 1);
-            jumpspeed = 9.001;// + (0.25 * 1);
-        }
-        //(4) Demolitioner
-        else if(powerup == 4)
-        {
-            //playermaxhp = 100;
-           // playerhp = 100;
-            maxspeed = 2.4;
-            jumpspeed = 9.001;
-        }
-        
-        //(5) Ice
-        else if(powerup == 5)
-        {
-            //playermaxhp = 130;
-           // playerhp = 130;
-            maxspeed = 2.4;
-            jumpspeed = 9.001;
-        }
+        scr_set_player_attributes();
     }
     else if(image_alpha &gt; 0)
     {
@@ -4238,7 +4209,7 @@ if(ability == true)
         }
         else if(powerup == 4)
         {
-            alarm[3] = 15;
+            alarm[3] = 13;
         }
     }
 }
@@ -4246,11 +4217,11 @@ else if(alarm[4] == -1)
 {
     if(powerup == 3)
     {
-        alarm[3] = 360;
+        alarm[4] = 360;
     }
     else if(powerup == 4)
     {
-        alarm[3] = 300;
+        alarm[4] = 300;
     }
     else
     {
@@ -4262,7 +4233,10 @@ if(playerabilitypower &lt; 0)
 {
     playerabilitypower = 0;
 }
-
+if(playerabilitypower &gt; 8)
+{
+    playerabilitypower = 8;
+}
 </string>
           </argument>
         </arguments>
@@ -4288,6 +4262,71 @@ if(movementtype == "ice")
 {
     image_speed = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Powerups
+if (speedgem &gt;= 0)
+{
+    speedgem--;
+    maxspeed = 3.40001;
+    resetstats = true;
+}
+else if(resetstats == true)
+{
+    resetstats = false;
+    scr_reset_speed();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ready up
+if((gamepad_button_check_pressed(0,gp_start)))
+{
+    if(readytoproceed == false)
+    {
+        readytoproceed = true;
+    }
+    else
+    {
+        readytoproceed = false;
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -4560,7 +4599,7 @@ if(hit == false &amp;&amp; playerhp &gt; 0)
                 movementtype = "ice";
                 if(alarm[5] == -1)
                 {
-                    alarm[5] = 180;
+                    alarm[5] = 140;
                 }
             }
         }
@@ -4629,6 +4668,37 @@ if(global.PlayerMove == true)
     {
         var gem = instance_create(x,y,obj_client_claim_gem);
         gem.claim = 2;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_client_speed_gem">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Request to server to delete the gem, and gain points!
+if(global.PlayerMove == true)
+{
+    if(instance_number(obj_client_claim_gem) &lt; 1)
+    {
+        var gem = instance_create(x,y,obj_client_claim_gem);
+        gem.claim = 3;
     }
 }
 </string>
@@ -4706,24 +4776,27 @@ if(global.PlayerMove == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(ord('Y')) &amp;&amp; movementtype == "player" &amp;&amp; PlayerDeath == false &amp;&amp; global.PlayerMove == true)
+            <string>if(keyboard_check_pressed(ord('Y')) || (gamepad_button_check_pressed(0,gp_face4)))
 {
-    cannon_hspeed = other.cannon_hspeed;
-    x = other.x;
-    y = other.y - 15;
-    image_alpha = 0;
-    movementtype = "cannon";
-    
-    image_xscale = 1;
-    if (alarm[2] == -1)
+    if(movementtype == "player" &amp;&amp; PlayerDeath == false &amp;&amp; global.PlayerMove == true)
     {
-        audio_play_sound(CannonReady,0,false);
-        alarm[2] = 60;
-    }
-    if(alarm[1] == -1)
-    {
-        removecannon = false;
-        alarm[1] = 90;
+        cannon_hspeed = other.cannon_hspeed;
+        x = other.x;
+        y = other.y - 15;
+        image_alpha = 0;
+        movementtype = "cannon";
+        
+        image_xscale = 1;
+        if (alarm[2] == -1)
+        {
+            audio_play_sound(CannonReady,0,false);
+            alarm[2] = 60;
+        }
+        if(alarm[1] == -1)
+        {
+            removecannon = false;
+            alarm[1] = 90;
+        }
     }
 }
 </string>
@@ -4873,8 +4946,17 @@ if(room == rm_lobby)
           <argument>
             <kind>1</kind>
             <string>///Teleport back to start
+hspeed = 0
+vspeed = 0;
+x = 600;
+y = 100;
+hspd = 0;
+vspd = 0;
+planetnumber = 1;
 if(instance_number(obj_localplayer_spawner) &lt; 1)
 {
+    x = 100;
+    y = 100;
     instance_create(0,0,obj_localplayer_spawner);
 }
 
@@ -5713,6 +5795,9 @@ network_send_packet(obj_controller.socket, global.buffer, scr_getBufferSize());
 */
 
 //instance_create(0-1000,0,obj_Star);
+
+///Snow shit
+/*
 with(obj_block)
 {
     sprite_index = spr_snow_block;
@@ -5908,7 +5993,8 @@ game_restart();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_restart();
+            <string>/*
+room_restart();
 audio_stop_all();
 </string>
           </argument>

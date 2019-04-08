@@ -74,6 +74,10 @@ else if (itemtype == 2)
 {
     instance_create(x,y,obj_server_ability_gem);
 }
+else if (itemtype == 3)
+{
+    instance_create(x,y,obj_server_speed_gem);
+}
 instance_destroy();
 </string>
           </argument>

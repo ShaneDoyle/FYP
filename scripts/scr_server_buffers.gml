@@ -506,6 +506,20 @@ switch (msgId)
             network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
         }
         
+        //Tell the player about existing speed gems.
+        for (var i = 0; i < instance_number(obj_server_speed_gem); i++)
+        {
+            var gem = instance_find(obj_server_speed_gem, i);
+
+            buffer_seek(global.buffer, buffer_seek_start, 0);
+            buffer_write(global.buffer, buffer_u8, 28);
+            buffer_write(global.buffer, buffer_u32, gem.gemID);
+            buffer_write(global.buffer, buffer_f32, gem.x);
+            buffer_write(global.buffer, buffer_f32, gem.y);
+            buffer_write(global.buffer, buffer_string, gem.status);
+            network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+        }
+        
     break;
     
     //Chat request (unused)
@@ -734,6 +748,19 @@ switch (msgId)
         else if(recievedgemID == 2)
         {
             with(obj_server_ability_gem)
+            {
+                status = "death";
+                buffer_seek(global.buffer, buffer_seek_start, 0);
+                buffer_write(global.buffer, buffer_u8, 23);
+                buffer_write(global.buffer, buffer_u32, pId);
+                buffer_write(global.buffer, buffer_u32, recievedgemID);
+                network_send_packet(socket, global.buffer, buffer_tell(global.buffer));
+                
+            }
+        }
+        else if(recievedgemID == 3)
+        {
+            with(obj_server_speed_gem)
             {
                 status = "death";
                 buffer_seek(global.buffer, buffer_seek_start, 0);

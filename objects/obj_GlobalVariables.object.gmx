@@ -49,13 +49,13 @@ global.RoundEnd = false;
 
 //Game variables
 global.GameVersion = "v1.00";
-
+global.GameArrowOption = 0;
 
 
 //Debug
 global.musicset = 0;
 global.hideportals = 0;
-global.controldebug = true;
+global.controldebug = false;
 global.latencydebug = true;
 
 //World Settings.

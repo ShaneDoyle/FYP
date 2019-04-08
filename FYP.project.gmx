@@ -321,6 +321,7 @@
       <sprite>sprites\spr_RightPortal</sprite>
       <sprite>sprites\spr_UpPortal</sprite>
       <sprite>sprites\spr_HP_Gem</sprite>
+      <sprite>sprites\spr_Speed_Gem</sprite>
       <sprite>sprites\spr_Ability_Gem</sprite>
       <sprite>sprites\spr_DownPortal</sprite>
       <sprite>sprites\spr_Crate</sprite>
@@ -392,6 +393,7 @@
         <script>scripts\scr_createServerList.gml</script>
         <script>scripts\scr_newRound.gml</script>
         <script>scripts\scr_getAbilityStar.gml</script>
+        <script>scripts\scr_getSpeedStar.gml</script>
         <script>scripts\scr_getStar.gml</script>
         <script>scripts\scr_startGameWorld.gml</script>
         <script>scripts\scr_refresh_player.gml</script>
@@ -412,6 +414,7 @@
       <script>scripts\scr_reset.gml</script>
       <script>scripts\scr_respawn.gml</script>
       <script>scripts\scr_gravitysnapsound.gml</script>
+      <script>scripts\scr_reset_speed.gml</script>
       <script>scripts\scr_set_player_attributes.gml</script>
       <script>scripts\scr_angle_player.gml</script>
     </scripts>
@@ -499,6 +502,7 @@
       <object>objects\obj_npc</object>
       <object>objects\obj_playerList</object>
       <object>objects\obj_client_HP_gem</object>
+      <object>objects\obj_client_speed_gem</object>
       <object>objects\obj_client_ability_gem</object>
       <object>objects\obj_client_claim_gem</object>
       <object>objects\obj_remoteProjectile</object>
@@ -528,6 +532,10 @@
           <object>objects\obj_Auto</object>
           <object>objects\obj_Manual</object>
         </objects>
+        <object>objects\obj_gamepad_arrow</object>
+      </objects>
+      <objects name="Controls">
+        <object>objects\obj_gamepad</object>
       </objects>
     </objects>
     <objects name="MasterServer">
@@ -555,6 +563,7 @@
       <objects name="Gem">
         <object>objects\obj_server_HP_gem</object>
         <object>objects\obj_server_ability_gem</object>
+        <object>objects\obj_server_speed_gem</object>
         <object>objects\obj_server_gem_creator</object>
       </objects>
       <objects name="Enemys">

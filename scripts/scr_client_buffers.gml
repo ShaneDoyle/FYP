@@ -449,6 +449,10 @@ switch(msgId)
             {
                 scr_getAbilityStar();
             }
+            else if(typeofitem == 3)
+            {
+                scr_getSpeedStar();
+            }
         }
         audio_play_sound(ClaimGem,0,false);
     break;
@@ -523,4 +527,30 @@ switch(msgId)
 
 
     break;
+    
+    
+    //Get Server Speed Gem Settings
+    case 28:
+        var gemID = buffer_read(buffer, buffer_u32);
+        var xx = buffer_read(buffer, buffer_f32);
+        var yy = buffer_read(buffer, buffer_f32);
+        var status = buffer_read(buffer, buffer_string);
+        
+        if(status == "active")
+        {
+            if(instance_number(obj_client_speed_gem) < 1)
+            {
+                var gem = instance_create(xx, yy, obj_client_speed_gem);
+            }
+        }
+        else
+        {
+            with(obj_client_speed_gem)
+            {
+                if(status == "death")
+                {
+                    instance_destroy();
+                }
+            }
+        }
 }

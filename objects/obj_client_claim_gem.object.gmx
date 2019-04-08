@@ -48,7 +48,7 @@ claim = 0; //Depending on this value, the item being claimed.
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 300;
+            <string>alarm[0] = 30;
 </string>
           </argument>
         </arguments>
