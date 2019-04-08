@@ -37,6 +37,7 @@ alarm[0] = 240;
 deleteland = false;
 refreshplayer = false;
 newround = false;
+repeatrefresh = false;
 </string>
           </argument>
         </arguments>
@@ -67,6 +68,29 @@ if(obj_localplayer.playerhp &gt; 0)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_newRound();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="3">
       <action>
         <libid>1</libid>
@@ -85,8 +109,11 @@ if(obj_localplayer.playerhp &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Refresh land
-scr_refresh_player();
-refreshplayer = true;
+if(refreshplayer == false)
+{
+    scr_delete_land();
+    scr_refresh_player();
+}
 </string>
           </argument>
         </arguments>
@@ -232,7 +259,7 @@ y = obj_Camera.y;
             <string>///Refresh stuff! (IMPORANTANT)
 if(image_alpha &gt;= 1)
 {
-    
+    obj_localplayer.grav = 0;
     //Delete Land.
     //1
     if(deleteland == false)
@@ -242,12 +269,19 @@ if(image_alpha &gt;= 1)
             alarm[2] = 20;
         }
     }
+    
+    //1.5
+    else if(instance_number(obj_client_spawn_point) &gt; 12 &amp;&amp; refreshplayer == false)
+    {
+        refreshplayer = true;
+    }
+    
     //2
     else if(refreshplayer == false)
     {
         if(alarm[3] == -1)
         {
-            alarm[3] = 20;
+            alarm[3] = 30;
         }
     }
     

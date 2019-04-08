@@ -91,6 +91,7 @@ miscsound = true;
 readytoproceed = false;
 readyendround = false;
 readystartround = false;
+gamedone = false;
 
 //Powerups
 speedgem = 0;
@@ -1503,7 +1504,7 @@ if(powerup == 4)
     //Create explosion.
     if(playerabilitypower == 0 &amp;&amp; ability == true)
     {
-        playerhp -= 25;
+        playerhp -= 20;
         var bullet = instance_create(x , y , obj_projectile);
         audio_stop_sound(BombTick);
         bullet.sprite_index = spr_BigBombExplosion;
@@ -1531,9 +1532,9 @@ if(powerup == 4)
 if(powerup == 5)
 {
     //Slash
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 45)
+    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 30)
     {
-        playerenergy -= 45;
+        playerenergy -= 30;
         image_speed = 0.45;
         if(dir == "up")
         {
@@ -4069,16 +4070,23 @@ if(playerscore &lt; 0)
           <argument>
             <kind>1</kind>
             <string>///Check for winning conditions
-if(global.PlayerMove == true)
+if(global.PlayerMove == true &amp;&amp; gamedone == false)
 {
-    if(global.RoundEnd == true &amp;&amp; instance_number(obj_transition_endround) &lt; 1)
+    //If no one has one, keep proceeding.
+    if(gamedone == false)
     {
-        global.PlayerMove = false;
-        instance_create(obj_Camera.x, obj_Camera.y, obj_transition_endround);
+        if(global.RoundEnd == true &amp;&amp; instance_number(obj_transition_endround) &lt; 1)
+        {
+            global.PlayerMove = false;
+            instance_create(obj_Camera.x, obj_Camera.y, obj_transition_endround);
+        }
+        else
+        {
+            //global.RoundEnd = false;
+        }
     }
     else
     {
-        //global.RoundEnd = false;
     }
 }
 else
@@ -4209,7 +4217,7 @@ if(ability == true)
         }
         else if(powerup == 4)
         {
-            alarm[3] = 13;
+            alarm[3] = 15;
         }
     }
 }
@@ -4221,11 +4229,11 @@ else if(alarm[4] == -1)
     }
     else if(powerup == 4)
     {
-        alarm[4] = 300;
+        alarm[4] = 300; //300
     }
     else
     {
-        alarm[4] = 240; //240;
+        alarm[4] = 270; //240;
     }
 }
 
@@ -4286,7 +4294,14 @@ if(movementtype == "ice")
 if (speedgem &gt;= 0)
 {
     speedgem--;
-    maxspeed = 3.40001;
+    if(powerup == 4 &amp;&amp; ability == true)
+    {
+        maxspeed = 0;
+    }
+    else
+    {
+        maxspeed = 3.40001;
+    }
     resetstats = true;
 }
 else if(resetstats == true)
@@ -4591,7 +4606,7 @@ if(hit == false &amp;&amp; playerhp &gt; 0)
 {
     if(image_alpha == 1 || image_alpha == 0)
     {
-        if(other.sprite_index == spr_IceBolt)
+        if(other.sprite_index == spr_IceBolt &amp;&amp; movementtype == "player")
         {
             if(movementtype != "ice")
             {
@@ -4776,26 +4791,29 @@ if(global.PlayerMove == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(ord('Y')) || (gamepad_button_check_pressed(0,gp_face4)))
+            <string>if(grounded == true)
 {
-    if(movementtype == "player" &amp;&amp; PlayerDeath == false &amp;&amp; global.PlayerMove == true)
+    if(keyboard_check_pressed(ord('Y')) || (gamepad_button_check_pressed(0,gp_face4)))
     {
-        cannon_hspeed = other.cannon_hspeed;
-        x = other.x;
-        y = other.y - 15;
-        image_alpha = 0;
-        movementtype = "cannon";
-        
-        image_xscale = 1;
-        if (alarm[2] == -1)
+        if(movementtype == "player" &amp;&amp; PlayerDeath == false &amp;&amp; global.PlayerMove == true)
         {
-            audio_play_sound(CannonReady,0,false);
-            alarm[2] = 60;
-        }
-        if(alarm[1] == -1)
-        {
-            removecannon = false;
-            alarm[1] = 90;
+            cannon_hspeed = other.cannon_hspeed;
+            x = other.x;
+            y = other.y - 15;
+            image_alpha = 0;
+            movementtype = "cannon";
+            
+            image_xscale = 1;
+            if (alarm[2] == -1)
+            {
+                audio_play_sound(CannonReady,0,false);
+                alarm[2] = 60;
+            }
+            if(alarm[1] == -1)
+            {
+                removecannon = false;
+                alarm[1] = 90;
+            }
         }
     }
 }
@@ -4950,13 +4968,12 @@ hspeed = 0
 vspeed = 0;
 x = 600;
 y = 100;
+dir = "up";
 hspd = 0;
 vspd = 0;
 planetnumber = 1;
 if(instance_number(obj_localplayer_spawner) &lt; 1)
 {
-    x = 100;
-    y = 100;
     instance_create(0,0,obj_localplayer_spawner);
 }
 
@@ -5187,13 +5204,14 @@ draw_set_font(stats);
 
 //Create DS_GRID for displaying stats.
 loopnumber = instance_number(obj_remoteplayer);
-statsgrid = ds_grid_create(3, loopnumber+1);
+statsgrid = ds_grid_create(4, loopnumber+1);
 
 
 //Populate the grid with our own info.
 ds_grid_add(statsgrid, 0, 0, global.name);
 ds_grid_add(statsgrid, 1, 0, playerscore);
 ds_grid_add(statsgrid, 2, 0, global.playerType);
+ds_grid_add(statsgrid, 3, 0, playerhp);
 
 //Loop through all remote players.
 var i = 1;
@@ -5201,9 +5219,11 @@ with(obj_remoteplayer)
 {
     name = remotePlayerName;
     colour = remotePlayerType;
+    hp = remotePlayerHP;
     ds_grid_add(other.statsgrid, 0, i, name);
     ds_grid_add(other.statsgrid, 1, i, remotePlayerScore);
     ds_grid_add(other.statsgrid, 2, i, colour);
+    ds_grid_add(other.statsgrid, 3, i, remotePlayerHP);
     i++;
 }
 
@@ -5236,6 +5256,16 @@ if(room == rm_gameWorld)
             draw_sprite(spr_StatIcon, 3, 10, 8 + (i * 15))
         }
     
+        hpbuffer = ds_grid_get(statsgrid,3,i);
+        if(hpbuffer &gt; 0)
+        {    
+            draw_set_colour(c_black);
+        }
+        else
+        {
+            draw_set_colour(c_gray); 
+        }
+        
         namelength = string_length(ds_grid_get(statsgrid,0,i)) * 3; //1.35;
         
         
@@ -5268,6 +5298,57 @@ if(room == rm_gameWorld)
 }
 
 ds_grid_destroy(statsgrid);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Win condition stuff.
+with(obj_remoteplayer)
+{
+    if(remotePlayerScore &gt;= 3)
+    {
+        other.gamedone = true;
+    }
+}
+
+if(playerscore &gt;= 3)
+{
+    gamedone = true;
+}
+
+if(gamedone == true)
+{
+    global.PlayerMove = true;
+    with(obj_transition_endround)
+    {
+        instance_destroy();
+    }
+    
+    if(playerscore &gt;= 3)
+    {
+        draw_sprite(spr_Winner, 0, 640/2, 360/4);
+    }
+    else
+    {
+        draw_sprite(spr_Loser, 0, 640/2, 360/4);
+    }
+}
 </string>
           </argument>
         </arguments>

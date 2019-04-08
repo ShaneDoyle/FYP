@@ -108,6 +108,13 @@ else if(room == rm_joining)
         y = 300;
     }
 }
+else if(room == rm_listofservers)
+{
+
+    x = 32;
+    y = 64;
+
+}
 else
 {
     x = -200;
@@ -155,7 +162,7 @@ else
     key_arrow_right = (gamepad_axis_value(0,gp_axislh) &gt; 0);
     key_arrow_left2 = (gamepad_axis_value(0,gp_axisrh) &lt; 0);
     key_arrow_right2 = (gamepad_axis_value(0,gp_axisrh) &gt; 0);
-    key_select = noone;
+    key_select = (gamepad_button_check_pressed(0,gp_face1));
     key_back = (gamepad_button_check_pressed(0,gp_face2));
 }
 
@@ -212,6 +219,23 @@ if(key_select)
         {
 
         }
+    }
+    
+    if(room == rm_listofservers)
+    {
+        join = instance_find(obj_JoinServer,0);
+        
+        if(join == noone)
+        {
+        }
+        else
+        {
+            if(join.alarm[0] == -1)
+            {
+                join.alarm[0] = 1;
+            }
+        }
+        
     }
 }
 

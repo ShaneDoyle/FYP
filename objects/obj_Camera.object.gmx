@@ -98,10 +98,11 @@ else if(instance_number(obj_client_star) &gt; 0)
 }
 else
 {   
-    key_right = keyboard_check(vk_right);
-    key_left = keyboard_check(vk_left);
-    key_up = keyboard_check(vk_up);
-    key_down = keyboard_check(vk_down);
+    key_right = keyboard_check(vk_right) || (gamepad_axis_value(0,gp_axislh) &gt; 0);
+    key_left = keyboard_check(vk_left) || (gamepad_axis_value(0,gp_axislh) &lt; 0);
+    key_up = keyboard_check(vk_up) || (gamepad_axis_value(0,gp_axislv) &gt; 0);
+    key_down = keyboard_check(vk_down) || (gamepad_axis_value(0,gp_axislv) &lt; 0);
+    gamepad_set_axis_deadzone(0,0.5);
     
     if(key_right)
     {

@@ -32,7 +32,12 @@ depth = 3;
 
 if(room == rm_server)
 {
+    filldirt = true;
     alarm[0] = 10;
+}
+else
+{
+    filldirt = false;
 }
 
 //Misc
@@ -634,17 +639,20 @@ if(image_index == 6)
           <argument>
             <kind>1</kind>
             <string>///Fill dirt blocks
-if(image_index == 1 &amp;&amp; filldirt == true)
+if(room = rm_server)
 {
-    if(place_meeting(x+16, y, obj_block))
+    if(image_index == 1 &amp;&amp; filldirt == true)
     {
-        filldirt = false;
-    }
-    else
-    {
-        var block = instance_create(x+32,y,obj_block);
-        block.image_index = 1;
-        filldirt = false;
+        if(place_meeting(x+16, y, obj_block))
+        {
+            filldirt = false;
+        }
+        else
+        {
+            var block = instance_create(x+32,y,obj_block);
+            block.image_index = 1;
+            filldirt = false;
+        }
     }
 }
 

@@ -32,7 +32,7 @@ remotePlayerType = 0;
 remotePlayerLatency = 0;
 remotePlayerHP = 100;
 remotePlayerMaxHP = 100;
-remotePlayerScore = 10;
+remotePlayerScore = 0;
 remotePlayerAbility = false;
 remotePlayerAttacking = false;
 remotePlayerHit = false;
@@ -818,6 +818,50 @@ if(room != rm_lobby &amp;&amp; remotePlayerMaxHP &gt; 0 &amp;&amp; remotePlayerH
 if(remotePlayerMovementtype == "ice")
 {
     draw_sprite_ext(spr_Frozen,0,x,y,1,1,image_angle,c_white,1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Warning for some abilities.
+//Hardcoded. Change this.
+bomber = false
+if(sprite_index == spr_PlayerBlueExplode_Bomb)
+{
+    bomber = true;
+}
+else if(sprite_index == spr_PlayerRedExplode_Bomb)
+{
+    bomber = true;
+}
+else if(sprite_index == spr_PlayerGreenExplode_Bomb)
+{
+    bomber = true;
+}
+else if(sprite_index == spr_PlayerYellowExplode_Bomb)
+{
+    bomber = true;
+}
+
+if(bomber == true &amp;&amp; remotePlayerAbility == true)
+{
+    draw_sprite_ext(spr_warning_point,0,x,y,0.5,0.5,image_angle,c_white,1);
 }
 </string>
           </argument>

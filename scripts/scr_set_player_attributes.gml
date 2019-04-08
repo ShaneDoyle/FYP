@@ -13,7 +13,7 @@ else if(powerup == 2)
 {
     playermaxhp = 130;
     playerhp = 130;
-    maxspeed = 2.4// + (0.3 * 1);
+    maxspeed = 2.4;// + (0.3 * 1);
     jumpspeed = 9.001 //+ (0.25 * 1);
 }
 //(3) Summoner

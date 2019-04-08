@@ -349,6 +349,11 @@
       <sprite>sprites\spr_Connecting</sprite>
       <sprite>sprites\spr_Go</sprite>
       <sprite>sprites\spr_Numbers</sprite>
+      <sprite>sprites\spr_Loser</sprite>
+      <sprite>sprites\spr_Winner</sprite>
+    </sprites>
+    <sprites name="Indicators">
+      <sprite>sprites\spr_warning_point</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -429,6 +434,7 @@
   </shaders>
   <fonts name="fonts">
     <font>fonts\font1</font>
+    <font>fonts\deadfont</font>
     <font>fonts\stats</font>
   </fonts>
   <objects name="objects">

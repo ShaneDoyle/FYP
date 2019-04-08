@@ -31,7 +31,7 @@ image_alpha = 1;
 fade = false;
 
 alarm[0] = 90;
-obj_localplayer.playerabilitypower = 8;
+obj_localplayer.grav = 0.1;
 </string>
           </argument>
         </arguments>
@@ -56,6 +56,14 @@ obj_localplayer.playerabilitypower = 8;
             <kind>1</kind>
             <string>///Activate fading.
 fade = true;
+
+obj_localplayer.playerabilitypower = 8;
+obj_localplayer.grav = 0.6;
+obj_localplayer.hspd = 0;
+obj_localplayer.vspd = 0;
+obj_localplayer.hspeed = 0;
+obj_localplayer.vspeed = 0;
+obj_localplayer.ability = false;
 </string>
           </argument>
         </arguments>
