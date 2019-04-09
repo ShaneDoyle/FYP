@@ -673,7 +673,7 @@ if(movementtype == "player")
         key_down = keyboard_check(vk_down);
         key_jump = keyboard_check_pressed(vk_space) || (gamepad_button_check_pressed(0,gp_face1));
         key_jump2 = keyboard_check(vk_space) || (gamepad_button_check(0,gp_face1));
-        key_attack = keyboard_check_pressed(ord('F')) || (gamepad_button_check(0,gp_shoulderrb));
+        key_attack = keyboard_check_pressed(ord('F')) || (gamepad_button_check_pressed(0,gp_shoulderrb));
         key_interact = keyboard_check_pressed(ord('Y')) || (gamepad_button_check_pressed(0,gp_face4));
         key_ability = keyboard_check_pressed(ord('G')) || (gamepad_button_check_pressed(0,gp_shoulderlb));
     }
@@ -1178,55 +1178,58 @@ if(powerup == 1)
 if(powerup == 2)
 {
     //Fire Lightning
-    if(key_attack &amp;&amp; alarm[0] == -1 &amp;&amp; playerenergy &gt;= 22 &amp;&amp; PlayerDeath == false)
+    if(keyboard_check(ord('F')) || (gamepad_button_check(0,gp_shoulderrb)))
     {
-        playerenergy -= 22;
-        slowmovement = true;
-        alarm[0] = 16;
-        if(dir == "up")
+        if(alarm[0] == -1 &amp;&amp; playerenergy &gt;= 22 &amp;&amp; PlayerDeath == false)
         {
-            var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
+            playerenergy -= 22;
+            slowmovement = true;
+            alarm[0] = 16;
+            if(dir == "up")
+            {
+                var bullet = instance_create(x + (81 * image_xscale), y + 14, obj_projectile);
+                
+                bullet.followx = 81;
+                bullet.followy = 14;
+                bullet.followplayer = true;
+            }
+            else if(dir == "down")
+            {
+                var bullet = instance_create(x - (81 * image_xscale), y - 14, obj_projectile);
+                
+                bullet.followx = -81;
+                bullet.followy = -14;
+                bullet.image_angle = -180;
+                bullet.followplayer = true;
+            }
             
-            bullet.followx = 81;
-            bullet.followy = 14;
-            bullet.followplayer = true;
-        }
-        else if(dir == "down")
-        {
-            var bullet = instance_create(x - (81 * image_xscale), y - 14, obj_projectile);
+            else if(dir == "right")
+            {
+                var bullet = instance_create(x-14 , y + (81 * image_xscale), obj_projectile);
+                bullet.followx = -14;
+                bullet.followy = 81;
+                bullet.image_angle = -90;
+                bullet.followplayer = true;
+            }
+            else if(dir == "left")
+            {
+                var bullet = instance_create(x+14 , y - (81 * image_xscale), obj_projectile);
+                bullet.followx = 14;
+                bullet.followy = -81;
+                bullet.image_angle = 90;
+                bullet.image_xscale = image_xscale;
+                bullet.followplayer = true;
+            }
             
-            bullet.followx = -81;
-            bullet.followy = -14;
-            bullet.image_angle = -180;
-            bullet.followplayer = true;
-        }
-        
-        else if(dir == "right")
-        {
-            var bullet = instance_create(x-14 , y + (81 * image_xscale), obj_projectile);
-            bullet.followx = -14;
-            bullet.followy = 81;
-            bullet.image_angle = -90;
-            bullet.followplayer = true;
-        }
-        else if(dir == "left")
-        {
-            var bullet = instance_create(x+14 , y - (81 * image_xscale), obj_projectile);
-            bullet.followx = 14;
-            bullet.followy = -81;
-            bullet.image_angle = 90;
+            bullet.sprite_index = spr_Laser;
+            bullet.powerup = 2;
             bullet.image_xscale = image_xscale;
-            bullet.followplayer = true;
+            bullet.image_speed = 0.5;
+            bullet.life = 16;
+            bullet.damage = 15;
+            bullet.image_index = irandom_range(0,0);
+            
         }
-        
-        bullet.sprite_index = spr_Laser;
-        bullet.powerup = 2;
-        bullet.image_xscale = image_xscale;
-        bullet.image_speed = 0.5;
-        bullet.life = 16;
-        bullet.damage = 15;
-        bullet.image_index = irandom_range(0,0);
-        
     }
     
 

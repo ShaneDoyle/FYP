@@ -139,6 +139,7 @@ if(refreshplayer == false)
             <string>///Delete land
 deleteland = true;
 scr_delete_land();
+scr_delete_items();
 </string>
           </argument>
         </arguments>

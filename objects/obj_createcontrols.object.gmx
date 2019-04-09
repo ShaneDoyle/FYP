@@ -37,6 +37,9 @@ if(os_type == os_android || global.controldebug == true)
     key_attack = virtual_key_add(width - (width * 0.15),     height - height*0.175,    width * 0.10,     height *0.175,     ord('F'));
     key_ability = virtual_key_add(width - (width * 0.15),     height - height*0.350,    width * 0.10,     height *0.175,     ord('G'));
     key_interact = virtual_key_add(width - (width * 0.35),     height - height*0.175,    width * 0.10,     height *0.175,     ord('Y'));
+    
+    key_up = virtual_key_add(width - (width * 0.15),     height - height*0.350,    width * 0.10,     height *0.175,     vk_up);
+    key_down = virtual_key_add(width - (width * 0.15),     height - height*0.175,    width * 0.10,     height *0.175,     vk_down);
 }
 //virtual_key_show(key_right);
 //virtual_key_show(key_left);
